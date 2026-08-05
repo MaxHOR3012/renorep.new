@@ -6,150 +6,214 @@
     <title>Galerie – Renorep</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Fragment+Mono:ital@0;1&family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --white:   #FFFFFF;
-            --gray-50: #F8FAFC;
-            --gray-100:#F1F5F9;
-            --gray-200:#E2E8F0;
-            --gray-400:#94A3B8;
-            --gray-500:#64748B;
-            --gray-900:#0F172A;
-            --blue:    #2563EB;
-            --blue-dark:#1D4ED8;
+            --paper:    #F2EDE2;
+            --paper-2:  #EAE3D3;
+            --ink:      #1B1611;
+            --ink-soft: #575046;
+            --line:     rgba(27,22,17,0.16);
+            --line-strong: rgba(27,22,17,0.6);
+            --accent:   #A64B21;
+            --gold:     #D4B483;
+            --green:    #3E5C41;
+            --font-display: 'Fraunces', Georgia, serif;
+            --font-mono: 'Fragment Mono', monospace;
+            --font-body: 'Lora', Georgia, serif;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
 
+        ::selection { background: var(--accent); color: var(--paper); }
+
         body {
-            font-family: 'Nunito', sans-serif;
-            color: var(--gray-900);
+            font-family: var(--font-body);
+            background: var(--paper);
+            color: var(--ink);
             line-height: 1.6;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            background: url('door-bg.png') center center / cover no-repeat fixed;
-            position: relative;
+            overflow-x: hidden;
         }
-        body::before {
+
+        .kicker {
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--accent);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .kicker::before {
             content: '';
-            position: fixed;
-            inset: 0;
-            background: rgba(253, 250, 245, 0.85);
-            backdrop-filter: blur(2px);
-            z-index: 0;
+            width: 2rem; height: 1px;
+            background: var(--accent);
+            display: block;
         }
-        nav, main, footer { position: relative; z-index: 1; }
 
         /* ── NAV ── */
         nav {
             position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-            height: 66px;
+            height: 64px;
             display: flex; align-items: center; justify-content: space-between;
-            padding: 0 4rem;
-            background: rgba(255,255,255,0.96);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--gray-200);
+            padding: 0 clamp(1.25rem, 4vw, 3.5rem);
+            background: rgba(242,237,226,0.94);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--line);
         }
-        .nav-logo {
-            font-family: 'Nunito', sans-serif;
-            font-size: 1.25rem; font-weight: 700;
-            color: var(--gray-900); text-decoration: none;
-        }
+        .nav-logo { text-decoration: none; display: inline-flex; align-items: center; }
+        .nav-logo img { height: 38px; width: auto; display: block; }
+
         .nav-links {
-            display: flex; align-items: center; list-style: none; gap: 2.5rem;
+            display: flex; align-items: center; list-style: none;
+            gap: clamp(1.1rem, 2.2vw, 2.2rem);
         }
         .nav-links a {
-            font-size: 0.875rem; font-weight: 500;
-            color: var(--gray-500); text-decoration: none;
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--ink-soft);
+            text-decoration: none;
             transition: color 0.15s;
         }
-        .nav-links a:hover { color: var(--gray-900); }
-        .nav-links a.active { color: var(--gray-900); font-weight: 700; }
+        .nav-links a:hover { color: var(--accent); }
+        .nav-links a.active { color: var(--ink); border-bottom: 1px solid var(--accent); padding-bottom: 2px; }
+
         .nav-cta {
-            background: var(--gray-900) !important;
-            color: white !important;
-            padding: 0.55rem 1.4rem;
-            border-radius: 7px;
-            transition: background 0.15s !important;
+            color: var(--ink) !important;
+            border: 1px solid var(--line-strong);
+            padding: 0.55rem 1.2rem;
+            transition: background 0.18s, color 0.18s !important;
         }
-        .nav-cta:hover { background: var(--blue) !important; }
+        .nav-cta:hover { background: var(--ink); color: var(--paper) !important; }
+
+        /* ── HAMBURGER / MOBILE MENU ── */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 6px;
+            background: none;
+            border: none;
+            z-index: 200;
+        }
+        .hamburger span {
+            display: block;
+            width: 24px; height: 2px;
+            background: var(--ink);
+            transition: all 0.3s ease;
+        }
+        .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .hamburger.open span:nth-child(2) { opacity: 0; }
+        .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 64px; left: 0; right: 0;
+            background: rgba(242,237,226,0.98);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--line-strong);
+            padding: 1.5rem clamp(1.25rem, 4vw, 2rem);
+            flex-direction: column;
+            z-index: 99;
+        }
+        .mobile-menu.open { display: flex; }
+        .mobile-menu a {
+            display: block;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--ink); text-decoration: none;
+            padding: 0.95rem 0;
+            border-bottom: 1px solid var(--line);
+            transition: color 0.15s;
+        }
+        .mobile-menu a:last-child { border-bottom: none; }
+        .mobile-menu a:hover { color: var(--accent); }
 
         /* ── MAIN ── */
         main {
             flex: 1;
-            padding: 100px 4rem 6rem;
-            max-width: 1200px;
-            margin: 0 auto;
+            padding: 120px clamp(1.25rem, 4vw, 3.5rem) 6rem;
             width: 100%;
         }
 
         /* ── HEADER ── */
         .page-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-        .page-label {
-            display: inline-flex; align-items: center; gap: 0.5rem;
-            font-size: 0.78rem; font-weight: 600;
-            color: var(--blue); letter-spacing: 0.07em;
-            text-transform: uppercase; margin-bottom: 1rem;
-        }
-        .page-label::before {
-            content: ''; display: block;
-            width: 20px; height: 2px; background: var(--blue);
-            border-radius: 1px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 2rem;
+            margin-bottom: 2.6rem;
         }
         .page-header h1 {
-            font-size: clamp(2rem, 4vw, 3rem);
-            font-weight: 800; line-height: 1.1;
-            letter-spacing: -0.03em;
-            color: var(--gray-900);
-            margin-bottom: 0.75rem;
+            font-family: var(--font-display);
+            font-size: clamp(2.4rem, 5vw, 4.2rem);
+            font-weight: 500;
+            line-height: 1.02;
+            letter-spacing: -0.02em;
+            margin-top: 0.9rem;
+        }
+        .page-header h1 em {
+            font-style: italic;
+            font-weight: 400;
+            color: var(--accent);
         }
         .page-header p {
-            font-size: 1.05rem; color: var(--gray-500);
-            max-width: 50ch; margin: 0 auto;
+            font-size: 0.98rem;
+            color: var(--ink-soft);
+            line-height: 1.75;
+            max-width: 40ch;
         }
 
-        /* ── FILTER TABS ── */
+        /* ── FILTER ── */
         .filter-bar {
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
+            gap: 0.6rem;
             flex-wrap: wrap;
-            margin-bottom: 2.5rem;
-            background: white;
-            border: 1.5px solid var(--gray-200);
-            border-radius: 14px;
-            padding: 0.5rem;
-            width: fit-content;
-            margin-left: auto;
-            margin-right: auto;
+            margin-bottom: 2.2rem;
+            padding-top: 1.4rem;
+            border-top: 1px solid var(--line-strong);
+        }
+        .filter-label {
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--ink-soft);
+            margin-right: 0.6rem;
         }
         .filter-btn {
-            font-family: 'Nunito', sans-serif;
-            font-size: 0.875rem;
-            font-weight: 600;
-            color: var(--gray-500);
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--ink-soft);
             background: transparent;
-            border: none;
+            border: 1px solid var(--line);
             cursor: pointer;
-            padding: 0.55rem 1.2rem;
-            border-radius: 9px;
+            padding: 0.55rem 1.1rem;
             transition: all 0.18s;
             white-space: nowrap;
         }
         .filter-btn:hover {
-            color: var(--gray-900);
-            background: var(--gray-100);
+            border-color: var(--line-strong);
+            color: var(--ink);
         }
         .filter-btn.active {
-            background: var(--gray-900);
-            color: white;
+            background: var(--ink);
+            border-color: var(--ink);
+            color: var(--paper);
         }
 
         /* ── GALLERY GRID ── */
@@ -157,10 +221,8 @@
             display: flex;
             flex-wrap: wrap;
             gap: 0.75rem;
-            justify-content: center;
         }
         .gallery-item {
-            border-radius: 12px;
             overflow: hidden;
             position: relative;
             cursor: pointer;
@@ -168,47 +230,52 @@
             aspect-ratio: 3 / 4;
             flex: 0 0 calc(33.333% - 0.5rem);
             min-width: 0;
+            border: 1px solid var(--line-strong);
+            background: var(--paper-2);
         }
         .gallery-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             display: block;
-            transition: transform 0.4s ease;
+            filter: saturate(0.92);
+            transition: transform 0.45s ease, filter 0.3s;
         }
         .gallery-item:hover img {
-            transform: scale(1.05);
+            transform: scale(1.045);
+            filter: saturate(1);
         }
         .gallery-item .overlay {
             position: absolute;
             inset: 0;
-            background: rgba(15,23,42,0);
+            background: rgba(27,22,17,0);
             transition: background 0.3s;
-            border-radius: 12px;
             display: flex;
             align-items: flex-end;
-            padding: 1.2rem;
+            padding: 1rem;
         }
         .gallery-item:hover .overlay {
-            background: rgba(15,23,42,0.35);
+            background: rgba(27,22,17,0.3);
         }
         .overlay-label {
-            font-size: 0.78rem;
-            font-weight: 700;
-            color: white;
-            letter-spacing: 0.05em;
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            letter-spacing: 0.18em;
             text-transform: uppercase;
+            color: var(--paper);
+            background: rgba(27,22,17,0.85);
+            border: 1px solid rgba(242,237,226,0.3);
+            padding: 0.35rem 0.75rem;
             opacity: 0;
             transform: translateY(6px);
             transition: all 0.25s;
-            background: rgba(37,99,235,0.85);
-            padding: 0.3rem 0.7rem;
-            border-radius: 6px;
         }
         .gallery-item:hover .overlay-label {
             opacity: 1;
             transform: translateY(0);
         }
+        .overlay-label.vorher  { background: var(--accent); border-color: transparent; }
+        .overlay-label.nachher { background: var(--green); border-color: transparent; }
 
         /* Hidden items */
         .gallery-item.hidden { display: none; }
@@ -230,7 +297,7 @@
             display: none;
             position: fixed;
             inset: 0;
-            background: rgba(0,0,0,0.92);
+            background: rgba(27,22,17,0.94);
             z-index: 999;
             align-items: center;
             justify-content: center;
@@ -239,84 +306,117 @@
         .lightbox.open { display: flex; }
         .lightbox img {
             max-width: 90vw;
-            max-height: 90vh;
-            border-radius: 10px;
+            max-height: 88vh;
             object-fit: contain;
+            border: 1px solid rgba(242,237,226,0.25);
             box-shadow: 0 30px 80px rgba(0,0,0,0.5);
         }
         .lightbox-close {
             position: absolute;
             top: 1.5rem; right: 1.5rem;
-            background: white;
-            border: none; cursor: pointer;
-            width: 40px; height: 40px;
-            border-radius: 50%;
+            background: var(--paper);
+            border: 1px solid var(--ink); cursor: pointer;
+            width: 42px; height: 42px;
             display: flex; align-items: center; justify-content: center;
-            font-size: 1.2rem;
-            color: var(--gray-900);
-            transition: background 0.15s;
+            color: var(--ink);
+            transition: background 0.15s, color 0.15s;
         }
-        .lightbox-close:hover { background: var(--gray-100); }
+        .lightbox-close:hover { background: var(--gold); }
         .lightbox-caption {
             position: absolute;
             bottom: 1.5rem; left: 50%; transform: translateX(-50%);
-            color: rgba(255,255,255,0.7);
-            font-size: 0.85rem; font-weight: 500;
+            color: rgba(242,237,226,0.75);
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
             text-align: center;
+            max-width: 90vw;
         }
 
         /* ── FOOTER ── */
         footer {
-            background: var(--gray-900); color: rgba(255,255,255,0.45);
-            padding: 2rem 4rem;
+            background: var(--ink); color: rgba(242,237,226,0.5);
+            padding: 2rem clamp(1.25rem, 4vw, 3.5rem);
             display: flex; align-items: center; justify-content: space-between;
-            position: relative; z-index: 1;
+            gap: 1.5rem; flex-wrap: wrap;
+            border-top: 4px solid var(--gold);
         }
-        .f-logo {
-            font-family: 'Nunito', sans-serif; font-size: 1.15rem;
-            font-weight: 700; color: white; text-decoration: none;
+        .f-logo { text-decoration: none; display: inline-flex; align-items: center; }
+        .f-logo img { height: 34px; width: auto; filter: invert(1) brightness(2); }
+        .f-nav { display: flex; gap: 1.6rem; }
+        .f-nav a {
+            font-family: var(--font-mono);
+            font-size: 0.62rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: rgba(242,237,226,0.45);
+            text-decoration: none; transition: color 0.15s;
         }
-        .f-copy { font-size: 0.76rem; }
+        .f-nav a:hover { color: var(--gold); }
+        .f-copy { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.1em; }
+        .f-copy a { color: rgba(242,237,226,0.45); text-decoration: none; }
+        .f-copy a:hover { color: var(--gold); }
 
         /* ── RESPONSIVE ── */
         @media (max-width: 900px) {
             .gallery-item { flex: 0 0 calc(50% - 0.375rem); }
             .vn-pair { flex: 0 0 100%; }
+            .page-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
         }
         @media (max-width: 600px) {
-            nav { padding: 0 1.5rem; }
             .nav-links { display: none; }
-            main { padding: 90px 1.25rem 4rem; }
+            .hamburger { display: flex; }
+            main { padding: 95px 1.25rem 4rem; }
             .gallery-item { flex: 0 0 100%; }
             .vn-pair { flex: 0 0 100%; }
             .vn-pair .gallery-item { flex: 0 0 calc(50% - 0.375rem); }
-            footer { flex-direction: column; gap: 1rem; text-align: center; padding: 1.5rem; }
+            footer { flex-direction: column; text-align: center; }
         }
     </style>
 </head>
 <body>
 
 <nav>
-    <a href="index.html" class="nav-logo"><img src="logo-clean.png" alt="Renorep" style="height:40px;width:auto;"></a>
+    <a href="index.html" class="nav-logo"><img src="logo-clean.png" alt="Renorep"></a>
     <ul class="nav-links">
         <li><a href="index.html#leistungen">Leistungen</a></li>
+        <li><a href="index.html#grossprojekte">Großprojekte</a></li>
         <li><a href="index.html#ueber-uns">Über uns</a></li>
         <li><a href="galerie.html" class="active">Galerie</a></li>
         <li><a href="index.html#referenzen">Referenzen</a></li>
         <li><a href="konfigurator.html">Konfigurator</a></li>
         <li><a href="index.html#kontakt" class="nav-cta">Kontakt</a></li>
     </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menü öffnen">
+        <span></span><span></span><span></span>
+    </button>
 </nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Startseite</a>
+    <a href="index.html#leistungen">Leistungen</a>
+    <a href="index.html#grossprojekte">Großprojekte</a>
+    <a href="index.html#ueber-uns">Über uns</a>
+    <a href="galerie.html">Galerie</a>
+    <a href="index.html#referenzen">Referenzen</a>
+    <a href="konfigurator.html">Konfigurator</a>
+    <a href="index.html#kontakt">Kontakt</a>
+</div>
 
 <main>
     <div class="page-header">
-        <div class="page-label">Unsere Arbeiten</div>
-        <h1>Galerie</h1>
+        <div>
+            <div class="kicker">Unsere Arbeiten</div>
+            <h1>Die <em>Galerie</em></h1>
+        </div>
         <p>Einblicke in unsere Projekte – von der Montage bis zum fertigen Ergebnis.</p>
     </div>
 
     <!-- Filter Tabs -->
     <div class="filter-bar">
+        <span class="filter-label">Filter /</span>
         <button class="filter-btn active" data-filter="alle">Alle</button>
         <button class="filter-btn" data-filter="tueren">Türen</button>
         <button class="filter-btn" data-filter="fenster">Fenster</button>
@@ -349,11 +449,11 @@
         <div class="vn-pair" data-cat="vorher-nachher">
             <div class="gallery-item" data-cat="vorher-nachher" onclick="openLightbox(this)">
                 <img src="vorher.jpg" alt="Vorher – Alte Anlage vor der Montage" style="object-position:center center;">
-                <div class="overlay"><span class="overlay-label" style="background:rgba(180,60,60,0.88);">Vorher</span></div>
+                <div class="overlay"><span class="overlay-label vorher">Vorher</span></div>
             </div>
             <div class="gallery-item" data-cat="vorher-nachher" onclick="openLightbox(this)">
                 <img src="nachher.jpg" alt="Nachher – Neue Schiebe-/Haustür nach Montage" style="object-position:center center;">
-                <div class="overlay"><span class="overlay-label" style="background:rgba(30,140,80,0.88);">Nachher</span></div>
+                <div class="overlay"><span class="overlay-label nachher">Nachher</span></div>
             </div>
         </div>
 
@@ -380,7 +480,7 @@
 
         <!-- Reihe 4 -->
         <div class="gallery-item" data-cat="showroom" onclick="openLightbox(this)">
-            <img src="showroom1.jpg" alt="Renorep Ausstellungsraum" style="object-fit:contain;object-position:center center;background:#f1f5f9;">
+            <img src="showroom1.jpg" alt="Renorep Ausstellungsraum" style="object-fit:contain;object-position:center center;background:#EAE3D3;">
             <div class="overlay"><span class="overlay-label">Showroom</span></div>
         </div>
 
@@ -388,16 +488,16 @@
         <div class="vn-pair" data-cat="vorher-nachher">
             <div class="gallery-item" data-cat="vorher-nachher" onclick="openLightbox(this)">
                 <img src="b79d3cf7-35d1-4c82-8ca4-2f9adfee92f6.JPG" alt="Vorher – Alte braune Haustür" style="object-position:center center;">
-                <div class="overlay"><span class="overlay-label" style="background:rgba(180,60,60,0.88);">Vorher</span></div>
+                <div class="overlay"><span class="overlay-label vorher">Vorher</span></div>
             </div>
             <div class="gallery-item" data-cat="vorher-nachher" onclick="openLightbox(this)">
                 <img src="bb88e167-0524-49fa-b0d4-d4cdc807bde6.JPG" alt="Nachher – Neue moderne weiße Haustür" style="object-position:center center;">
-                <div class="overlay"><span class="overlay-label" style="background:rgba(30,140,80,0.88);">Nachher</span></div>
+                <div class="overlay"><span class="overlay-label nachher">Nachher</span></div>
             </div>
         </div>
 
         <div class="gallery-item" data-cat="showroom" onclick="openLightbox(this)">
-            <img src="showroom2.jpg" alt="Musterkoffer mit Garantie-Materialien" style="object-fit:contain;object-position:center center;background:#f1f5f9;">
+            <img src="showroom2.jpg" alt="Musterkoffer mit Garantie-Materialien" style="object-fit:contain;object-position:center center;background:#EAE3D3;">
             <div class="overlay"><span class="overlay-label">Showroom</span></div>
         </div>
 
@@ -405,11 +505,11 @@
         <div class="vn-pair" data-cat="vorher-nachher">
             <div class="gallery-item" data-cat="vorher-nachher" onclick="openLightbox(this)">
                 <img src="9028acc6-27e3-45d7-a359-a7b8c69aac42.JPG" alt="Vorher – Alte Holztür mit Glasfeldern" style="object-position:center center;">
-                <div class="overlay"><span class="overlay-label" style="background:rgba(180,60,60,0.88);">Vorher</span></div>
+                <div class="overlay"><span class="overlay-label vorher">Vorher</span></div>
             </div>
             <div class="gallery-item" data-cat="vorher-nachher" onclick="openLightbox(this)">
                 <img src="1404d5cb-005a-4ba3-8016-8f555cf081fd.JPG" alt="Nachher – Neue weiße Tür mit Glaseinsatz" style="object-position:center center;">
-                <div class="overlay"><span class="overlay-label" style="background:rgba(30,140,80,0.88);">Nachher</span></div>
+                <div class="overlay"><span class="overlay-label nachher">Nachher</span></div>
             </div>
         </div>
 
@@ -426,16 +526,24 @@
 </div>
 
 <footer>
-    <a href="index.html" class="f-logo">Renorep</a>
-    <div style="display:flex;gap:1.5rem;">
-        <a href="impressum.html" style="font-size:0.76rem;color:rgba(255,255,255,0.45);text-decoration:none;">Impressum</a>
-        <a href="datenschutz.html" style="font-size:0.76rem;color:rgba(255,255,255,0.45);text-decoration:none;">Datenschutz</a>
+    <a href="index.html" class="f-logo"><img src="logo-clean.png" alt="Renorep"></a>
+    <div class="f-nav">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
     </div>
     <div class="f-copy">© 2025 Renorep Montagedienstleistung</div>
-    <div class="f-copy">Designed by <a href="mailto:info@leadflowconsulting.de?subject=Anfrage%20Website&body=Hallo%2C%0A%0Aich%20interessiere%20mich%20f%C3%BCr%20eine%20Website.%0A%0AMit%20freundlichen%20Gr%C3%BC%C3%9Fen" style="color:rgba(255,255,255,0.45);text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">info@leadflowconsulting.de</a></div>
+    <div class="f-copy">Designed by <a href="mailto:info@leadflowconsulting.de?subject=Anfrage%20Website&body=Hallo%2C%0A%0Aich%20interessiere%20mich%20f%C3%BCr%20eine%20Website.%0A%0AMit%20freundlichen%20Gr%C3%BC%C3%9Fen">info@leadflowconsulting.de</a></div>
 </footer>
 
 <script>
+    // Hamburger
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('open');
+        mobileMenu.classList.toggle('open');
+    });
+
     // Filter
     document.querySelectorAll('.filter-btn').forEach(btn => {
         btn.addEventListener('click', () => {

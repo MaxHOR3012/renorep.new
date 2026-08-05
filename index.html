@@ -6,449 +6,778 @@
     <title>Renorep – Montage &amp; Verkauf von Bauelementen</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Fragment+Mono:ital@0;1&family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --white:   #FDFAF5;
-            --gray-50: #F5EFE3;
-            --gray-100:#EDE5D5;
-            --gray-200:#DDD3C0;
-            --gray-400:#94A3B8;
-            --gray-500:#64748B;
-            --gray-900:#0F172A;
-            --blue:    #2563EB;
-            --blue-dark:#1D4ED8;
+            --paper:    #F2EDE2;
+            --paper-2:  #EAE3D3;
+            --ink:      #1B1611;
+            --ink-soft: #575046;
+            --line:     rgba(27,22,17,0.16);
+            --line-strong: rgba(27,22,17,0.6);
+            --accent:   #A64B21;   /* Rost */
+            --gold:     #D4B483;
+            --font-display: 'Fraunces', Georgia, serif;
+            --font-mono: 'Fragment Mono', monospace;
+            --font-body: 'Lora', Georgia, serif;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
 
+        ::selection { background: var(--accent); color: var(--paper); }
+
         body {
-            font-family: 'Nunito', sans-serif;
-            background: var(--white);
-            color: var(--gray-900);
+            font-family: var(--font-body);
+            background: var(--paper);
+            color: var(--ink);
             line-height: 1.6;
             overflow-x: hidden;
+        }
+
+        /* ── UTILS ── */
+        .kicker {
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--accent);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .kicker::before {
+            content: '';
+            width: 2rem; height: 1px;
+            background: var(--accent);
+            display: block;
+        }
+
+        .sec-title {
+            font-family: var(--font-display);
+            font-weight: 560;
+            font-size: clamp(2.1rem, 4vw, 3.4rem);
+            line-height: 1.04;
+            letter-spacing: -0.015em;
+            margin-top: 0.9rem;
+        }
+        .sec-title em {
+            font-style: italic;
+            font-weight: 420;
+            color: var(--accent);
         }
 
         /* ── NAV ── */
         nav {
             position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-            height: 66px;
+            height: 64px;
             display: flex; align-items: center; justify-content: space-between;
-            padding: 0 4rem;
-            background: rgba(253,250,245,0.96);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--gray-200);
+            padding: 0 clamp(1.25rem, 4vw, 3.5rem);
+            background: rgba(242,237,226,0.94);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--line);
         }
-
-        .nav-logo {
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-        }
-        .nav-logo img {
-            height: 40px;
-            width: auto;
-            display: block;
-        }
+        .nav-logo { text-decoration: none; display: inline-flex; align-items: center; }
+        .nav-logo img { height: 38px; width: auto; display: block; }
 
         .nav-links {
-            display: flex; align-items: center; list-style: none; gap: 2.5rem;
+            display: flex; align-items: center; list-style: none;
+            gap: clamp(1.1rem, 2.2vw, 2.2rem);
         }
         .nav-links a {
-            font-size: 0.875rem; font-weight: 500;
-            color: var(--gray-500); text-decoration: none;
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--ink-soft);
+            text-decoration: none;
             transition: color 0.15s;
         }
-        .nav-links a:hover { color: var(--gray-900); }
+        .nav-links a:hover { color: var(--accent); }
 
         .nav-cta {
-            background: var(--gray-900) !important;
-            color: white !important;
-            padding: 0.55rem 1.4rem;
-            border-radius: 7px;
-            transition: background 0.15s !important;
+            color: var(--ink) !important;
+            border: 1px solid var(--line-strong);
+            padding: 0.55rem 1.2rem;
+            transition: background 0.18s, color 0.18s !important;
         }
-        .nav-cta:hover { background: var(--blue) !important; }
+        .nav-cta:hover { background: var(--ink); color: var(--paper) !important; }
+
+        /* ── BUTTONS ── */
+        .btn {
+            display: inline-flex; align-items: center; gap: 0.6rem;
+            padding: 0.95rem 1.8rem;
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            border: 1px solid var(--ink);
+            background: transparent;
+            color: var(--ink);
+            text-decoration: none;
+            cursor: pointer;
+            transition: background 0.18s, color 0.18s, border-color 0.18s;
+        }
+        .btn:hover { background: var(--ink); color: var(--paper); }
+        .btn-solid { background: var(--ink); color: var(--paper); }
+        .btn-solid:hover { background: var(--accent); border-color: var(--accent); color: var(--paper); }
 
         /* ── HERO ── */
         .hero {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
             min-height: 100vh;
-            border-bottom: 1px solid var(--gray-200);
+            border-bottom: 1px solid var(--line-strong);
             position: relative;
         }
         .hero-content {
-            padding: 130px 4rem 80px;
-            display: flex; flex-direction: column; justify-content: center;
+            padding: 120px clamp(1.25rem, 4vw, 3.5rem) 56px;
+            display: flex; flex-direction: column; justify-content: flex-end;
         }
         .hero-img {
             position: relative; overflow: hidden;
+            border-left: 1px solid var(--line-strong);
         }
         .hero-img img {
             width: 100%; height: 100%;
             object-fit: cover; display: block;
+            filter: saturate(0.92);
         }
-
-        .hero-label {
-            display: inline-flex; align-items: center; gap: 0.5rem;
-            font-size: 0.78rem; font-weight: 600;
-            color: var(--blue); letter-spacing: 0.07em;
-            text-transform: uppercase; margin-bottom: 1.4rem;
-        }
-        .hero-label::before {
-            content: ''; display: block;
-            width: 20px; height: 2px; background: var(--blue);
-            border-radius: 1px;
+        .hero-img figcaption {
+            position: absolute; left: 0; right: 0; bottom: 0;
+            padding: 0.7rem 1.2rem;
+            font-family: var(--font-mono);
+            font-size: 0.62rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--paper);
+            background: linear-gradient(transparent, rgba(27,22,17,0.55));
         }
 
         .hero h1 {
-            font-family: 'Nunito', sans-serif;
-            font-size: clamp(2.8rem, 5.5vw, 5.5rem);
-            font-weight: 800; line-height: 1.04;
-            letter-spacing: -0.03em;
-            color: var(--gray-900);
-            margin-bottom: 1.4rem;
-            max-width: 18ch;
+            font-family: var(--font-display);
+            font-size: clamp(3.2rem, 8.5vw, 8.2rem);
+            font-weight: 500;
+            line-height: 0.98;
+            letter-spacing: -0.025em;
+            margin: 1.3rem 0 1.6rem;
+            max-width: 12ch;
+        }
+        .hero h1 em {
+            font-style: italic;
+            font-weight: 380;
+            color: var(--accent);
         }
 
         .hero-sub {
-            font-size: 1.08rem; font-weight: 400; line-height: 1.78;
-            color: var(--gray-500); max-width: 54ch;
-            margin-bottom: 2.4rem;
+            font-size: 1.06rem;
+            line-height: 1.8;
+            color: var(--ink-soft);
+            max-width: 46ch;
+            margin-bottom: 2.2rem;
         }
 
-        .hero-ctas {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0.875rem;
-            margin-bottom: 4rem;
-            max-width: 480px;
+        .hero-cta-row {
+            display: flex; align-items: center; gap: 1rem;
         }
-        .hero-ctas .btn,
-        .hero-ctas a {
-            justify-content: center;
-            width: 100%;
+        .hero-ctas {
+            display: flex; flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-bottom: 3.2rem;
         }
 
         .hero-stats {
-            display: flex; gap: 3rem; flex-wrap: wrap;
-            padding-top: 2.4rem; border-top: 1px solid var(--gray-200);
+            display: flex; flex-wrap: wrap;
+            border-top: 1px solid var(--line-strong);
+        }
+        .hero-stats > div {
+            flex: 1 1 0;
+            min-width: 130px;
+            padding: 1.3rem 1.4rem 0 0;
+        }
+        .hero-stats > div + div {
+            border-left: 1px solid var(--line);
+            padding-left: 1.4rem;
         }
         .hs-num {
-            font-family: 'Nunito', sans-serif;
-            font-size: 1.8rem; font-weight: 700;
-            color: var(--gray-900); letter-spacing: -0.02em;
+            font-family: var(--font-display);
+            font-size: 1.9rem;
+            font-weight: 560;
+            letter-spacing: -0.02em;
             line-height: 1;
         }
         .hs-lbl {
-            font-size: 0.82rem; color: var(--gray-500);
-            margin-top: 0.25rem;
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--ink-soft);
+            margin-top: 0.5rem;
         }
 
-        /* ── BUTTONS ── */
-        .btn {
-            display: inline-flex; align-items: center; gap: 0.45rem;
-            padding: 0.8rem 1.7rem;
-            font-family: 'Nunito', sans-serif;
-            font-size: 0.875rem; font-weight: 600;
-            border-radius: 8px; border: none;
-            text-decoration: none; cursor: pointer;
-            transition: all 0.18s;
+        /* Angebots-Stempel */
+        .stamp-badge {
+            position: absolute;
+            top: 16%; left: 66%;
+            transform: translate(-50%, -50%);
+            width: 200px; height: 200px;
+            z-index: 10;
+            text-decoration: none;
+            cursor: pointer;
         }
-        .btn-dark { background: var(--gray-900); color: white; }
-        .btn-dark:hover { background: var(--blue); }
-        .btn-outline {
-            background: white; color: var(--gray-900);
-            border: 1.5px solid var(--gray-200);
+        .stamp-badge-mobile {
+            display: none;
+            text-decoration: none;
+            cursor: pointer;
         }
-        .btn-outline:hover { border-color: var(--gray-400); }
+        .stamp-wrap {
+            position: relative;
+            display: block;
+            width: 100%; height: 100%;
+            filter: drop-shadow(0 10px 24px rgba(27,22,17,0.35));
+            transition: transform 0.3s ease;
+        }
+        .stamp-badge:hover .stamp-wrap,
+        .stamp-badge-mobile:hover .stamp-wrap { transform: scale(1.06); }
+        .stamp-wrap svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+        @keyframes spinBadge { to { transform: rotate(360deg); } }
+        .stamp-rotate {
+            animation: spinBadge 26s linear infinite;
+            transform-box: fill-box;
+            transform-origin: center;
+        }
+        .stamp-center {
+            position: absolute; inset: 0;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            text-align: center;
+            gap: 0.1rem;
+            color: var(--paper);
+        }
+        .stamp-small {
+            font-family: var(--font-mono);
+            font-size: 0.55rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
+        .stamp-price {
+            font-family: var(--font-display);
+            font-style: italic;
+            font-size: 2.1rem;
+            font-weight: 500;
+            line-height: 1;
+            color: var(--paper);
+        }
+        .stamp-badge-mobile .stamp-price { font-size: 1.5rem; }
+        .stamp-badge-mobile .stamp-small { font-size: 0.48rem; }
 
-        /* ── SECTION COMMON ── */
-        .section { padding: 6rem 4rem; }
-        .section-alt { background: var(--gray-50); }
-
-        .sec-label {
-            display: inline-flex; align-items: center; gap: 0.45rem;
-            font-size: 0.75rem; font-weight: 600;
-            color: var(--blue); letter-spacing: 0.08em;
-            text-transform: uppercase; margin-bottom: 0.7rem;
+        /* ── SECTIONS ── */
+        .section {
+            padding: clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3.5rem);
         }
-        .sec-label::before {
-            content: ''; display: block;
-            width: 16px; height: 2px; background: var(--blue);
-            border-radius: 1px;
+        .section-dark {
+            background: var(--ink);
+            color: var(--paper);
         }
-
-        .sec-title {
-            font-family: 'Nunito', sans-serif;
-            font-size: clamp(1.75rem, 2.8vw, 2.75rem);
-            font-weight: 700; line-height: 1.1;
-            letter-spacing: -0.025em;
-            color: var(--gray-900);
-        }
-
-        /* ── SERVICES ── */
-        .svc-head {
+        .sec-head {
             display: flex; justify-content: space-between;
             align-items: flex-end; gap: 2rem;
-            margin-bottom: 2.5rem;
+            margin-bottom: 3rem;
         }
-        .svc-sub {
-            font-size: 0.97rem; color: var(--gray-500);
-            line-height: 1.7; max-width: 44ch;
-        }
-
-        .svc-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr);
-            border: 1px solid var(--gray-200); border-radius: 12px;
-            overflow: hidden; gap: 1px; background: var(--gray-200);
+        .sec-sub {
+            font-size: 0.98rem;
+            color: var(--ink-soft);
+            line-height: 1.75;
+            max-width: 40ch;
         }
 
-        .svc-card {
-            background: white; padding: 2rem;
-            transition: background 0.18s;
+        /* ── MANIFEST: Warum → Wie → Was ── */
+        .manifest {
+            border-bottom: 1px solid var(--line-strong);
         }
-        .svc-card:hover { background: var(--gray-50); }
-        .svc-card:active { background: #E8DDCA; cursor: pointer; }
-
-        .svc-num {
-            font-size: 0.7rem; font-weight: 600;
-            color: var(--blue); letter-spacing: 0.1em;
-            margin-bottom: 1.2rem; display: block;
-        }
-        .svc-icon { width: 32px; height: 32px; color: var(--gray-900); margin-bottom: 0.9rem; }
-        .svc-name {
-            font-family: 'Nunito', sans-serif;
-            font-size: 1rem; font-weight: 700;
-            color: var(--gray-900); margin-bottom: 0.5rem;
+        .manifest-statement {
+            font-family: var(--font-display);
+            font-style: italic;
+            font-weight: 420;
+            font-size: clamp(1.5rem, 3.2vw, 2.6rem);
+            line-height: 1.3;
             letter-spacing: -0.01em;
+            max-width: 28ch;
+            margin: 1.2rem 0 3.5rem;
+        }
+        .manifest-statement strong {
+            font-weight: 640;
+            color: var(--accent);
+        }
+        .manifest-cols {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            border-top: 1px solid var(--line-strong);
+            border-left: 1px solid var(--line-strong);
+        }
+        .manifest-col {
+            padding: 1.8rem 1.6rem 2rem;
+            border-right: 1px solid var(--line-strong);
+            border-bottom: 1px solid var(--line-strong);
+        }
+        .m-step {
+            font-family: var(--font-mono);
+            font-size: 0.62rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 1rem;
+        }
+        .m-head {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 560;
+            margin-bottom: 0.7rem;
+        }
+        .manifest-col p {
+            font-size: 0.94rem;
+            line-height: 1.75;
+            color: var(--ink-soft);
+        }
+        @media (max-width: 1024px) {
+            .manifest-cols { grid-template-columns: 1fr; }
+        }
+
+        /* ── LEISTUNGEN: nummerierte Liste ── */
+        .svc-list {
+            border-top: 1px solid var(--line-strong);
+            counter-reset: svc;
+        }
+        .svc-row {
+            display: grid;
+            grid-template-columns: 90px minmax(0, 5fr) minmax(0, 7fr) 60px;
+            align-items: baseline;
+            gap: 1.5rem;
+            padding: 1.6rem 0.5rem;
+            border-bottom: 1px solid var(--line);
+            text-decoration: none;
+            color: inherit;
+            transition: background 0.2s, color 0.2s, padding-left 0.25s;
+            cursor: pointer;
+        }
+        .svc-row:hover {
+            background: var(--ink);
+            color: var(--paper);
+            padding-left: 1.2rem;
+        }
+        .svc-row:hover .svc-desc { color: rgba(242,237,226,0.65); }
+        .svc-row:hover .svc-arrow { color: var(--gold); transform: translateX(6px); }
+        .svc-num {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            color: var(--accent);
+        }
+        .svc-row:hover .svc-num { color: var(--gold); }
+        .svc-name {
+            font-family: var(--font-display);
+            font-size: clamp(1.25rem, 2.2vw, 1.7rem);
+            font-weight: 540;
+            letter-spacing: -0.01em;
+            line-height: 1.15;
         }
         .svc-desc {
-            font-size: 0.875rem; line-height: 1.72;
-            color: var(--gray-500);
+            font-size: 0.92rem;
+            line-height: 1.7;
+            color: var(--ink-soft);
+            transition: color 0.2s;
         }
+        .svc-arrow {
+            font-family: var(--font-mono);
+            font-size: 1rem;
+            justify-self: end;
+            transition: transform 0.2s, color 0.2s;
+        }
+
+        .svc-group-label {
+            font-family: var(--font-mono);
+            font-size: 0.62rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin: 2.6rem 0 0.9rem;
+        }
+        .svc-group-label:first-child { margin-top: 0; }
+
+        /* ── GROSSPROJEKTE ── */
+        .bigproject {
+            background: var(--ink);
+            color: var(--paper);
+            border-top: 1px solid var(--ink);
+        }
+        .bigproject-inner {
+            display: grid;
+            grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+            gap: clamp(2rem, 5vw, 5rem);
+            align-items: end;
+        }
+        .bigproject h2 {
+            font-family: var(--font-display);
+            font-size: clamp(2.4rem, 5.5vw, 5rem);
+            font-weight: 500;
+            line-height: 1.02;
+            letter-spacing: -0.02em;
+            margin-top: 1rem;
+        }
+        .bigproject h2 em { font-style: italic; font-weight: 400; color: var(--gold); }
+        .bigproject-text {
+            font-size: 1rem; line-height: 1.8;
+            color: rgba(242,237,226,0.7);
+            margin-bottom: 1.8rem;
+        }
+        .bp-list {
+            list-style: none;
+            border-top: 1px solid rgba(242,237,226,0.25);
+            margin-bottom: 2rem;
+        }
+        .bp-list li {
+            display: flex; align-items: baseline; gap: 1rem;
+            padding: 0.85rem 0.2rem;
+            border-bottom: 1px solid rgba(242,237,226,0.15);
+            font-size: 0.95rem;
+        }
+        .bp-list li::before {
+            content: '→';
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--gold);
+        }
+        .bp-btn { border-color: var(--paper); color: var(--paper); }
+        .bp-btn:hover { background: var(--gold); border-color: var(--gold); color: var(--ink); }
+        @media (max-width: 1024px) {
+            .bigproject-inner { grid-template-columns: 1fr; align-items: start; }
+        }
+
+        /* ── KONFIGURATOR ── */
+        .konfig-banner {
+            position: relative;
+            display: block;
+            width: 100%;
+            min-height: min(72vh, 560px);
+            overflow: hidden;
+            text-decoration: none;
+            color: var(--paper);
+            border: 1px solid var(--ink);
+            background:
+                linear-gradient(rgba(27,22,17,0.62), rgba(27,22,17,0.72)),
+                url('door-bg.png') center center / cover no-repeat;
+            transition: box-shadow 0.25s;
+        }
+        .konfig-banner:hover { box-shadow: 10px 10px 0 var(--gold); }
+        .konfig-inner {
+            position: relative; z-index: 1;
+            display: flex; flex-direction: column;
+            align-items: flex-start; justify-content: flex-end;
+            min-height: inherit;
+            padding: clamp(2rem, 5vw, 4rem);
+        }
+        .konfig-inner h3 {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4.5vw, 3.6rem);
+            font-weight: 480;
+            letter-spacing: -0.02em;
+            line-height: 1.05;
+            margin: 1rem 0 1rem;
+            max-width: 17ch;
+        }
+        .konfig-inner h3 em { font-style: italic; color: var(--gold); font-weight: 400; }
+        .konfig-inner p {
+            font-size: 1rem; line-height: 1.7;
+            color: rgba(242,237,226,0.8);
+            max-width: 46ch; margin-bottom: 2rem;
+        }
+        .konfig-btn {
+            border-color: var(--paper);
+            color: var(--paper);
+        }
+        .konfig-btn:hover { background: var(--paper); color: var(--ink); }
 
         /* ── ABOUT ── */
         .about-inner {
-            display: grid; grid-template-columns: 1fr 1fr;
-            gap: 6rem; align-items: start;
+            display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+            gap: clamp(2.5rem, 5vw, 5rem);
+            align-items: start;
         }
-
+        .about-hero-img {
+            width: 100%;
+            object-fit: cover; object-position: 50% 10%;
+            max-height: 620px;
+            display: block;
+            margin-bottom: 2.2rem;
+            filter: saturate(0.92);
+        }
         .about-text {
-            font-size: 1rem; line-height: 1.8;
-            color: var(--gray-500); margin: 1.2rem 0 2.5rem;
+            font-size: 1.02rem; line-height: 1.85;
+            color: var(--ink-soft);
+            margin: 1.2rem 0 2.4rem;
         }
-
         .about-stats {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+            display: grid; grid-template-columns: 1fr 1fr;
+            border-top: 1px solid var(--line-strong);
+            border-left: 1px solid var(--line-strong);
         }
         .as-item {
-            padding: 1.4rem;
-            border: 1px solid var(--gray-200); border-radius: 10px;
+            padding: 1.3rem 1.2rem;
+            border-bottom: 1px solid var(--line);
+            border-right: 1px solid var(--line);
         }
         .as-num {
-            font-family: 'Nunito', sans-serif;
-            font-size: 1.7rem; font-weight: 700;
-            color: var(--gray-900); letter-spacing: -0.02em;
-            line-height: 1;
+            font-family: var(--font-display);
+            font-size: 1.7rem; font-weight: 560;
+            letter-spacing: -0.02em; line-height: 1;
         }
-        .as-lbl { font-size: 0.8rem; color: var(--gray-500); margin-top: 0.25rem; }
+        .as-lbl {
+            font-family: var(--font-mono);
+            font-size: 0.58rem; letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--ink-soft); margin-top: 0.5rem;
+        }
 
-        .promise-list { display: flex; flex-direction: column; gap: 0.875rem; }
+        .promise-list { border-top: 1px solid var(--line-strong); margin-top: 3.4rem; }
         .promise-item {
-            display: flex; gap: 0.9rem; align-items: flex-start;
-            padding: 1.2rem 1.4rem;
-            border: 1px solid var(--gray-200); border-radius: 10px;
-            transition: border-color 0.18s;
+            display: grid;
+            grid-template-columns: 60px 1fr;
+            gap: 1.2rem;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--line);
         }
-        .promise-item:hover { border-color: var(--blue); }
-
-        .p-check {
-            width: 20px; height: 20px; border-radius: 50%;
-            background: #EFF6FF; border: 1.5px solid #BFDBFE;
-            display: flex; align-items: center; justify-content: center;
-            flex-shrink: 0; margin-top: 1px;
-            color: var(--blue);
+        .p-num {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            color: var(--accent);
+            padding-top: 0.25rem;
         }
         .p-title {
-            font-family: 'Nunito', sans-serif;
-            font-size: 0.92rem; font-weight: 700;
-            color: var(--gray-900); margin-bottom: 0.2rem;
+            font-family: var(--font-display);
+            font-size: 1.15rem; font-weight: 560;
+            margin-bottom: 0.35rem;
         }
-        .p-text { font-size: 0.84rem; line-height: 1.65; color: var(--gray-500); }
+        .p-text { font-size: 0.9rem; line-height: 1.7; color: var(--ink-soft); }
 
-        /* ── TESTIMONIALS ── */
-        .t-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr);
-            gap: 1.25rem; margin-top: 2.5rem;
-        }
-        .t-card {
-            background: white; padding: 1.75rem;
-            border: 1px solid var(--gray-200); border-radius: 12px;
-            transition: box-shadow 0.2s, border-color 0.2s;
-        }
-        .t-card:hover {
-            border-color: var(--gray-200);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.07);
-        }
-        .t-stars {
-            color: #F59E0B; font-size: 0.75rem;
-            letter-spacing: 0.05em; margin-bottom: 1rem;
-        }
-        .t-text {
-            font-size: 0.9rem; line-height: 1.78; color: var(--gray-500);
-            margin-bottom: 1.4rem;
-            font-style: italic;
-        }
-        .t-author {
-            display: flex; align-items: center; gap: 0.7rem;
-            padding-top: 1.1rem; border-top: 1px solid var(--gray-200);
-        }
-        .t-av {
-            width: 56px; height: 56px; border-radius: 50%;
-            background: var(--gray-100); border: 2px solid var(--gray-200);
-            display: flex; align-items: center; justify-content: center;
-            font-family: 'Nunito', sans-serif; font-size: 0.9rem; font-weight: 700;
-            color: var(--gray-500); flex-shrink: 0;
+        .about-logo-wrap { display: flex; justify-content: center; margin-top: 3rem; }
+        .about-logo { width: 100%; max-width: 440px; height: auto; opacity: 0.85; }
+
+        /* ── MARQUEE-DIVIDER ── */
+        .divider-band {
+            background: var(--gold);
+            border-top: 1px solid var(--ink);
+            border-bottom: 1px solid var(--ink);
             overflow: hidden;
+            white-space: nowrap;
+            padding: 0.55rem 0;
         }
-        .t-av img {
-            width: 100%; height: 100%; object-fit: cover; border-radius: 50%;
+        .divider-track {
+            display: inline-block;
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            color: var(--ink);
+            animation: marquee 28s linear infinite;
         }
-        .t-name {
-            font-family: 'Nunito', sans-serif; font-size: 0.84rem;
-            font-weight: 700; color: var(--gray-900);
+        @keyframes marquee {
+            from { transform: translateX(0); }
+            to   { transform: translateX(-50%); }
         }
-        .t-loc { font-size: 0.74rem; color: var(--gray-400); margin-top: 0.05rem; }
 
-        /* ── CONTACT ── */
+        /* ── GALERIE ── */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: var(--line-strong);
+            border: 1px solid var(--line-strong);
+        }
+        .gallery-grid figure {
+            position: relative; overflow: hidden;
+            background: var(--paper);
+            margin: 0;
+        }
+        .gallery-grid img {
+            width: 100%; height: 280px;
+            object-fit: cover; display: block;
+            filter: saturate(0.92);
+            transition: transform 0.5s ease, filter 0.4s;
+        }
+        .gallery-grid figure:hover img {
+            transform: scale(1.045);
+            filter: saturate(1);
+        }
+        .gallery-grid figcaption {
+            position: absolute; left: 0; bottom: 0; right: 0;
+            padding: 0.55rem 0.9rem;
+            font-family: var(--font-mono);
+            font-size: 0.58rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--paper);
+            background: linear-gradient(transparent, rgba(27,22,17,0.6));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .gallery-grid figure:hover figcaption { opacity: 1; }
+
+        /* ── STIMMEN ── */
+        .quote-list { border-top: 1px solid rgba(242,237,226,0.25); }
+        .quote-item {
+            display: grid;
+            grid-template-columns: 90px minmax(0, 1fr) 220px;
+            gap: 2rem;
+            padding: 2.6rem 0;
+            border-bottom: 1px solid rgba(242,237,226,0.18);
+            align-items: start;
+        }
+        .q-mark {
+            font-family: var(--font-display);
+            font-style: italic;
+            font-size: 4rem;
+            line-height: 0.6;
+            color: var(--gold);
+            padding-top: 1.2rem;
+        }
+        .q-text {
+            font-family: var(--font-display);
+            font-weight: 400;
+            font-size: clamp(1.15rem, 2vw, 1.55rem);
+            line-height: 1.5;
+            font-style: italic;
+            color: var(--paper);
+        }
+        .q-author { padding-top: 0.4rem; }
+        .q-stars {
+            color: var(--gold);
+            font-size: 0.72rem;
+            letter-spacing: 0.28em;
+            margin-bottom: 0.9rem;
+        }
+        .q-av {
+            width: 52px; height: 52px; border-radius: 50%;
+            overflow: hidden;
+            border: 1px solid rgba(242,237,226,0.35);
+            margin-bottom: 0.8rem;
+        }
+        .q-av img { width: 100%; height: 100%; object-fit: cover; }
+        .q-name {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+        }
+        .q-loc {
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: rgba(242,237,226,0.5);
+            margin-top: 0.3rem;
+        }
+
+        /* ── KONTAKT ── */
         .contact-inner {
-            display: grid; grid-template-columns: 1fr 1fr;
-            gap: 6rem; align-items: start;
+            display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+            gap: clamp(2.5rem, 5vw, 5.5rem);
+            align-items: start;
         }
         .contact-text {
-            font-size: 0.97rem; line-height: 1.78;
-            color: var(--gray-500); margin: 1.2rem 0 2rem;
+            font-size: 1rem; line-height: 1.8;
+            color: var(--ink-soft); margin: 1.2rem 0 2.4rem;
         }
-        .c-list { display: flex; flex-direction: column; gap: 0.75rem; }
+        .c-list { border-top: 1px solid var(--line-strong); }
         .c-row {
-            display: flex; align-items: center; gap: 0.9rem;
-            padding: 0.9rem 1.1rem;
-            border: 1px solid var(--gray-200); border-radius: 9px;
-            transition: border-color 0.18s;
-        }
-        .c-row:hover { border-color: var(--gray-400); }
-        .c-ico {
-            width: 34px; height: 34px; border-radius: 7px;
-            background: var(--gray-50);
-            display: flex; align-items: center; justify-content: center;
-            color: var(--blue); flex-shrink: 0;
+            display: grid;
+            grid-template-columns: 130px 1fr;
+            gap: 1rem;
+            padding: 1.05rem 0.25rem;
+            border-bottom: 1px solid var(--line);
+            align-items: baseline;
         }
         .c-lbl {
-            font-size: 0.68rem; font-weight: 600;
-            color: var(--gray-400); text-transform: uppercase; letter-spacing: 0.07em;
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--accent);
         }
-        .c-val { font-size: 0.875rem; font-weight: 500; color: var(--gray-900); margin-top: 0.05rem; }
+        .c-val { font-size: 0.98rem; color: var(--ink); }
+
+        .map-wrap {
+            margin-top: 2rem;
+            border: 1px solid var(--line-strong);
+            filter: grayscale(0.35) sepia(0.12);
+        }
 
         /* ── FORM ── */
-        .form { display: flex; flex-direction: column; gap: 1rem; }
-        .f-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-        .f-group { display: flex; flex-direction: column; gap: 0.35rem; }
+        .form { display: flex; flex-direction: column; gap: 1.6rem; margin-top: 0.6rem; }
+        .f-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.6rem; }
+        .f-group { display: flex; flex-direction: column; gap: 0.4rem; }
         .f-group label {
-            font-size: 0.78rem; font-weight: 600;
-            color: var(--gray-500);
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--ink-soft);
         }
         .f-group input,
         .f-group select,
         .f-group textarea {
-            background: var(--gray-50);
-            border: 1.5px solid var(--gray-200);
-            border-radius: 8px; padding: 0.75rem 1rem;
-            font-family: 'Nunito', sans-serif;
-            font-size: 0.9rem; color: var(--gray-900);
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid var(--line-strong);
+            padding: 0.6rem 0.1rem;
+            font-family: var(--font-body);
+            font-size: 1rem; color: var(--ink);
             outline: none; width: 100%;
-            transition: border-color 0.18s, background 0.18s;
+            border-radius: 0;
+            transition: border-color 0.18s;
         }
         .f-group input:focus,
         .f-group select:focus,
-        .f-group textarea:focus {
-            border-color: var(--blue); background: white;
-        }
-        .f-group textarea { resize: vertical; min-height: 120px; }
+        .f-group textarea:focus { border-bottom-color: var(--accent); }
+        .f-group input::placeholder,
+        .f-group textarea::placeholder { color: rgba(87,80,70,0.5); font-style: italic; }
+        .f-group textarea { resize: vertical; min-height: 110px; }
         .f-group select { appearance: none; cursor: pointer; }
 
         /* ── FOOTER ── */
         footer {
-            background: var(--gray-900); color: rgba(255,255,255,0.45);
-            padding: 2.5rem 4rem 1rem;
-            display: flex; flex-direction: column; gap: 0;
+            background: var(--ink); color: rgba(242,237,226,0.5);
+            padding: 2.5rem clamp(1.25rem, 4vw, 3.5rem) 1rem;
+            display: flex; flex-direction: column;
+            border-top: 4px solid var(--gold);
         }
         .footer-main {
             display: flex; align-items: center; justify-content: space-between;
+            gap: 2rem; flex-wrap: wrap;
             padding-bottom: 1.5rem;
         }
-        .footer-bottom {
-            border-top: 1px solid rgba(255,255,255,0.08);
-            padding-top: 1rem;
-            text-align: center;
-            font-size: 0.72rem;
-            color: rgba(255,255,255,0.3);
-        }
-        .f-logo {
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-        }
-        .f-logo img {
-            height: 38px;
-            width: auto;
-            filter: invert(1) brightness(2);
-        }
-        .f-nav { display: flex; gap: 2rem; list-style: none; }
+        .f-logo { text-decoration: none; display: inline-flex; align-items: center; }
+        .f-logo img { height: 36px; width: auto; filter: invert(1) brightness(2); }
+        .f-nav { display: flex; gap: 1.6rem; list-style: none; flex-wrap: wrap; }
         .f-nav a {
-            font-size: 0.82rem; color: rgba(255,255,255,0.4);
+            font-family: var(--font-mono);
+            font-size: 0.62rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: rgba(242,237,226,0.45);
             text-decoration: none; transition: color 0.15s;
         }
-        .f-nav a:hover { color: white; }
-        .f-copy { font-size: 0.76rem; }
-
-        /* Mobile star hidden by default, shown via media query */
-        .star-badge-mobile { display: none; }
-
-        /* ── ANIMATIONS ── */
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(18px); }
-            to   { opacity: 1; transform: translateY(0); }
+        .f-nav a:hover { color: var(--gold); }
+        .f-copy { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.1em; }
+        .footer-bottom {
+            border-top: 1px solid rgba(242,237,226,0.1);
+            padding-top: 1rem;
+            text-align: center;
+            font-size: 0.78rem;
+            color: rgba(242,237,226,0.35);
         }
-        @keyframes starBlink {
-            0%, 100% { opacity: 1; transform: rotate(-12deg) scale(1); }
-            50%       { opacity: 0.35; transform: rotate(-12deg) scale(0.93); }
-        }
-        .hero-label { animation: fadeUp 0.5s ease 0.05s both; }
-        .hero h1    { animation: fadeUp 0.6s ease 0.15s both; }
-        .hero-sub   { animation: fadeUp 0.6s ease 0.28s both; }
-        .hero-ctas  { animation: fadeUp 0.6s ease 0.38s both; }
-        .hero-stats { animation: fadeUp 0.6s ease 0.5s  both; }
 
-        /* ── RESPONSIVE ── */
-        @media (max-width: 1024px) {
-            nav { padding: 0 2rem; }
-            .section { padding-left: 2rem; padding-right: 2rem; }
-            .hero { grid-template-columns: 1fr; }
-            .hero-img { height: 320px; }
-            .hero-content { padding: 100px 2rem 60px; }
-            .star-badge { display: none !important; }
-            .star-badge-mobile { display: block !important; }
-            .svc-head { flex-direction: column; align-items: flex-start; gap: 1rem; }
-            .svc-grid { grid-template-columns: 1fr 1fr; }
-            .about-inner, .contact-inner { grid-template-columns: 1fr; gap: 3.5rem; }
-            .t-grid { grid-template-columns: 1fr 1fr; }
-            footer { padding: 2rem; }
-        }
-        /* ── HAMBURGER ── */
+        /* ── HAMBURGER / MOBILE MENU ── */
         .hamburger {
             display: none;
             flex-direction: column;
@@ -461,48 +790,44 @@
         }
         .hamburger span {
             display: block;
-            width: 24px; height: 2.5px;
-            background: var(--gray-900);
-            border-radius: 2px;
+            width: 24px; height: 2px;
+            background: var(--ink);
             transition: all 0.3s ease;
         }
-        .hamburger.open span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+        .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
         .hamburger.open span:nth-child(2) { opacity: 0; }
-        .hamburger.open span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+        .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
         .mobile-menu {
             display: none;
             position: fixed;
-            top: 66px; left: 0; right: 0;
-            background: rgba(253,250,245,0.98);
+            top: 64px; left: 0; right: 0;
+            background: rgba(242,237,226,0.98);
             backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--gray-200);
-            padding: 1.5rem 2rem;
+            border-bottom: 1px solid var(--line-strong);
+            padding: 1.5rem clamp(1.25rem, 4vw, 2rem);
             flex-direction: column;
-            gap: 0;
             z-index: 99;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.07);
         }
         .mobile-menu.open { display: flex; }
         .mobile-menu a {
             display: block;
-            font-size: 1rem; font-weight: 600;
-            color: var(--gray-900); text-decoration: none;
-            padding: 0.9rem 0;
-            border-bottom: 1px solid var(--gray-200);
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--ink); text-decoration: none;
+            padding: 0.95rem 0;
+            border-bottom: 1px solid var(--line);
             transition: color 0.15s;
         }
         .mobile-menu a:last-child { border-bottom: none; }
-        .mobile-menu a:hover { color: var(--blue); }
-        .mobile-menu .m-konfig {
-            color: var(--blue);
-            display: flex; align-items: center; gap: 0.5rem;
-        }
+        .mobile-menu a:hover { color: var(--accent); }
+        .mobile-menu .m-konfig { color: var(--accent); display: flex; align-items: center; gap: 0.5rem; }
         .mobile-menu .m-wa {
-            margin-top: 0.5rem;
+            margin-top: 0.75rem;
             background: #25D366; color: white !important;
-            padding: 0.8rem 1rem !important;
-            border-radius: 8px;
+            padding: 0.9rem 1rem !important;
             display: flex !important;
             align-items: center;
             gap: 0.5rem;
@@ -510,155 +835,76 @@
             border-bottom: none !important;
         }
 
+        /* ── ANIMATIONS ── */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(18px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        .hero .kicker  { animation: fadeUp 0.5s ease 0.05s both; }
+        .hero h1       { animation: fadeUp 0.6s ease 0.15s both; }
+        .hero-sub      { animation: fadeUp 0.6s ease 0.28s both; }
+        .hero-ctas     { animation: fadeUp 0.6s ease 0.38s both; }
+        .hero-stats    { animation: fadeUp 0.6s ease 0.5s  both; }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 1024px) {
+            .hero { grid-template-columns: 1fr; }
+            .hero-img { border-left: none; border-top: 1px solid var(--line-strong); height: 340px; }
+            .hero-content { padding-top: 100px; }
+            .stamp-badge { display: none !important; }
+            .stamp-badge-mobile { display: block !important; }
+            .sec-head { flex-direction: column; align-items: flex-start; gap: 1rem; }
+            .svc-row { grid-template-columns: 60px 1fr 40px; }
+            .svc-desc { grid-column: 2; }
+            .svc-arrow { grid-row: 1; grid-column: 3; }
+            .about-inner, .contact-inner { grid-template-columns: 1fr; }
+            .about-logo-wrap { display: none; }
+            .quote-item { grid-template-columns: 50px 1fr; }
+            .q-author { grid-column: 2; }
+            .gallery-grid { grid-template-columns: 1fr 1fr; }
+        }
+
         @media (max-width: 640px) {
             html, body { overflow-x: hidden; }
             .nav-links { display: none; }
             .hamburger { display: flex; }
-            .svc-grid, .t-grid { grid-template-columns: 1fr; }
-            .about-stats { grid-template-columns: 1fr 1fr; }
-            .f-row { grid-template-columns: 1fr; }
-            footer { flex-direction: column; gap: 1.5rem; text-align: center; }
-            .f-nav { flex-wrap: wrap; justify-content: center; gap: 1rem; }
-            .form { padding-top: 0.5rem !important; }
 
-            /* Desktop-Stern auf Mobile verstecken */
-            .star-badge { display: none !important; }
+            .hero-content {
+                padding: 96px 1.25rem 2.5rem;
+                background: linear-gradient(180deg, var(--paper) 0%, var(--paper-2) 55%, #E2D5B8 100%);
+            }
+            .hero h1 { font-size: 2.9rem; }
+            .hero-sub { font-size: 0.98rem; }
+            .hero-ctas { flex-direction: column; align-items: stretch; margin-bottom: 2.4rem; }
+            .hero-ctas .btn { justify-content: center; }
 
-            /* Stern auf Mobile: unterhalb der Buttons, zentriert */
             .hero-cta-row {
                 flex-direction: column !important;
-                align-items: flex-start !important;
+                align-items: stretch !important;
                 gap: 0 !important;
             }
-            .star-badge-mobile {
+            .stamp-badge-mobile {
                 display: block !important;
-                margin-top: -2rem;
-                margin-left: auto;
-                margin-right: auto;
-                width: 225px !important;
-                height: 225px !important;
+                margin: 0.75rem auto 0;
+                width: 160px !important;
+                height: 160px !important;
             }
 
-            /* Label-Zeile nicht abschneiden */
-            .hero-label { white-space: normal !important; overflow: hidden; font-size: 0.68rem !important; }
+            .hero-stats { display: grid; grid-template-columns: 1fr 1fr; }
+            .hero-stats > div { padding: 1.1rem 0.8rem 0.2rem 0; min-width: 0; }
+            .hero-stats > div + div { border-left: none; padding-left: 0; }
+            .hero-stats > div:nth-child(even) { border-left: 1px solid var(--line); padding-left: 0.9rem; }
+            .hs-num { font-size: 1.4rem; }
+            .hs-lbl { font-size: 0.55rem; }
 
-            /* Stats 2x2 */
-            .hero-stats {
-                display: grid !important;
-                grid-template-columns: 1fr 1fr !important;
-                gap: 1.25rem !important;
-            }
-            .hero-stats > div { min-width: 0; overflow: hidden; }
-            .hs-lbl { font-size: 0.72rem !important; word-break: break-word; }
-
-            /* Texte nicht abschneiden */
-            .hero h1 { font-size: 2.4rem !important; }
-            .hero-sub { max-width: 100% !important; font-size: 0.95rem !important; }
-            .hero-ctas { max-width: 100% !important; }
-
-            /* Mobile Hero Background */
-            .hero { overflow: hidden; max-width: 100vw; }
-            .hero-content {
-                position: relative;
-                padding: 100px 1.25rem 2.5rem !important;
-                width: 100%;
-                max-width: 100%;
-                box-sizing: border-box;
-                background: url('hero-mobile-bg.png') 30% center / cover no-repeat;
-            }
-            .hero-content::before {
-                content: '';
-                position: absolute;
-                inset: 0;
-                background: rgba(253,250,245,0.80);
-                z-index: 0;
-            }
-            .hero-content > * {
-                position: relative;
-                z-index: 1;
-            }
-            .hero-img { margin-top: 3rem; width: 100%; max-width: 100%; }
-        }
-
-        /* ── IMAGE PLACEHOLDERS ── */
-        .img-ph {
-            background: var(--gray-50);
-            border: 2px dashed var(--gray-200);
-            border-radius: 12px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 0.6rem;
-            color: var(--gray-400);
-            font-size: 0.82rem;
-            font-weight: 600;
-            letter-spacing: 0.02em;
-            text-align: center;
-            padding: 2rem;
-        }
-        .img-ph svg { opacity: 0.4; }
-        .img-ph span { opacity: 0.7; }
-
-        /* Gallery section */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.25rem;
-        }
-        .gallery-grid .img-ph { min-height: 220px; }
-        @media (min-width: 1025px) {
-            .gallery-grid img,
-            .gallery-grid > div {
-                height: 260px !important;
-            }
-            .gallery-grid > div img {
-                height: 100% !important;
-            }
-        }
-
-        /* About image */
-        .about-img-ph { min-height: 280px; margin-bottom: 2rem; }
-
-        /* Logo in Über-uns rechte Spalte */
-        .about-logo-wrap {
-            display: flex;
-            justify-content: center;
-            margin-top: 3.5rem;
-        }
-        .about-logo {
-            width: 100%;
-            max-width: 520px;
-            height: auto;
-            opacity: 0.88;
-        }
-        @media (max-width: 1024px) {
-            .about-logo-wrap { display: none; }
-        }
-
-        @media (max-width: 1024px) {
-            .about-hero-img {
-                margin-left: -2rem;
-                margin-right: -2rem;
-                width: calc(100% + 4rem) !important;
-                border-radius: 0 !important;
-                max-height: 650px !important;
-            }
-        }
-        @media (max-width: 640px) {
-            .about-hero-img {
-                max-height: 520px !important;
-            }
-        }
-
-        /* Contact image */
-        .contact-img-ph { min-height: 180px; margin-top: 1.5rem; }
-
-        @media (max-width: 1024px) {
-            .gallery-grid { grid-template-columns: 1fr 1fr; }
-        }
-        @media (max-width: 640px) {
+            .svc-row { grid-template-columns: 44px 1fr 30px; gap: 0.9rem; padding: 1.3rem 0.25rem; }
             .gallery-grid { grid-template-columns: 1fr; }
+            .gallery-grid img { height: 240px; }
+            .f-row { grid-template-columns: 1fr; }
+            .quote-item { grid-template-columns: 1fr; gap: 1rem; padding: 2rem 0; }
+            .q-mark { display: none; }
+            .c-row { grid-template-columns: 1fr; gap: 0.2rem; }
+            .footer-main { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
         }
     </style>
 </head>
@@ -670,6 +916,7 @@
     <ul class="nav-links">
         <li><a href="#">Startseite</a></li>
         <li><a href="#leistungen">Leistungen</a></li>
+        <li><a href="#grossprojekte">Großprojekte</a></li>
         <li><a href="#ueber-uns">Über uns</a></li>
         <li><a href="galerie.html">Galerie</a></li>
         <li><a href="#referenzen">Referenzen</a></li>
@@ -685,6 +932,7 @@
 <div class="mobile-menu" id="mobileMenu">
     <a href="#" onclick="closeMenu()">Startseite</a>
     <a href="#leistungen" onclick="closeMenu()">Leistungen</a>
+    <a href="#grossprojekte" onclick="closeMenu()">Großprojekte</a>
     <a href="#ueber-uns" onclick="closeMenu()">Über uns</a>
     <a href="galerie.html" onclick="closeMenu()">Galerie</a>
     <a href="#referenzen" onclick="closeMenu()">Referenzen</a>
@@ -701,132 +949,252 @@
 
 <!-- HERO -->
 <div class="hero">
-    <!-- Stern-Badge -->
+    <!-- Angebots-Stempel -->
     <a href="https://wa.me/4915234796615?text=Ich%20interessiere%20mich%20f%C3%BCr%20die%20professionelle%20Fensterwartung%20ab%2075%20%E2%82%AC" target="_blank" rel="noopener"
-       class="star-badge"
-       style="position:absolute;top:12%;left:67%;transform:translate(-50%,-50%);width:245px;height:245px;animation:starBlink 1.6s ease-in-out infinite;z-index:10;cursor:pointer;text-decoration:none;">
-        <svg viewBox="0 0 130 130" style="position:absolute;inset:0;width:100%;height:100%;">
-            <polygon points="65,5 74,45 112,35 88,65 112,95 74,85 65,125 56,85 18,95 42,65 18,35 56,45" fill="#D4B483"/>
-        </svg>
-        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:26px;">
-            <span style="color:#3D2200;font-family:'Nunito',sans-serif;font-size:0.78rem;font-weight:800;line-height:1.4;letter-spacing:0.01em;">
-                Professionelle<br>Fenster&shy;wartung<br>ab <span style="font-size:1.15rem;">75 €</span>
+       class="stamp-badge" aria-label="Professionelle Fensterwartung ab 75 € – jetzt per WhatsApp anfragen">
+        <span class="stamp-wrap">
+            <svg viewBox="0 0 160 160" aria-hidden="true">
+                <circle cx="80" cy="80" r="78" fill="#1B1611"/>
+                <circle cx="80" cy="80" r="72" fill="none" stroke="rgba(212,180,131,0.5)" stroke-width="1"/>
+                <circle cx="80" cy="80" r="47" fill="none" stroke="rgba(242,237,226,0.22)" stroke-width="1"/>
+                <g class="stamp-rotate">
+                    <defs>
+                        <path id="stampCircleDesktop" d="M 80,22 a 58,58 0 1,1 0,116 a 58,58 0 1,1 0,-116" fill="none"/>
+                    </defs>
+                    <text font-family="'Fragment Mono', monospace" font-size="10.5" letter-spacing="2" fill="#D4B483">
+                        <textPath href="#stampCircleDesktop" textLength="364" lengthAdjust="spacing">FENSTERWARTUNG&nbsp;AB&nbsp;75&nbsp;€&nbsp;·&nbsp;JETZT&nbsp;ANFRAGEN&nbsp;·&nbsp;</textPath>
+                    </text>
+                </g>
+            </svg>
+            <span class="stamp-center">
+                <span class="stamp-small">Professionelle</span>
+                <span class="stamp-small">Fensterwartung</span>
+                <span class="stamp-price">ab 75&nbsp;€</span>
+                <span class="stamp-small" style="color:var(--paper);opacity:0.7;">per WhatsApp →</span>
             </span>
-        </div>
+        </span>
     </a>
     <div class="hero-content">
-        <div class="hero-label">Ihr Montageprofi – Lahn-Dill-Kreis &amp; Dreiländereck</div>
-        <h1>Montage, die überzeugt.</h1>
+        <div class="kicker">Montagedienstleister · Lahn-Dill-Kreis &amp; Dreiländereck</div>
+        <h1>Montage ist unser <em>Handwerk.</em></h1>
         <p class="hero-sub">
-            Ihr zertifizierter Montageprofi im Lahn-Dill-Kreis &amp; Dreiländereck.<br>Montage und Planung aus Erfahrung.<br>Lassen Sie sich überzeugen.
+            Wir glauben an Handwerk, das bleibt. Deshalb montieren wir Türen, Fenster und Tore mit Präzision – vom privaten Umbau bis zum Großprojekt. Und wer möchte, bekommt die passenden Fenster und Türen direkt von uns geliefert. Ihr zertifizierter Montagebetrieb im Lahn-Dill-Kreis &amp; Dreiländereck.
         </p>
-        <div class="hero-cta-row" style="display:flex;align-items:center;gap:1rem;">
+        <div class="hero-cta-row">
             <div class="hero-ctas">
-                <a href="#kontakt" class="btn btn-dark">
+                <a href="#kontakt" class="btn btn-solid">
                     Kostenlos anfragen
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </a>
-                <a href="#leistungen" class="btn btn-outline">Leistungen ansehen</a>
-                <a href="konfigurator.html" class="btn btn-outline">
-                    Zu den Konfiguratoren
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-                </a>
+                <a href="#leistungen" class="btn">Leistungen</a>
+                <a href="konfigurator.html" class="btn">Konfiguratoren</a>
             </div>
-            <!-- Stern Mobile (nur auf kleinen Screens) -->
+            <!-- Angebots-Stempel Mobile (nur auf kleinen Screens) -->
             <a href="https://wa.me/4915234796615?text=Ich%20interessiere%20mich%20f%C3%BCr%20die%20professionelle%20Fensterwartung%20ab%2075%20%E2%82%AC" target="_blank" rel="noopener"
-               class="star-badge-mobile"
-               style="flex-shrink:0;width:115px;height:115px;position:relative;animation:starBlink 1.6s ease-in-out infinite;cursor:pointer;text-decoration:none;display:none;">
-                <svg viewBox="0 0 130 130" style="position:absolute;inset:0;width:100%;height:100%;">
-                    <polygon points="65,5 74,45 112,35 88,65 112,95 74,85 65,125 56,85 18,95 42,65 18,35 56,45" fill="#D4B483"/>
-                </svg>
-                <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;">
-                    <span style="color:#3D2200;font-family:'Nunito',sans-serif;font-size:0.72rem;font-weight:800;line-height:1.4;letter-spacing:0.01em;">
-                        Professionelle<br>Fenster&shy;wartung<br>ab <span style="font-size:1rem;">75 €</span>
+               class="stamp-badge-mobile" aria-label="Professionelle Fensterwartung ab 75 € – jetzt per WhatsApp anfragen"
+               style="flex-shrink:0;width:150px;height:150px;position:relative;">
+                <span class="stamp-wrap">
+                    <svg viewBox="0 0 160 160" aria-hidden="true">
+                        <circle cx="80" cy="80" r="78" fill="#1B1611"/>
+                        <circle cx="80" cy="80" r="72" fill="none" stroke="rgba(212,180,131,0.5)" stroke-width="1"/>
+                        <circle cx="80" cy="80" r="47" fill="none" stroke="rgba(242,237,226,0.22)" stroke-width="1"/>
+                        <g class="stamp-rotate">
+                            <defs>
+                                <path id="stampCircleMobile" d="M 80,22 a 58,58 0 1,1 0,116 a 58,58 0 1,1 0,-116" fill="none"/>
+                            </defs>
+                            <text font-family="'Fragment Mono', monospace" font-size="10.5" letter-spacing="2" fill="#D4B483">
+                                <textPath href="#stampCircleMobile" textLength="364" lengthAdjust="spacing">FENSTERWARTUNG&nbsp;AB&nbsp;75&nbsp;€&nbsp;·&nbsp;JETZT&nbsp;ANFRAGEN&nbsp;·&nbsp;</textPath>
+                            </text>
+                        </g>
+                    </svg>
+                    <span class="stamp-center">
+                        <span class="stamp-small">Fensterwartung</span>
+                        <span class="stamp-price">ab 75&nbsp;€</span>
+                        <span class="stamp-small" style="color:var(--paper);opacity:0.7;">WhatsApp →</span>
                     </span>
-                </div>
+                </span>
             </a>
         </div>
         <div class="hero-stats">
-            <div><div class="hs-num">4,7 ★</div><div class="hs-lbl">Google-Bewertung</div></div>
+            <div><div class="hs-num">4,7&nbsp;★</div><div class="hs-lbl">Google-Bewertung</div></div>
             <div><div class="hs-num">21</div><div class="hs-lbl">Kundenbewertungen</div></div>
             <div><div class="hs-num">100%</div><div class="hs-lbl">Fachbetrieb</div></div>
-            <div><div class="hs-num">Vor Ort</div><div class="hs-lbl">Lahn-Dill-Kreis &amp; Dreiländereck</div></div>
+            <div><div class="hs-num">Vor Ort</div><div class="hs-lbl">Lahn-Dill &amp; Dreiländereck</div></div>
         </div>
     </div>
-    <div class="hero-img">
+    <figure class="hero-img">
         <img src="Modernes Wohnzimmer Bild.png" alt="Renoviertes Wohnzimmer">
+        <figcaption>Referenz · Wohnraum nach Fenstertausch</figcaption>
+    </figure>
+</div>
+
+<!-- MARQUEE -->
+<div class="divider-band" aria-hidden="true">
+    <div class="divider-track">
+        Türen&nbsp;&nbsp;·&nbsp;&nbsp;Fenster&nbsp;&nbsp;·&nbsp;&nbsp;Haustüren&nbsp;&nbsp;·&nbsp;&nbsp;Garagentore&nbsp;&nbsp;·&nbsp;&nbsp;Rollläden&nbsp;&nbsp;·&nbsp;&nbsp;Sonnenschutz&nbsp;&nbsp;·&nbsp;&nbsp;Beratung&nbsp;&nbsp;·&nbsp;&nbsp;Montage&nbsp;&nbsp;·&nbsp;&nbsp;
+        Türen&nbsp;&nbsp;·&nbsp;&nbsp;Fenster&nbsp;&nbsp;·&nbsp;&nbsp;Haustüren&nbsp;&nbsp;·&nbsp;&nbsp;Garagentore&nbsp;&nbsp;·&nbsp;&nbsp;Rollläden&nbsp;&nbsp;·&nbsp;&nbsp;Sonnenschutz&nbsp;&nbsp;·&nbsp;&nbsp;Beratung&nbsp;&nbsp;·&nbsp;&nbsp;Montage&nbsp;&nbsp;·&nbsp;&nbsp;
     </div>
 </div>
 
-<!-- SERVICES -->
-<section class="section section-alt" id="leistungen">
-    <div class="svc-head">
-        <div>
-            <div class="sec-label">Was wir bieten</div>
-            <h2 class="sec-title">Unsere Leistungen</h2>
+<!-- MANIFEST: Warum → Wie → Was -->
+<section class="section manifest" id="warum">
+    <div class="kicker">Woran wir glauben</div>
+    <p class="manifest-statement">
+        Menschen beauftragen nicht, <strong>was</strong> wir tun – sondern <strong>warum</strong> wir es tun. Darum beginnt bei uns jede Montage mit einer Überzeugung.
+    </p>
+    <div class="manifest-cols">
+        <div class="manifest-col">
+            <span class="m-step">01 · Warum</span>
+            <div class="m-head">Die Überzeugung</div>
+            <p>Wir glauben, dass gutes Handwerk Vertrauenssache ist. Ein Zuhause verdient Arbeit, die bleibt – nicht die schnellste, sondern die richtige.</p>
         </div>
-        <p class="svc-sub">Montage und Verkauf von Bauelementen – von der Beratung bis zur fachgerechten Montage aus einer Hand.</p>
+        <div class="manifest-col">
+            <span class="m-step">02 · Wie</span>
+            <div class="m-head">Die Arbeitsweise</div>
+            <p>Deshalb beraten wir ehrlich, planen sorgfältig und montieren präzise – im Einfamilienhaus genauso wie im Großprojekt. Mit transparenten Preisen und 5 Jahren Gewährleistung.</p>
+        </div>
+        <div class="manifest-col">
+            <span class="m-step">03 · Was</span>
+            <div class="m-head">Das Ergebnis</div>
+            <p>Fachgerechte Montage von Türen, Fenstern und Toren – und auf Wunsch die passenden Bauelemente gleich dazu. Das ist es, was wir tun – und jetzt wissen Sie, warum.</p>
+        </div>
     </div>
-    <div class="svc-grid">
+</section>
 
-        <div class="svc-card">
-            <span class="svc-num">01</span>
-            <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="3" width="18" height="18" rx="1"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="12" y1="3" x2="12" y2="21"/></svg>
-            <div class="svc-name">Türmontage</div>
-            <p class="svc-desc">Fachgerechte Montage von Innen- und Außentüren aller Art – präzise eingepasst und dauerhaft dicht.</p>
+<!-- SERVICES -->
+<section class="section" id="leistungen">
+    <div class="sec-head">
+        <div>
+            <div class="kicker">Was wir bieten</div>
+            <h2 class="sec-title">Unsere <em>Leistungen</em></h2>
         </div>
+        <p class="sec-sub">Unsere Kernleistung ist die Montage – vom einzelnen Fenster bis zum kompletten Objekt. Auf Wunsch liefern wir die passenden Bauelemente gleich mit.</p>
+    </div>
+    <div class="svc-group-label">Kernleistung · Montage</div>
+    <div class="svc-list">
 
-        <div class="svc-card">
-            <span class="svc-num">02</span>
-            <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="2" y="3" width="20" height="18" rx="1"/><line x1="2" y1="9" x2="22" y2="9"/><line x1="12" y1="9" x2="12" y2="21"/></svg>
-            <div class="svc-name">Fenstermontage</div>
-            <p class="svc-desc">Professioneller Einbau von Kunststoff-, Holz- und Aluminiumfenstern – energieeffizient und wärmedämmend.</p>
-        </div>
+        <a class="svc-row" href="#kontakt">
+            <span class="svc-num">/01</span>
+            <span class="svc-name">Türmontage</span>
+            <span class="svc-desc">Fachgerechte Montage von Innen- und Außentüren aller Art – präzise eingepasst und dauerhaft dicht.</span>
+            <span class="svc-arrow">→</span>
+        </a>
 
-        <div class="svc-card">
-            <span class="svc-num">03</span>
-            <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-            <div class="svc-name">Haustüren &amp; Eingangstüren</div>
-            <p class="svc-desc">Hochwertige Haustüren mit modernem Design und optimaler Sicherheit – von der Beratung bis zur Montage.</p>
-        </div>
+        <a class="svc-row" href="#kontakt">
+            <span class="svc-num">/02</span>
+            <span class="svc-name">Fenstermontage</span>
+            <span class="svc-desc">Professioneller Einbau von Kunststoff-, Holz- und Aluminiumfenstern – energieeffizient und wärmedämmend.</span>
+            <span class="svc-arrow">→</span>
+        </a>
 
-        <div class="svc-card">
-            <span class="svc-num">04</span>
-            <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="2" y="7" width="20" height="14" rx="1"/><path d="M2 11h20M2 15h20M7 7V3M17 7V3"/></svg>
-            <div class="svc-name">Garagentore &amp; Rolltore</div>
-            <p class="svc-desc">Montage und Verkauf von Sectional-, Roll- und Schwingtoren – manuell oder elektrisch betrieben.</p>
-        </div>
+        <a class="svc-row" href="#kontakt">
+            <span class="svc-num">/03</span>
+            <span class="svc-name">Haustüren &amp; Eingangstüren</span>
+            <span class="svc-desc">Hochwertige Haustüren mit modernem Design und optimaler Sicherheit – von der Beratung bis zur Montage.</span>
+            <span class="svc-arrow">→</span>
+        </a>
 
-        <div class="svc-card">
-            <span class="svc-num">05</span>
-            <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>
-            <div class="svc-name">Rollläden &amp; Sonnenschutz</div>
-            <p class="svc-desc">Aufsatz- und Vorbaurollläden, Jalousien und Markisen – für mehr Komfort, Sicherheit und Energieeffizienz.</p>
-        </div>
+        <a class="svc-row" href="#kontakt">
+            <span class="svc-num">/04</span>
+            <span class="svc-name">Garagentore &amp; Rolltore</span>
+            <span class="svc-desc">Montage und Verkauf von Sectional-, Roll- und Schwingtoren – manuell oder elektrisch betrieben.</span>
+            <span class="svc-arrow">→</span>
+        </a>
 
-        <div class="svc-card">
-            <span class="svc-num">06</span>
-            <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-            <div class="svc-name">Beratung &amp; Verkauf</div>
-            <p class="svc-desc">Persönliche Beratung, kostenloser Kostenvoranschlag und Verkauf hochwertiger Bauelemente namhafter Hersteller.</p>
-        </div>
+        <a class="svc-row" href="#kontakt">
+            <span class="svc-num">/05</span>
+            <span class="svc-name">Rollläden &amp; Sonnenschutz</span>
+            <span class="svc-desc">Aufsatz- und Vorbaurollläden, Jalousien und Markisen – für mehr Komfort, Sicherheit und Energieeffizienz.</span>
+            <span class="svc-arrow">→</span>
+        </a>
+
+    </div>
+
+    <div class="svc-group-label">Außerdem · Verkauf &amp; Beratung</div>
+    <div class="svc-list">
+
+        <a class="svc-row" href="#kontakt">
+            <span class="svc-num">/06</span>
+            <span class="svc-name">Fenster- &amp; Türenverkauf</span>
+            <span class="svc-desc">Hochwertige Fenster und Türen namhafter Hersteller – von uns geliefert und auf Wunsch direkt fachgerecht montiert.</span>
+            <span class="svc-arrow">→</span>
+        </a>
+
+        <a class="svc-row" href="#kontakt">
+            <span class="svc-num">/07</span>
+            <span class="svc-name">Beratung &amp; Kostenvoranschlag</span>
+            <span class="svc-desc">Persönliche Beratung vor Ort und ein kostenloser, schriftlicher Kostenvoranschlag – transparent und unverbindlich.</span>
+            <span class="svc-arrow">→</span>
+        </a>
 
     </div>
 </section>
 
+<!-- GROSSPROJEKTE -->
+<section class="section bigproject" id="grossprojekte">
+    <div class="bigproject-inner">
+        <div>
+            <div class="kicker" style="color:var(--gold);">Objektgeschäft</div>
+            <h2>Großprojekte? <em>Unser Revier.</em></h2>
+        </div>
+        <div>
+            <p class="bigproject-text">
+                Ob Wohnanlage, Neubauprojekt oder Gewerbeobjekt: Wir montieren Bauelemente in Serie – termintreu, koordiniert und mit einem festen Ansprechpartner für das gesamte Projekt.
+            </p>
+            <ul class="bp-list">
+                <li>Neubau- und Sanierungsprojekte mit vielen Einheiten</li>
+                <li>Eingespielte Montageteams für termintreue Ausführung</li>
+                <li>Koordination direkt mit Bauleitung oder Hausverwaltung</li>
+                <li>Auf Wunsch inklusive Lieferung aller Bauelemente</li>
+            </ul>
+            <a href="#kontakt" class="btn bp-btn">
+                Projekt anfragen
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- KONFIGURATOR -->
+<section class="section" id="konfigurator-live" style="padding-top:0;">
+    <div class="sec-head">
+        <div>
+            <div class="kicker">Online planen</div>
+            <h2 class="sec-title">Türen-Designer – <em>selbst gestalten</em></h2>
+        </div>
+        <p class="sec-sub">Stellen Sie Ihre Wunschtür direkt hier zusammen – Modell, Farbe, Verglasung und Griff individuell konfigurieren. Ganz unverbindlich.</p>
+    </div>
+
+    <a href="https://delutech-renorep.tueren-designer.com/" target="_blank" rel="noopener" class="konfig-banner">
+        <div class="konfig-inner">
+            <div class="kicker" style="color:var(--gold);">Renorep × Delutech</div>
+            <h3>Ihre Wunschtür im <em>3D-Konfigurator</em> gestalten</h3>
+            <p>Modell, Farbe, Verglasung und Griff individuell zusammenstellen – ganz unverbindlich und in wenigen Minuten.</p>
+            <span class="btn konfig-btn">
+                Konfigurator starten
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </span>
+        </div>
+    </a>
+
+    <div style="display:flex;align-items:center;justify-content:center;margin-top:1.75rem;">
+        <a href="konfigurator.html" class="btn">Alle Konfiguratoren ansehen</a>
+    </div>
+</section>
+
 <!-- ABOUT -->
-<section class="section" id="ueber-uns">
+<section class="section" id="ueber-uns" style="border-top:1px solid var(--line-strong);">
     <div class="about-inner">
         <div>
-            <img src="ChatGPT Image 24. Mai 2026, 15_50_56.png" alt="Renorep Team" class="about-hero-img" style="width:100%;border-radius:12px;object-fit:cover;object-position:50% 10%;background:var(--gray-50);max-height:1300px;display:block;margin-bottom:2rem;">
-            <div class="sec-label">Über uns</div>
-            <h2 class="sec-title">Handwerk mit Herzblut</h2>
+            <img src="ChatGPT Image 24. Mai 2026, 15_50_56.png" alt="Renorep Team" class="about-hero-img">
+            <div class="kicker">Über uns</div>
+            <h2 class="sec-title">Handwerk mit <em>Herzblut</em></h2>
             <p class="about-text">
-                Renorep Montagedienstleistung ist ein zertifiziertes Unternehmen und steht für professionelle Montage und den Verkauf von hochwertigen Bauelementen im Lahn-Dill-Kreis &amp; Dreiländereck. Mit Fachkenntnis, Sorgfalt und echter Leidenschaft für unser Handwerk sorgen wir dafür, dass Türen, Fenster und Tore perfekt sitzen.
+                Renorep Montagedienstleistung ist ein zertifizierter Montagebetrieb im Lahn-Dill-Kreis &amp; Dreiländereck. Unser Kern ist die professionelle Montage von Türen, Fenstern und Toren – vom Einfamilienhaus bis zum Großprojekt. Ergänzend verkaufen wir hochwertige Fenster und Türen namhafter Hersteller, damit Lieferung und Montage aus einer Hand kommen. Mit Fachkenntnis, Sorgfalt und echter Leidenschaft für unser Handwerk.
             </p>
             <div class="about-stats">
                 <div class="as-item">
-                    <div class="as-num">4,7 ★</div>
+                    <div class="as-num">4,7&nbsp;★</div>
                     <div class="as-lbl">Google-Bewertung</div>
                 </div>
                 <div class="as-item">
@@ -839,46 +1207,40 @@
                 </div>
                 <div class="as-item">
                     <div class="as-num">Vor Ort</div>
-                    <div class="as-lbl">Lahn-Dill-Kreis &amp; Dreiländereck</div>
+                    <div class="as-lbl">Lahn-Dill &amp; Dreiländereck</div>
                 </div>
             </div>
         </div>
 
-        <div class="promise-list">
-            <div class="promise-item">
-                <div class="p-check">
-                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+        <div>
+            <div class="promise-list">
+                <div class="promise-item">
+                    <div class="p-num">/A</div>
+                    <div>
+                        <div class="p-title">Pünktlichkeit &amp; Verlässlichkeit</div>
+                        <p class="p-text">Wir halten Termine ein und halten Sie jederzeit auf dem Laufenden.</p>
+                    </div>
                 </div>
-                <div>
-                    <div class="p-title">Pünktlichkeit &amp; Verlässlichkeit</div>
-                    <p class="p-text">Wir halten Termine ein und halten Sie jederzeit auf dem Laufenden.</p>
+                <div class="promise-item">
+                    <div class="p-num">/B</div>
+                    <div>
+                        <div class="p-title">Transparente Preise</div>
+                        <p class="p-text">Keine versteckten Kosten. Unser Angebot ist Ihr Preis – schriftlich festgehalten.</p>
+                    </div>
                 </div>
-            </div>
-            <div class="promise-item">
-                <div class="p-check">
-                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                <div class="promise-item">
+                    <div class="p-num">/C</div>
+                    <div>
+                        <div class="p-title">5 Jahre Gewährleistung</div>
+                        <p class="p-text">Wir stehen hinter unserer Arbeit. Bei Problemen kommen wir kostenlos zurück.</p>
+                    </div>
                 </div>
-                <div>
-                    <div class="p-title">Transparente Preise</div>
-                    <p class="p-text">Keine versteckten Kosten. Unser Angebot ist Ihr Preis – schriftlich festgehalten.</p>
-                </div>
-            </div>
-            <div class="promise-item">
-                <div class="p-check">
-                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-                </div>
-                <div>
-                    <div class="p-title">5 Jahre Gewährleistung</div>
-                    <p class="p-text">Wir stehen hinter unserer Arbeit. Bei Problemen kommen wir kostenlos zurück.</p>
-                </div>
-            </div>
-            <div class="promise-item">
-                <div class="p-check">
-                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-                </div>
-                <div>
-                    <div class="p-title">Ausgebildete Fachkräfte</div>
-                    <p class="p-text">Wir arbeiten ausschließlich mit ausgebildeten Fachpartnern – für professionelle Montage ohne Überraschungen.</p>
+                <div class="promise-item">
+                    <div class="p-num">/D</div>
+                    <div>
+                        <div class="p-title">Ausgebildete Fachkräfte</div>
+                        <p class="p-text">Wir arbeiten ausschließlich mit ausgebildeten Fachpartnern – für professionelle Montage ohne Überraschungen.</p>
+                    </div>
                 </div>
             </div>
             <div class="about-logo-wrap">
@@ -888,72 +1250,82 @@
     </div>
 </section>
 
+<!-- MARQUEE -->
+<div class="divider-band" aria-hidden="true">
+    <div class="divider-track">
+        Zertifizierter Montagebetrieb&nbsp;&nbsp;·&nbsp;&nbsp;5 Jahre Gewährleistung&nbsp;&nbsp;·&nbsp;&nbsp;Transparente Preise&nbsp;&nbsp;·&nbsp;&nbsp;4,7 ★ bei Google&nbsp;&nbsp;·&nbsp;&nbsp;
+        Zertifizierter Montagebetrieb&nbsp;&nbsp;·&nbsp;&nbsp;5 Jahre Gewährleistung&nbsp;&nbsp;·&nbsp;&nbsp;Transparente Preise&nbsp;&nbsp;·&nbsp;&nbsp;4,7 ★ bei Google&nbsp;&nbsp;·&nbsp;&nbsp;
+    </div>
+</div>
 
 <!-- GALLERY -->
-<section class="section section-alt" id="galerie">
-    <div class="sec-label">Unsere Arbeiten</div>
-    <h2 class="sec-title">Referenzfotos</h2>
-    <p style="font-size:0.97rem;color:var(--gray-500);margin:0.75rem 0 2.5rem;max-width:52ch;">Einige Eindrücke aus abgeschlossenen Projekten – Türen, Fenster und Tore aus unserer Montage.</p>
+<section class="section" id="galerie">
+    <div class="sec-head">
+        <div>
+            <div class="kicker">Unsere Arbeiten</div>
+            <h2 class="sec-title">Referenz<em>fotos</em></h2>
+        </div>
+        <p class="sec-sub">Einige Eindrücke aus abgeschlossenen Projekten – Türen, Fenster und Tore aus unserer Montage.</p>
+    </div>
     <div class="gallery-grid">
-        <img src="2.png" alt="Haustür-Montage" style="width:100%;border-radius:12px;object-fit:cover;object-position:center 40%;height:220px;display:block;">
-        <img src="3.png" alt="Fenstereinbau" style="width:100%;border-radius:12px;object-fit:cover;object-position:center top;height:220px;display:block;">
-        <div style="width:100%;border-radius:12px;height:220px;overflow:hidden;"><img src="4.png" alt="Garagentor" style="width:100%;height:100%;object-fit:cover;object-position:center center;transform:scale(1.08);display:block;"></div>
-        <img src="11.jpg" alt="Lasermessung Montage" style="width:100%;border-radius:12px;object-fit:cover;object-position:center 30%;height:320px;display:block;">
-        <div style="width:100%;border-radius:12px;height:220px;overflow:hidden;"><img src="6.png" alt="Eingangstür Detail" style="width:100%;height:100%;object-fit:cover;object-position:center center;transform:scale(1.08);display:block;"></div>
-        <div style="width:100%;border-radius:12px;height:220px;overflow:hidden;"><img src="7.png" alt="Abgeschlossenes Projekt" style="width:100%;height:100%;object-fit:cover;object-position:center center;transform:scale(1.08);display:block;"></div>
-        <div style="width:100%;border-radius:12px;height:320px;overflow:hidden;"><img src="9.jpg" alt="Türmontage Renorep" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;transform:scale(1.15);display:block;"></div>
-        <img src="10.jpg" alt="Haustür Einbau" style="width:100%;border-radius:12px;object-fit:cover;object-position:center 25%;height:320px;display:block;">
-        <div style="width:100%;border-radius:12px;height:220px;overflow:hidden;"><img src="5.png" alt="Rollläden / Sonnenschutz" style="width:100%;height:100%;object-fit:cover;object-position:center center;transform:scale(1.08);display:block;"></div>
+        <figure><img src="2.png" alt="Haustür-Montage" style="object-position:center 40%;"><figcaption>Haustür-Montage</figcaption></figure>
+        <figure><img src="3.png" alt="Fenstereinbau" style="object-position:center top;"><figcaption>Fenstereinbau</figcaption></figure>
+        <figure><img src="4.png" alt="Garagentor"><figcaption>Garagentor</figcaption></figure>
+        <figure><img src="11.jpg" alt="Lasermessung Montage" style="object-position:center 30%;"><figcaption>Lasermessung</figcaption></figure>
+        <figure><img src="6.png" alt="Eingangstür Detail"><figcaption>Eingangstür</figcaption></figure>
+        <figure><img src="7.png" alt="Abgeschlossenes Projekt"><figcaption>Projekt</figcaption></figure>
+        <figure><img src="9.jpg" alt="Türmontage Renorep" style="object-position:center 30%;"><figcaption>Türmontage</figcaption></figure>
+        <figure><img src="10.jpg" alt="Haustür Einbau" style="object-position:center 25%;"><figcaption>Haustür-Einbau</figcaption></figure>
+        <figure><img src="5.png" alt="Rollläden / Sonnenschutz"><figcaption>Rollläden</figcaption></figure>
     </div>
     <div style="text-align:center;margin-top:2.5rem;">
-        <a href="galerie.html" style="display:inline-flex;align-items:center;gap:0.6rem;padding:0.85rem 2rem;font-family:'Nunito',sans-serif;font-size:0.95rem;font-weight:700;border-radius:10px;border:1.5px solid var(--gray-200);background:white;color:var(--gray-900);text-decoration:none;transition:all 0.18s;box-shadow:0 2px 8px rgba(0,0,0,0.06);"
-           onmouseover="this.style.borderColor='#2563EB';this.style.color='#2563EB'" onmouseout="this.style.borderColor='var(--gray-200)';this.style.color='var(--gray-900)'">
+        <a href="galerie.html" class="btn">
             Alle Projektfotos ansehen
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
     </div>
 </section>
 
-
 <!-- TESTIMONIALS -->
-<section class="section section-alt" id="referenzen">
-    <div class="sec-label">Kundenstimmen</div>
-    <h2 class="sec-title">Was unsere Kunden sagen</h2>
-    <div class="t-grid">
+<section class="section section-dark" id="referenzen">
+    <div class="sec-head">
+        <div>
+            <div class="kicker" style="color:var(--gold);">Kundenstimmen</div>
+            <h2 class="sec-title">Was unsere <em style="color:var(--gold);">Kunden</em> sagen</h2>
+        </div>
+    </div>
+    <div class="quote-list">
 
-        <div class="t-card">
-            <div class="t-stars">★★★★★</div>
-            <p class="t-text">„Die neue Haustür wurde schnell und sauber montiert. Perfekte Passform, kein Zug mehr – und das Preis-Leistungs-Verhältnis ist top. Sehr empfehlenswert!"</p>
-            <div class="t-author">
-                <div class="t-av"><img src="foto-maria.png" alt="Maria K." style="object-position: center 20%;"></div>
-                <div>
-                    <div class="t-name">Maria K.</div>
-                    <div class="t-loc">Lahn-Dill-Kreis</div>
-                </div>
+        <div class="quote-item">
+            <div class="q-mark">„</div>
+            <p class="q-text">Die neue Haustür wurde schnell und sauber montiert. Perfekte Passform, kein Zug mehr – und das Preis-Leistungs-Verhältnis ist top. Sehr empfehlenswert!</p>
+            <div class="q-author">
+                <div class="q-stars">★★★★★</div>
+                <div class="q-av"><img src="foto-maria.png" alt="Maria K." style="object-position: center 20%;"></div>
+                <div class="q-name">Maria K.</div>
+                <div class="q-loc">Lahn-Dill-Kreis</div>
             </div>
         </div>
 
-        <div class="t-card">
-            <div class="t-stars">★★★★★</div>
-            <p class="t-text">„Fensteraustausch im ganzen Haus – alles reibungslos. Termin wurde eingehalten, Arbeit sauber durchgeführt, Preis stimmte. Genau so muss das sein."</p>
-            <div class="t-author">
-                <div class="t-av"><img src="foto-thomas.png" alt="Thomas S." style="object-position: center 20%;"></div>
-                <div>
-                    <div class="t-name">Thomas S.</div>
-                    <div class="t-loc">Herborn</div>
-                </div>
+        <div class="quote-item">
+            <div class="q-mark">„</div>
+            <p class="q-text">Fensteraustausch im ganzen Haus – alles reibungslos. Termin wurde eingehalten, Arbeit sauber durchgeführt, Preis stimmte. Genau so muss das sein.</p>
+            <div class="q-author">
+                <div class="q-stars">★★★★★</div>
+                <div class="q-av"><img src="foto-thomas.png" alt="Thomas S." style="object-position: center 20%;"></div>
+                <div class="q-name">Thomas S.</div>
+                <div class="q-loc">Herborn</div>
             </div>
         </div>
 
-        <div class="t-card">
-            <div class="t-stars">★★★★★</div>
-            <p class="t-text">„Garagentor-Montage perfekt erledigt. Schnelle Reaktion auf Anfrage, freundliche Beratung und professionelle Umsetzung. Klare Weiterempfehlung!"</p>
-            <div class="t-author">
-                <div class="t-av"><img src="foto-andrea.png" alt="Andrea B." style="object-position: center 20%;"></div>
-                <div>
-                    <div class="t-name">Andrea B.</div>
-                    <div class="t-loc">Dillenburg</div>
-                </div>
+        <div class="quote-item">
+            <div class="q-mark">„</div>
+            <p class="q-text">Garagentor-Montage perfekt erledigt. Schnelle Reaktion auf Anfrage, freundliche Beratung und professionelle Umsetzung. Klare Weiterempfehlung!</p>
+            <div class="q-author">
+                <div class="q-stars">★★★★★</div>
+                <div class="q-av"><img src="foto-andrea.png" alt="Andrea B." style="object-position: center 20%;"></div>
+                <div class="q-name">Andrea B.</div>
+                <div class="q-loc">Dillenburg</div>
             </div>
         </div>
 
@@ -964,45 +1336,27 @@
 <section class="section" id="kontakt">
     <div class="contact-inner">
         <div>
+            <div class="kicker">Direkter Draht</div>
+            <h2 class="sec-title" style="margin-bottom:2rem;">So erreichen Sie <em>uns</em></h2>
             <div class="c-list">
                 <div class="c-row">
-                    <div class="c-ico">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 13.5a19.79 19.79 0 01-3.07-8.67A2 2 0 012 2.84h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 10.91a16 16 0 006 6l1.23-1.23a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 17.92z"/></svg>
-                    </div>
-                    <div>
-                        <div class="c-lbl">Telefon</div>
-                        <div class="c-val">01523 4796615</div>
-                    </div>
+                    <div class="c-lbl">Telefon</div>
+                    <div class="c-val">01523 4796615</div>
                 </div>
                 <div class="c-row">
-                    <div class="c-ico">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                    </div>
-                    <div>
-                        <div class="c-lbl">E-Mail</div>
-                        <div class="c-val">renorepjensschmidt@gmail.com</div>
-                    </div>
+                    <div class="c-lbl">E-Mail</div>
+                    <div class="c-val">renorepjensschmidt@gmail.com</div>
                 </div>
                 <div class="c-row">
-                    <div class="c-ico">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                    </div>
-                    <div>
-                        <div class="c-lbl">Adresse</div>
-                        <div class="c-val">Auf d. Grub 7a, 35767 Breitscheid</div>
-                    </div>
+                    <div class="c-lbl">Adresse</div>
+                    <div class="c-val">Auf d. Grub 7a, 35767 Breitscheid</div>
                 </div>
                 <div class="c-row">
-                    <div class="c-ico">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                    </div>
-                    <div>
-                        <div class="c-lbl">Öffnungszeiten</div>
-                        <div class="c-val">Mo – Fr: 8:00 – 20:00 Uhr</div>
-                    </div>
+                    <div class="c-lbl">Zeiten</div>
+                    <div class="c-val">Mo – Fr: 8:00 – 20:00 Uhr</div>
                 </div>
             </div>
-            <div style="margin-top:1.5rem;border-radius:12px;overflow:hidden;border:1px solid var(--gray-200);">
+            <div class="map-wrap">
                 <iframe
                     src="https://maps.google.com/maps?q=Auf+der+Grub+7a+35767+Breitscheid&output=embed&hl=de&z=15"
                     width="100%" height="300" style="display:block;border:0;" allowfullscreen="" loading="lazy"
@@ -1011,8 +1365,8 @@
         </div>
 
         <div>
-            <div class="sec-label">Kontakt</div>
-            <h2 class="sec-title">Kostenlos anfragen</h2>
+            <div class="kicker">Kontakt</div>
+            <h2 class="sec-title">Kostenlos <em>anfragen</em></h2>
             <p class="contact-text">
                 Beschreiben Sie kurz Ihr Vorhaben. Wir melden uns innerhalb von 24 Stunden – unverbindlich und ohne Kosten.
             </p>
@@ -1041,7 +1395,9 @@
                             <option>Haustüren &amp; Eingangstüren</option>
                             <option>Garagentore &amp; Rolltore</option>
                             <option>Rollläden &amp; Sonnenschutz</option>
-                            <option>Beratung &amp; Verkauf</option>
+                            <option>Großprojekt / Objektbau</option>
+                            <option>Fenster- &amp; Türenverkauf</option>
+                            <option>Beratung &amp; Kostenvoranschlag</option>
                             <option>Sonstiges</option>
                         </select>
                     </div>
@@ -1051,9 +1407,9 @@
                     <textarea name="nachricht" placeholder="Beschreiben Sie kurz Ihr Projekt…" required></textarea>
                 </div>
                 <div>
-                    <button type="submit" class="btn btn-dark" id="submitBtn">
+                    <button type="submit" class="btn btn-solid" id="submitBtn">
                         Anfrage absenden
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                     </button>
                 </div>
             </form>
@@ -1078,7 +1434,7 @@
     </div>
     <div class="footer-bottom">
         Hat dir die Website von Renorep gefallen? Hol dir jetzt kostenlos deine eigene Vorlage –
-        <a href="mailto:info@leadflowconsulting.de?subject=Kostenlose%20Website-Vorlage&body=Hallo%2C%0A%0Adie%20Website%20von%20Renorep%20hat%20mir%20sehr%20gut%20gefallen.%20Ich%20w%C3%BCrde%20mich%20gerne%20%C3%BCber%20eine%20kostenlose%20Vorlage%20f%C3%BCr%20mein%20Unternehmen%20informieren.%0A%0AUnternehmen%3A%20%0ATelefonnummer%3A%20%0A%0AMit%20freundlichen%20Gr%C3%BC%C3%9Fen" style="color:rgba(255,255,255,0.5);text-decoration:underline;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">info@leadflowconsulting.de</a>
+        <a href="mailto:info@leadflowconsulting.de?subject=Kostenlose%20Website-Vorlage&body=Hallo%2C%0A%0Adie%20Website%20von%20Renorep%20hat%20mir%20sehr%20gut%20gefallen.%20Ich%20w%C3%BCrde%20mich%20gerne%20%C3%BCber%20eine%20kostenlose%20Vorlage%20f%C3%BCr%20mein%20Unternehmen%20informieren.%0A%0AUnternehmen%3A%20%0ATelefonnummer%3A%20%0A%0AMit%20freundlichen%20Gr%C3%BC%C3%9Fen" style="color:rgba(242,237,226,0.5);text-decoration:underline;" onmouseover="this.style.color='#D4B483'" onmouseout="this.style.color='rgba(242,237,226,0.5)'">info@leadflowconsulting.de</a>
     </div>
 </footer>
 
@@ -1098,17 +1454,8 @@
     // Subtle nav shadow on scroll
     window.addEventListener('scroll', () => {
         document.getElementById('navbar').style.boxShadow =
-            window.scrollY > 20 ? '0 1px 12px rgba(0,0,0,0.07)' : '';
+            window.scrollY > 20 ? '0 1px 12px rgba(27,22,17,0.08)' : '';
     });
-
-    // Form submit
-    function handleSubmit(e) {
-        e.preventDefault();
-        const btn = document.getElementById('submitBtn');
-        btn.innerHTML = 'Nachricht gesendet ✓';
-        btn.style.background = '#16A34A';
-        btn.disabled = true;
-    }
 
     // Scroll reveal
     const io = new IntersectionObserver(entries => {
@@ -1116,27 +1463,17 @@
             if (e.isIntersecting) {
                 e.target.style.opacity = '1';
                 e.target.style.transform = 'translateY(0)';
+                io.unobserve(e.target);
             }
         });
     }, { threshold: 0.08 });
 
-    document.querySelectorAll('.svc-card, .t-card, .promise-item, .as-item, .hs-num').forEach((el, i) => {
+    document.querySelectorAll('.svc-row, .quote-item, .promise-item, .as-item, .gallery-grid figure').forEach((el, i) => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(14px)';
-        el.style.transition = `opacity 0.45s ease ${i * 0.04}s, transform 0.45s ease ${i * 0.04}s`;
+        el.style.transition = `opacity 0.45s ease ${(i % 6) * 0.05}s, transform 0.45s ease ${(i % 6) * 0.05}s`;
         io.observe(el);
     });
-
-    // Hero fade on scroll
-    const hero = document.querySelector('.hero');
-    window.addEventListener('scroll', () => {
-        const scrollY = window.scrollY;
-        const heroH = hero.offsetHeight;
-        const isMobile = window.innerWidth <= 768;
-        const factor = isMobile ? 2.5 : 1.2;
-        const fade = Math.max(0.25, 1 - scrollY / (heroH * factor));
-        hero.style.opacity = fade;
-    }, { passive: true });
 </script>
 <!-- WHATSAPP FAB -->
 <a href="https://wa.me/4915234796615" target="_blank" rel="noopener" aria-label="WhatsApp"
