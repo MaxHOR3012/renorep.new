@@ -872,7 +872,13 @@
             .hero-content {
                 padding: 96px 1.25rem 2.5rem;
                 background: linear-gradient(180deg, var(--paper) 0%, var(--paper-2) 55%, #E2D5B8 100%);
+                text-align: center;
+                align-items: center;
             }
+            .hero-content .kicker { justify-content: center; }
+            .hero-content .kicker::before { display: none; }
+            .hero h1 { margin-left: auto; margin-right: auto; }
+            .hero-sub { margin-left: auto; margin-right: auto; }
             .hero h1 { font-size: 2.9rem; }
             .hero-sub { font-size: 0.98rem; }
             .hero-ctas { flex-direction: column; align-items: stretch; margin-bottom: 2.4rem; }
