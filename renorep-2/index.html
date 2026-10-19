@@ -505,7 +505,7 @@ em.serif {
 .proj .wrap { display: grid; grid-template-columns: repeat(12, 1fr); gap: 3rem clamp(1.5rem, 3vw, 3rem); align-items: center; }
 .proj-text { grid-column: 1 / span 5; }
 .proj-text h2 { margin: 1.5rem 0 1.25rem; }
-.deck-ctrl { display: flex; align-items: center; gap: 0.75rem; margin: 2.5rem 0 2rem; }
+.deck-ctrl { grid-column: 7 / -1; display: flex; align-items: center; justify-content: center; gap: 0.75rem; margin-top: -1rem; }
 .deck-prev { width: 52px; height: 52px; border-radius: 50%; border: 1px solid var(--ink); background: none; cursor: pointer; display: grid; place-items: center; transition: background .2s, color .2s; }
 .deck-prev:hover { background: var(--ink); color: var(--white); }
 .deck-next {
@@ -535,7 +535,7 @@ em.serif {
 .deck figure[data-pos="3"] { z-index: 2; --r: 3deg; --x: 10px; --y: 28px; opacity: 0; }
 .deck figure[data-pos="4"] { z-index: 1; opacity: 0; }
 .deck figure.out { --x: -75%; --y: -10px; --r: -18deg; opacity: 0; z-index: 6; }
-.proj-foot { color: var(--text-2); font-size: 0.95rem; }
+.proj-foot { color: var(--text-2); font-size: 0.95rem; margin-top: 2.5rem; }
 .proj-foot .link { color: var(--ink); margin-top: 0.75rem; }
 
 /* ── Configurator ── */
@@ -750,7 +750,7 @@ em.serif {
 /* ── Responsive ── */
 @media (max-width: 900px) {
     .opener .wrap, .proj .wrap, .why .wrap, .svc-wrap, .ba .wrap, .konfig .wrap, .about .wrap, .voices .wrap, .contact .wrap, .sec-head { grid-template-columns: 1fr; }
-    .opener-text, .opener-side, .proj-text, .deck, .why .label, .why-statement, .svc, .svc-note, .ba-text, .compare, .konfig-text, .konfig-actions,
+    .opener-text, .opener-side, .proj-text, .deck, .why .label, .why-statement, .svc, .svc-note, .ba-text, .compare, .konfig-text, .konfig-actions, .deck-ctrl,
     .about-img, .about-body, .voices-side, .voices-main, .contact-info, .form-box, .sec-head h2, .sec-head .lead { grid-column: 1 / -1; }
     .hero > img { object-position: 68% 40%; }
     .deck { --h: clamp(380px, 110vw, 520px); margin-top: 1rem; }
@@ -779,7 +779,7 @@ em.serif {
     .claim-cta .btn { width: 100%; justify-content: space-between; }
     .opener .label { font-size: 0.64rem; letter-spacing: 0.08em; white-space: nowrap; }
     .opener .label::after { display: none; }
-    .deck-ctrl { margin: 2rem 0 1.5rem; }
+    .deck-ctrl { margin-top: -1.25rem; }
     .circle { grid-template-columns: 1fr; }
     .circle div, .circle div + div { padding: 1.25rem 0; border-left: 0; border-bottom: 1px solid var(--line); }
     .svc-row { grid-template-columns: 2.25rem minmax(0, 1fr) 1.25rem; gap: 0.35rem 0.6rem; }
@@ -1052,11 +1052,6 @@ em.serif {
             <div class="label"><span class="no">04</span> Projekte</div>
             <h2>Aus unserer <em class="serif">Montage.</em></h2>
             <p class="lead">Echte Fotos von echten Baustellen – Türen, Fenster und Glaselemente, eingebaut von unserem Team.</p>
-            <div class="deck-ctrl">
-                <button type="button" class="deck-prev" id="deck-prev" aria-label="Vorheriges Foto"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></button>
-                <button type="button" class="deck-next" id="deck-next">Nächstes Foto <i><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></button>
-                <span class="deck-count" aria-live="polite"><b id="deck-no">01</b> / 07</span>
-            </div>
             <div class="proj-foot">
                 Mehr Eindrücke aus abgeschlossenen Projekten<br>
                 <a href="galerie.html" class="link">Alle Projektfotos ansehen</a>
@@ -1071,6 +1066,11 @@ em.serif {
             <figure data-pos="4"><img src="bilder/montage-haustuer.jpg" alt="Monteur richtet eine Haustür mit Seitenteil per Laser aus" loading="lazy" draggable="false"><figcaption>Haustür mit Seitenteil</figcaption></figure>
             <figure data-pos="4"><img src="bilder/nebeneingang.jpg" alt="Weiße Nebeneingangstür mit satiniertem Glas" loading="lazy" draggable="false"><figcaption>Nebeneingang</figcaption></figure>
             <figure data-pos="4"><img src="bilder/fenster-detail.jpg" alt="Fenster mit satiniertem Glas im Innenausbau" loading="lazy" draggable="false"><figcaption>Fenster · Satinatoglas</figcaption></figure>
+        </div>
+        <div class="deck-ctrl">
+                <button type="button" class="deck-prev" id="deck-prev" aria-label="Vorheriges Foto"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></button>
+                <button type="button" class="deck-next" id="deck-next">Nächstes Foto <i><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></button>
+                <span class="deck-count" aria-live="polite"><b id="deck-no">01</b> / 07</span>
         </div>
     </div>
 </section>
