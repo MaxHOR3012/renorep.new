@@ -475,7 +475,7 @@ em.serif {
 .ba-text li { padding: 0.8rem 0; border-bottom: 1px solid var(--line); font-size: 0.95rem; display: flex; gap: 0.9rem; }
 .ba-text li::before { content: "—"; color: var(--text-2); }
 .compare { grid-column: 7 / -1; position: relative; aspect-ratio: 4 / 4.6; overflow: hidden; background: var(--paper); user-select: none; --pos: 50%; }
-.compare img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 55%; pointer-events: none; }
+.compare img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 72%; pointer-events: none; }
 .compare .before { clip-path: inset(0 calc(100% - var(--pos)) 0 0); }
 .compare .handle { position: absolute; top: 0; bottom: 0; left: var(--pos); width: 2px; margin-left: -1px; background: var(--white); pointer-events: none; }
 .compare .handle::after {
@@ -527,8 +527,8 @@ em.serif {
     transition: transform .6s cubic-bezier(.2,.7,.2,1), opacity .45s ease;
     cursor: pointer; user-select: none;
 }
-.deck img { height: calc(var(--h) - 4.6rem); width: auto; max-width: none; pointer-events: none; }
-.deck figcaption { padding: 0.8rem 0.2rem 0.9rem; font-family: var(--f-mono); font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; text-align: center; color: var(--text-2); }
+.deck img { height: calc(var(--h) - 4.6rem); width: auto; aspect-ratio: 11 / 20; max-width: none; object-fit: cover; pointer-events: none; }
+.deck figcaption { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: calc((var(--h) - 4.6rem) * 0.55); padding: 0.8rem 0.2rem 0.9rem; font-family: var(--f-mono); font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; text-align: center; color: var(--text-2); }
 .deck figure[data-pos="0"] { z-index: 5; --r: -3deg; }
 .deck figure[data-pos="1"] { z-index: 4; --r: 7deg; --x: 64px; --y: 14px; }
 .deck figure[data-pos="2"] { z-index: 3; --r: -9deg; --x: -70px; --y: 22px; }
@@ -674,6 +674,11 @@ em.serif {
 
 /* ── Desktop flourishes for the sections below the hero ── */
 @media (min-width: 901px) {
+    /* Why: bigger section label next to the large statement */
+    .why .label { font-size: 1.15rem; letter-spacing: 0.16em; gap: 1rem; padding-top: 0.4rem; color: var(--ink); }
+    .why .label .no { font-family: var(--f-head); font-weight: 600; font-size: 2.6rem; letter-spacing: -0.04em; line-height: 1; }
+    .why .label::after { flex-basis: 64px; }
+
     /* Reusable spinning badge */
     .spin-badge {
         position: absolute; z-index: 6; display: grid; place-items: center;
@@ -689,7 +694,8 @@ em.serif {
     /* Before / after: hand-written hint */
     .ba-text { position: relative; }
     .ba-note { display: flex; align-items: flex-start; justify-content: flex-end; gap: 0.4rem; margin-top: 1.75rem; font-family: var(--f-serif); font-style: italic; font-size: 1.35rem; color: var(--teal-dark); }
-    .ba-note svg { margin-top: 0.6rem; }
+    .ba-note { margin-right: calc(-1 * clamp(4rem, 8vw, 7rem)); }
+    .ba-note svg { margin-top: 0.2rem; flex: none; }
     .compare { border-radius: 6px; }
 
     /* Process: timeline draws like a laser line, dots light up one by one */
@@ -779,6 +785,7 @@ em.serif {
     .opener .label { font-size: 0.64rem; letter-spacing: 0.08em; white-space: nowrap; }
     .opener .label::after { display: none; }
     .deck-ctrl { margin-top: -1.25rem; }
+    .deck figcaption { font-size: 0.6rem; letter-spacing: 0.08em; }
     .circle { grid-template-columns: 1fr; }
     .circle div, .circle div + div { padding: 1.25rem 0; border-left: 0; border-bottom: 1px solid var(--line); }
     .svc-row { grid-template-columns: 2.25rem minmax(0, 1fr) 1.25rem; gap: 0.35rem 0.6rem; }
@@ -1009,7 +1016,7 @@ em.serif {
                 <li>Neue Tür lot- und waagerecht gesetzt</li>
                 <li>Fugen gedämmt und abgedichtet</li>
             </ul>
-            <p class="ba-note" aria-hidden="true">Regler ziehen – selbst vergleichen <svg width="54" height="28" viewBox="0 0 54 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M2 6c14-6 32-4 46 12"/><path d="M40 18l9 1 1-9"/></svg></p>
+            <p class="ba-note" aria-hidden="true">Regler ziehen – selbst vergleichen <svg width="96" height="28" viewBox="0 0 96 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20C28 4 60 4 90 13"/><path d="M81 6l9 7-10 5"/></svg></p>
         </div>
         <div class="compare reveal" id="compare">
             <img src="bilder/nachher-vergleich.jpg" alt="Gleicher Eingang nachher mit neuer weißer Haustür" loading="lazy">
@@ -1058,13 +1065,13 @@ em.serif {
         </div>
         <div class="deck reveal" id="deck" aria-label="Projektfotos">
             <div class="spin-badge proj-badge" aria-hidden="true"><svg viewBox="0 0 100 100"><defs><path id="pb-circle" d="M50 50 m-38 0 a38 38 0 1 1 76 0 a38 38 0 1 1 -76 0"/></defs><text textLength="236" lengthAdjust="spacing"><textPath href="#pb-circle" textLength="236">Echte Fotos · Echte Baustellen · </textPath></text></svg><b>klick!</b></div>
-            <figure data-pos="0"><img src="bilder/montage-eingang.jpg" alt="Monteur setzt eine Eingangstür in einem Mehrfamilienhaus" loading="lazy" draggable="false"><figcaption>Eingangstür · Mehrfamilienhaus</figcaption></figure>
-            <figure data-pos="1"><img src="bilder/faltanlage.jpg" alt="Schwarze Aluminium-Faltanlage in einem renovierten Raum" loading="lazy" draggable="false"><figcaption>Aluminium-Faltanlage</figcaption></figure>
-            <figure data-pos="2"><img src="bilder/nachher.jpg" alt="Neue weiße Haustür mit Glasstreifen nach der Montage" loading="lazy" draggable="false"><figcaption>Haustür · nach der Montage</figcaption></figure>
-            <figure data-pos="3"><img src="bilder/detail-kubus.jpg" alt="Detail einer Mehrfachverriegelung an einer Haustür" loading="lazy" draggable="false"><figcaption>Detail · Verriegelung</figcaption></figure>
-            <figure data-pos="4"><img src="bilder/montage-haustuer.jpg" alt="Monteur richtet eine Haustür mit Seitenteil per Laser aus" loading="lazy" draggable="false"><figcaption>Haustür mit Seitenteil</figcaption></figure>
-            <figure data-pos="4"><img src="bilder/nebeneingang.jpg" alt="Weiße Nebeneingangstür mit satiniertem Glas" loading="lazy" draggable="false"><figcaption>Nebeneingang</figcaption></figure>
-            <figure data-pos="4"><img src="bilder/fenster-detail.jpg" alt="Fenster mit satiniertem Glas im Innenausbau" loading="lazy" draggable="false"><figcaption>Fenster · Satinatoglas</figcaption></figure>
+            <figure data-pos="0"><img src="bilder/montage-eingang.jpg" style="object-position:55% 40%" alt="Monteur setzt eine Eingangstür in einem Mehrfamilienhaus" loading="lazy" draggable="false"><figcaption>Eingangstür · Wohnhaus</figcaption></figure>
+            <figure data-pos="1"><img src="bilder/faltanlage.jpg" style="object-position:50% 2%" alt="Schwarze Aluminium-Faltanlage in einem renovierten Raum" loading="lazy" draggable="false"><figcaption>Aluminium-Faltanlage</figcaption></figure>
+            <figure data-pos="2"><img src="bilder/nachher.jpg" style="object-position:50% 88%" alt="Neue weiße Haustür mit Glasstreifen nach der Montage" loading="lazy" draggable="false"><figcaption>Neue Haustür</figcaption></figure>
+            <figure data-pos="3"><img src="bilder/detail-kubus.jpg" style="object-position:50% 35%" alt="Detail einer Mehrfachverriegelung an einer Haustür" loading="lazy" draggable="false"><figcaption>Detail · Verriegelung</figcaption></figure>
+            <figure data-pos="4"><img src="bilder/montage-haustuer.jpg" style="object-position:88% 50%" alt="Monteur richtet eine Haustür mit Seitenteil per Laser aus" loading="lazy" draggable="false"><figcaption>Haustür mit Seitenteil</figcaption></figure>
+            <figure data-pos="4"><img src="bilder/nebeneingang.jpg" style="object-position:50% 55%" alt="Weiße Nebeneingangstür mit satiniertem Glas" loading="lazy" draggable="false"><figcaption>Nebeneingang</figcaption></figure>
+            <figure data-pos="4"><img src="bilder/fenster-detail.jpg" style="object-position:50% 6%" alt="Fenster mit satiniertem Glas im Innenausbau" loading="lazy" draggable="false"><figcaption>Fenster · Satinatoglas</figcaption></figure>
         </div>
         <div class="deck-ctrl">
                 <button type="button" class="deck-prev" id="deck-prev" aria-label="Vorheriges Foto"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></button>
