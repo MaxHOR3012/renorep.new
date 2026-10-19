@@ -764,7 +764,10 @@ em.serif {
     .timeline { grid-template-columns: 1fr 1fr; gap: 2.5rem 1.5rem; }
     .timeline::before { display: none; }
     .timeline li { border-top: 1px solid var(--ink); padding-top: 1.75rem; }
-    .timeline li::before { top: -8px; }
+    .timeline li::before { top: -8px; left: calc(var(--p, 0) * (100% - 15px)); z-index: 1; }
+    /* Mobile: dot travels along its line while scrolling, line fills teal behind it */
+    .timeline li::after { content: ""; position: absolute; top: -1px; left: 0; height: 2px; width: calc(var(--p, 0) * 100%); background: var(--teal); }
+    .timeline li.done::before { background: var(--teal); border-color: var(--teal); }
     .about-img img { aspect-ratio: 4 / 3.4; }
     .voices-side .num { margin-top: 1rem; }
 }
@@ -1343,6 +1346,28 @@ em.serif {
                 [...sel.options].forEach(o => { if (o.text === val) sel.value = o.value || o.text; });
             });
         });
+    })();
+
+    // Process (mobile): each dot slides right along its line as the step scrolls into view
+    (() => {
+        const items = [...document.querySelectorAll('.timeline li')];
+        const mq = window.matchMedia('(max-width: 900px)');
+        let ticking = false;
+        const update = () => {
+            ticking = false;
+            const vh = window.innerHeight;
+            items.forEach(li => {
+                if (!mq.matches) { li.style.removeProperty('--p'); li.classList.remove('done'); return; }
+                const top = li.getBoundingClientRect().top;
+                const p = Math.min(1, Math.max(0, (vh * 0.85 - top) / (vh * 0.45)));
+                li.style.setProperty('--p', p.toFixed(3));
+                li.classList.toggle('done', p >= 1);
+            });
+        };
+        const onScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } };
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', onScroll);
+        update();
     })();
 
     // Before / after slider
