@@ -191,6 +191,26 @@ em.serif {
 }
 .page-head h1.long { font-size: clamp(2.4rem, 6.4vw, 6rem); }
 .page-head .lead { grid-column: 9 / -1; }
+.ph-img { grid-column: 8 / -1; grid-row: 2 / span 2; align-self: center; margin: 0; background: var(--white); padding: 0.5rem 0.5rem 0; box-shadow: 0 18px 40px -20px rgba(28,28,26,0.45); transform: rotate(-2.5deg); }
+.ph-img img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: 60% 40%; }
+.ph-img figcaption { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding: 0.5rem 0.2rem 0.6rem; font-family: var(--f-serif); font-style: italic; font-size: 1.05rem; color: var(--text-2); }
+.ph-img figcaption small { white-space: nowrap; font-family: var(--f-mono); font-style: normal; font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--teal); }
+.page-head h1 { grid-column: 1 / span 7; grid-row: 2; }
+.page-head .lead { grid-column: 1 / span 6; grid-row: 3; align-self: start; }
+/* Desktop: soft blueprint grid like the home hero */
+@media (min-width: 901px) {
+    .page-head { position: relative; overflow: hidden; }
+    .page-head::before {
+        content: ""; position: absolute; inset: 0; pointer-events: none;
+        background-image:
+            linear-gradient(rgba(15,110,86,0.09) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(15,110,86,0.09) 1px, transparent 1px);
+        background-size: 56px 56px; background-position: center top;
+        -webkit-mask-image: radial-gradient(ellipse 70% 90% at 72% 50%, #000 20%, transparent 75%);
+                mask-image: radial-gradient(ellipse 70% 90% at 72% 50%, #000 20%, transparent 75%);
+    }
+    .page-head .wrap { position: relative; z-index: 1; }
+}
 /* ── Filter ── */
 .gal { padding: clamp(2.5rem, 5vw, 4rem) 0 clamp(5rem, 10vw, 8rem); }
 .filters { display: flex; flex-wrap: wrap; gap: 0.25rem 1.75rem; border-bottom: 1px solid var(--line); margin-bottom: clamp(1.75rem, 3.5vw, 2.75rem); }
@@ -330,7 +350,8 @@ em.serif {
 
 @media (max-width: 900px) {
     .page-head .wrap { grid-template-columns: 1fr; }
-    .page-head h1, .page-head .lead { grid-column: 1 / -1; }
+    .page-head h1, .page-head .lead, .ph-img { grid-column: 1 / -1; grid-row: auto; }
+    .ph-img { transform: none; margin-top: 0.5rem; }
 }
 </style>
 </head>
@@ -374,6 +395,7 @@ em.serif {
     <div class="wrap">
         <div class="label">Unsere Arbeiten</div>
         <h1>Galerie</h1>
+        <figure class="ph-img"><img src="bilder/montage-eingang.jpg" alt="Renorep-Monteur richtet die Zarge einer Eingangstür mit der Wasserwaage aus"><figcaption>Echte Baustellen, echte Fotos. <small>Aus unserer Montage</small></figcaption></figure>
         <p class="lead">Einblicke in unsere Projekte – von der Montage bis zum fertigen Ergebnis.</p>
     </div>
 </section>
