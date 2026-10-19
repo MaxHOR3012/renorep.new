@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Datenschutzerklärung – Renorep</title>
+<meta name="description" content="Datenschutzerklärung von Renorep Baudienstleistung: Informationen zur Verarbeitung personenbezogener Daten auf dieser Website.">
+<link rel="icon" type="image/png" href="bilder/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&family=Figtree:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=Chivo+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+    --white: #FFFFFF;
+    --paper: #F7F5F0;
+    --ink: #2C2C2A;
+    --text-2: #444441;
+    --teal: #1D9E75;
+    --teal-dark: #0F6E56;
+    --teal-light: #E1F5EE;
+    --line: rgba(44, 44, 42, 0.14);
+    --line-light: rgba(255, 255, 255, 0.16);
+
+    --f-head: 'Familjen Grotesk', system-ui, sans-serif;
+    --f-body: 'Figtree', system-ui, sans-serif;
+    --f-serif: 'Instrument Serif', Georgia, serif;
+    --f-mono: 'Chivo Mono', ui-monospace, monospace;
+
+    --gutter: clamp(1.25rem, 4.5vw, 4rem);
+    --max: 1360px;
+    --nav-h: 76px;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: var(--nav-h); -webkit-text-size-adjust: 100%; }
+body {
+    font-family: var(--f-body);
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    color: var(--ink);
+    background: var(--white);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+}
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button, input, select, textarea { font: inherit; color: inherit; }
+
+.wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
+
+/* ── Type ── */
+.label {
+    font-family: var(--f-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-2);
+    display: flex; align-items: center; gap: 0.75rem;
+}
+.label .no { color: var(--teal); }
+.label::after { content: ""; flex: 0 0 48px; height: 1px; background: currentColor; opacity: 0.35; }
+.label.no-rule::after { display: none; }
+
+h1, h2, h3 { font-family: var(--f-head); font-weight: 600; letter-spacing: -0.03em; line-height: 1; }
+h2 { font-size: clamp(2.3rem, 5.2vw, 4.6rem); }
+h3 { font-size: 1.5rem; letter-spacing: -0.02em; line-height: 1.15; }
+em.serif {
+    font-family: var(--f-serif);
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    color: inherit;
+}
+.lead { font-size: clamp(1.08rem, 1.4vw, 1.25rem); line-height: 1.6; color: var(--text-2); max-width: 36em; }
+
+/* ── Buttons ── */
+.btn {
+    display: inline-flex; align-items: center; gap: 0.7rem;
+    padding: 1rem 1.6rem;
+    font-family: var(--f-head); font-weight: 600; font-size: 1rem; letter-spacing: -0.01em;
+    border: 1px solid transparent; border-radius: 2px;
+    cursor: pointer; transition: background .25s, color .25s, border-color .25s;
+}
+.btn svg { transition: transform .25s; }
+.btn:hover svg { transform: translateX(4px); }
+.btn-ink, .btn-teal { background: var(--ink); color: var(--white); }
+.btn-ink:hover, .btn-teal:hover { background: #111110; }
+.btn-white { background: var(--white); color: var(--ink); }
+.btn-white:hover { background: var(--paper); }
+.btn-line { border-color: var(--ink); color: var(--ink); }
+.btn-line:hover { background: var(--ink); color: var(--white); }
+.btn-line-light { border-color: rgba(255,255,255,0.5); color: var(--white); }
+.btn-line-light:hover { background: var(--white); color: var(--ink); border-color: var(--white); }
+
+.link {
+    font-family: var(--f-head); font-weight: 600;
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: linear-gradient(currentColor, currentColor) 0 100% / 100% 1px no-repeat;
+    padding-bottom: 3px;
+    transition: background-size .3s, color .2s;
+}
+.link:hover { background-size: 0 1px; }
+
+/* ── Nav ── */
+.nav {
+    position: fixed; inset: 0 0 auto 0; z-index: 50;
+    height: var(--nav-h);
+    background: var(--paper);
+    border-bottom: 1px solid transparent;
+    transition: border-color .3s, background .3s;
+}
+.nav.scrolled { border-color: var(--line); background: var(--white); }
+.nav .wrap { height: 100%; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 2rem; }
+.nav-logo { grid-column: 2; grid-row: 1; display: flex; flex-direction: column; align-items: center; gap: 0.3rem; }
+.nav-tag { font-family: var(--f-mono); font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-2); white-space: nowrap; line-height: 1; transition: color .3s; }
+.nav.over:not(.scrolled) .nav-tag { color: rgba(255,255,255,0.88); }
+.nav-left { grid-column: 1; grid-row: 1; justify-self: start; }
+.nav-right { grid-column: 3; grid-row: 1; justify-self: end; }
+.nav-call { grid-column: 1; grid-row: 1; justify-self: start; display: none; width: 44px; height: 44px; border-radius: 50%; place-items: center; color: var(--ink); }
+.nav-logo img { height: 42px; width: auto; transition: filter .3s; }
+.nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+.nav-links a:not(.btn) { font-size: 0.95rem; font-weight: 500; color: var(--text-2); transition: color .2s; }
+.nav-links a:not(.btn):hover { color: var(--ink); }
+.nav-links a[aria-current="page"]:not(.btn) { color: var(--ink); text-decoration: underline; text-underline-offset: 6px; }
+.nav .btn { padding: 0.7rem 1.15rem; font-size: 0.92rem; }
+.nav .btn-phone { font-family: var(--f-mono); font-weight: 500; font-size: 0.82rem; letter-spacing: 0.02em; background: var(--ink); color: var(--white); }
+.nav .btn-phone:hover { background: #111110; }
+.burger { grid-column: 3; grid-row: 1; justify-self: end; display: none; width: 44px; height: 44px; background: none; border: 0; cursor: pointer; position: relative; }
+.burger span { position: absolute; left: 10px; right: 10px; height: 1.5px; background: var(--ink); transition: transform .3s, opacity .3s, background .3s; }
+.burger span:nth-child(1) { top: 16px; }
+.burger span:nth-child(2) { top: 27px; }
+.burger.open span:nth-child(1) { transform: translateY(5.5px) rotate(45deg); }
+.burger.open span:nth-child(2) { transform: translateY(-5.5px) rotate(-45deg); }
+
+/* Transparent nav over a photo hero */
+.nav.over:not(.scrolled) { background: transparent; }
+.nav.over:not(.scrolled) .nav-logo img { filter: invert(1) brightness(2); }
+.nav.over:not(.scrolled) .nav-links a:not(.btn) { color: rgba(255,255,255,0.85); }
+.nav.over:not(.scrolled) .nav-links a:not(.btn):hover { color: var(--white); }
+.nav.over:not(.scrolled) .btn-phone { background: var(--white); color: var(--ink); }
+.nav.over:not(.scrolled) .burger span { background: var(--white); }
+.nav.over:not(.scrolled) .nav-call { color: var(--white); }
+
+.menu {
+    position: fixed; inset: var(--nav-h) 0 0 0; z-index: 49;
+    background: var(--paper);
+    padding: 2rem var(--gutter) 3rem;
+    display: flex; flex-direction: column;
+    overflow-y: auto;
+    opacity: 0; visibility: hidden; transform: translateY(-8px);
+    transition: opacity .3s, transform .3s, visibility .3s;
+}
+.menu.open { opacity: 1; visibility: visible; transform: none; }
+.menu a.m-link {
+    font-family: var(--f-head); font-weight: 600; font-size: 2rem; letter-spacing: -0.03em;
+    padding: 0.7rem 0; border-bottom: 1px solid var(--line);
+    display: flex; justify-content: space-between; align-items: baseline;
+}
+.menu a.m-link small { font-family: var(--f-mono); font-size: 0.7rem; color: var(--teal); letter-spacing: 0.1em; }
+.menu .m-actions { margin-top: auto; padding-top: 2rem; display: grid; gap: 0.75rem; }
+.menu .m-actions .btn { justify-content: center; }
+
+@media (max-width: 1100px) {
+    .nav-links li.hide-md { display: none; }
+}
+@media (max-width: 900px) {
+    :root { --nav-h: 68px; }
+    .nav-links { display: none; }
+    .burger { display: block; }
+    .nav-call { display: grid; }
+    .nav-logo img { height: 34px; }
+    .nav .wrap { gap: 0.5rem; }
+    .nav-tag { font-size: 0.5rem; letter-spacing: 0.1em; }
+    .nav-tag span { display: none; }
+}
+@media (max-width: 640px) {
+    body { font-size: 1rem; }
+}
+
+
+/* ── Page head ── */
+.page-head { background: var(--paper); padding: calc(var(--nav-h) + clamp(2.5rem, 6vw, 5rem)) 0 clamp(3rem, 6vw, 5rem); }
+.page-head .wrap { display: grid; grid-template-columns: repeat(12, 1fr); gap: 1.5rem clamp(1.5rem, 3vw, 3rem); align-items: end; }
+.page-head .label { grid-column: 1 / -1; }
+.page-head h1 {
+    grid-column: 1 / span 8;
+    font-size: clamp(2.7rem, 8vw, 7.5rem);
+    line-height: 0.92; letter-spacing: -0.045em;
+    margin-top: 0.75rem;
+    hyphens: manual;
+}
+.page-head h1.long { font-size: clamp(2.4rem, 6.4vw, 6rem); }
+.page-head .lead { grid-column: 9 / -1; }
+/* ── Legal ── */
+.legal { padding: clamp(3rem, 6vw, 5rem) 0 clamp(5rem, 10vw, 8rem); }
+.legal a:not(.btn) { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; overflow-wrap: anywhere; }
+.legal a:not(.btn):hover { text-decoration-thickness: 2px; }
+.stand { margin-top: 2rem; font-family: var(--f-mono); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-2); }
+
+.policy .wrap { display: grid; grid-template-columns: repeat(12, 1fr); gap: 2.5rem clamp(1.5rem, 3vw, 3rem); align-items: start; }
+.toc { grid-column: 1 / span 3; position: sticky; top: calc(var(--nav-h) + 2rem); }
+.toc .label { margin-bottom: 1rem; }
+.toc ol { list-style: none; border-top: 1px solid var(--ink); }
+.toc li a {
+    display: grid; grid-template-columns: 2rem 1fr; gap: 0.5rem;
+    padding: 0.6rem 0; border-bottom: 1px solid var(--line);
+    font-size: 0.9rem; line-height: 1.35; color: var(--text-2);
+    text-decoration: none !important; transition: color .2s;
+}
+.toc li a span { font-family: var(--f-mono); font-size: 0.7rem; color: var(--teal); padding-top: 0.15rem; }
+.toc li a:hover { color: var(--ink); }
+.prose { grid-column: 5 / -1; max-width: 46em; min-width: 0; }
+.prose h2 {
+    font-size: clamp(1.45rem, 2.4vw, 2rem); letter-spacing: -0.03em; line-height: 1.12;
+    padding-top: 1.5rem; margin: 3.5rem 0 1.25rem;
+    border-top: 1px solid var(--ink);
+}
+.prose h2:first-child { margin-top: 0; }
+.prose p { color: var(--text-2); margin-bottom: 1rem; }
+.prose p b { color: var(--ink); font-family: var(--f-head); font-weight: 600; }
+.prose ul { list-style: none; margin: 0.5rem 0 1.5rem; border-top: 1px solid var(--line); }
+.prose ul li { display: flex; gap: 0.9rem; padding: 0.65rem 0; border-bottom: 1px solid var(--line); color: var(--text-2); font-size: 0.98rem; }
+.prose ul li::before { content: "—"; color: var(--teal); }
+.prose .widerspruch {
+    background: var(--paper); color: var(--ink);
+    border-left: 2px solid var(--ink);
+    padding: 1.25rem 1.5rem;
+    font-size: 0.88rem; line-height: 1.6; letter-spacing: 0.02em;
+}
+@media (max-width: 900px) {
+    .policy .wrap { grid-template-columns: 1fr; }
+    .toc, .prose { grid-column: 1 / -1; }
+    .toc { position: static; }
+}
+@media (max-width: 640px) {
+    .prose .widerspruch { padding: 1rem 1.1rem; font-size: 0.82rem; }
+}
+
+/* ── Footer ── */
+.site-footer { background: var(--ink); color: rgba(255,255,255,0.72); font-size: 0.95rem; }
+.f-top { display: grid; grid-template-columns: repeat(12, 1fr); gap: 2.5rem clamp(1.5rem, 3vw, 3rem); padding-top: clamp(4rem, 7vw, 5.5rem); padding-bottom: 3.5rem; }
+.f-brand { grid-column: 1 / span 4; }
+.f-brand img { height: 56px; width: auto; filter: invert(1); opacity: 0.95; }
+.f-brand address { font-style: normal; margin-top: 1.5rem; line-height: 1.7; }
+.f-brand address b { color: var(--white); font-weight: 600; }
+.f-brand a { text-decoration: underline; text-underline-offset: 3px; }
+.f-brand a:hover { color: var(--white); }
+.f-hours { grid-column: 6 / span 4; }
+.f-hours table { width: 100%; border-collapse: collapse; }
+.f-hours td { padding: 0.55rem 0; border-bottom: 1px solid var(--line-light); }
+.f-hours td + td { text-align: right; font-family: var(--f-mono); font-size: 0.82rem; }
+.f-hours p { margin-top: 1rem; font-size: 0.88rem; color: rgba(255,255,255,0.55); }
+.f-col { grid-column: span 3; }
+.f-col h4, .f-hours h4 { font-family: var(--f-mono); font-weight: 400; font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 1rem; }
+.f-col ul { list-style: none; display: grid; gap: 0.5rem; }
+.f-col a:hover { color: var(--white); }
+.f-mid { border-top: 1px solid var(--line-light); padding-top: 1.5rem; padding-bottom: 1.5rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; font-size: 0.85rem; color: rgba(255,255,255,0.5); }
+.f-mid nav { display: flex; gap: 1.5rem; }
+.f-mid nav a { color: rgba(255,255,255,0.75); text-decoration: underline; text-underline-offset: 3px; }
+.f-mid nav a:hover { color: var(--white); }
+.f-bottom { background: #1f1f1d; text-align: center; padding: 1rem var(--gutter); font-size: 0.8rem; color: rgba(255,255,255,0.5); }
+.f-bottom a { color: rgba(255,255,255,0.75); text-decoration: underline; text-underline-offset: 3px; }
+.f-bottom a:hover { color: var(--white); }
+
+/* ── WhatsApp ── */
+.wa {
+    position: fixed; right: 1.25rem; bottom: 1.25rem; z-index: 40;
+    width: 58px; height: 58px; border-radius: 50%;
+    background: var(--ink); color: var(--white);
+    display: grid; place-items: center;
+    box-shadow: 0 6px 20px rgba(28, 28, 26, 0.28);
+    transition: transform .25s, background .25s;
+}
+.wa:hover { transform: translateY(-2px); background: #111110; }
+
+/* ── Reveal ── */
+.reveal { opacity: 0; transform: translateY(16px); transition: opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1); }
+.reveal.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .reveal { opacity: 1; transform: none; transition: none; }
+    * { transition-duration: 0s !important; animation: none !important; }
+    .status i, .now i { animation: blink-soft 2s ease-in-out infinite !important; }
+}
+
+@media (max-width: 900px) {
+    .f-top { grid-template-columns: 1fr 1fr; gap: 2.5rem 2rem; }
+    .f-brand, .f-hours { grid-column: 1 / -1; }
+    .f-col { grid-column: span 1; }
+}
+@media (max-width: 640px) {
+    .f-top { grid-template-columns: 1fr; }
+    .f-col { grid-column: 1 / -1; }
+    .wa { width: 54px; height: 54px; right: 1rem; bottom: 1rem; }
+}
+
+@media (max-width: 900px) {
+    .page-head .wrap { grid-template-columns: 1fr; }
+    .page-head h1, .page-head .lead { grid-column: 1 / -1; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+    <div class="wrap">
+        <ul class="nav-links nav-left">
+            <li><a href="index.html#leistungen">Leistungen</a></li>
+            <li><a href="index.html#ablauf">Ablauf</a></li>
+            <li><a href="index.html#projekte">Projekte</a></li>
+        </ul>
+        <a href="index.html" class="nav-logo" aria-label="Renorep – zur Startseite"><img src="bilder/logo.png" alt="Renorep Montagedienstleistungen"><span class="nav-tag">Türen · Fenster · Tore · Rollläden<span> — Lahn-Dill-Kreis</span></span></a>
+        <ul class="nav-links nav-right">
+            <li class="hide-md"><a href="konfigurator.html">Konfigurator</a></li>
+            <li><a href="index.html#kontakt">Kontakt</a></li>
+            <li><a href="tel:+4915234796615" class="btn btn-phone">01523 4796615</a></li>
+        </ul>
+        <a href="tel:+4915234796615" class="nav-call" aria-label="Anrufen: 01523 4796615"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1.9.4 1.8.7 2.7a2 2 0 01-.5 2.1L8 9.8a16 16 0 006 6l1.3-1.3a2 2 0 012.1-.4c.9.3 1.8.6 2.7.7a2 2 0 011.7 2z"/></svg></a>
+        <button class="burger" id="burger" aria-label="Menü öffnen" aria-expanded="false" aria-controls="menu"><span></span><span></span></button>
+    </div>
+</header>
+
+<nav class="menu" id="menu" aria-label="Mobiles Menü">
+    <a class="m-link" href="index.html#leistungen">Leistungen <small>01</small></a>
+    <a class="m-link" href="index.html#ablauf">Ablauf <small>02</small></a>
+    <a class="m-link" href="index.html#projekte">Projekte <small>03</small></a>
+    <a class="m-link" href="konfigurator.html">Konfigurator <small>04</small></a>
+    <a class="m-link" href="galerie.html">Galerie <small>05</small></a>
+    <a class="m-link" href="index.html#kontakt">Kontakt <small>06</small></a>
+    <div class="m-actions">
+        <a href="tel:+4915234796615" class="btn btn-line">01523 4796615 anrufen</a>
+        <a href="https://wa.me/4915234796615" target="_blank" rel="noopener" class="btn btn-ink">WhatsApp schreiben</a>
+    </div>
+</nav>
+
+
+<main id="top">
+<section class="page-head">
+    <div class="wrap">
+        <div class="label">Rechtliches</div>
+        <h1 class="long">Datenschutz&shy;erklärung</h1>
+    </div>
+</section>
+
+<section class="legal policy">
+    <div class="wrap">
+        <nav class="toc" aria-label="Inhalt">
+            <div class="label no-rule">Inhalt</div>
+            <ol>
+                <li><a href="#abschnitt-1"><span>01</span>Einleitung und Kontaktdaten des Verantwortlichen</a></li>
+                <li><a href="#abschnitt-2"><span>02</span>Datenerfassung beim Besuch unserer Website</a></li>
+                <li><a href="#abschnitt-3"><span>03</span>Hosting &amp; Content-Delivery-Network</a></li>
+                <li><a href="#abschnitt-4"><span>04</span>Kontaktaufnahme</a></li>
+                <li><a href="#abschnitt-5"><span>05</span>Seitenfunktionalitäten – Google Maps</a></li>
+                <li><a href="#abschnitt-6"><span>06</span>Rechte des Betroffenen</a></li>
+                <li><a href="#abschnitt-7"><span>07</span>Dauer der Speicherung personenbezogener Daten</a></li>
+            </ol>
+        </nav>
+        <div class="prose">
+            <h2 id="abschnitt-1">1) Einleitung und Kontaktdaten des Verantwortlichen</h2>
+            <p><b>1.1</b> Wir freuen uns, dass Sie unsere Website besuchen, und bedanken uns für Ihr Interesse. Im Folgenden informieren wir Sie über den Umgang mit Ihren personenbezogenen Daten bei der Nutzung unserer Website. Personenbezogene Daten sind hierbei alle Daten, mit denen Sie persönlich identifiziert werden können.</p>
+            <p><b>1.2</b> Verantwortlicher für die Datenverarbeitung auf dieser Website im Sinne der Datenschutz-Grundverordnung (DSGVO) ist Jens Meikel Schmidt, Renorep Baudienstleistung, Auf der Grub 7a, 35767 Breitscheid, Deutschland, Tel.: +4915234796615, E-Mail: jensschmidt91@yahoo.de.</p>
+
+            <h2 id="abschnitt-2">2) Datenerfassung beim Besuch unserer Website</h2>
+            <p>Bei der bloß informatorischen Nutzung unserer Website erheben wir nur solche Daten, die Ihr Browser an den Seitenserver übermittelt (sog. „Server-Logfiles"). Wenn Sie unsere Website aufrufen, erheben wir die folgenden Daten:</p>
+            <ul>
+            <li>Unsere besuchte Website</li>
+            <li>Datum und Uhrzeit zum Zeitpunkt des Zugriffes</li>
+            <li>Menge der gesendeten Daten in Byte</li>
+            <li>Quelle/Verweis, von welchem Sie auf die Seite gelangten</li>
+            <li>Verwendeter Browser</li>
+            <li>Verwendetes Betriebssystem</li>
+            <li>Verwendete IP-Adresse (ggf.: in anonymisierter Form)</li>
+            </ul>
+            <p>Die Verarbeitung erfolgt gemäß Art. 6 Abs. 1 lit. f DSGVO auf Basis unseres berechtigten Interesses an der Verbesserung der Stabilität und Funktionalität unserer Website. Eine Weitergabe oder anderweitige Verwendung der Daten findet nicht statt.</p>
+
+            <h2 id="abschnitt-3">3) Hosting &amp; Content-Delivery-Network</h2>
+            <p>Für das Hosting unserer Website und die Darstellung der Seiteninhalte nutzen wir einen Anbieter, der seine Leistungen ausschließlich auf Servern innerhalb der Europäischen Union erbringt. Sämtliche auf unserer Website erhobenen Daten werden auf diesen Servern verarbeitet. Wir haben mit dem Anbieter einen Auftragsverarbeitungsvertrag geschlossen.</p>
+
+            <h2 id="abschnitt-4">4) Kontaktaufnahme</h2>
+            <p><b>4.1 WhatsApp-Business</b></p>
+            <p>Sie haben die Möglichkeit, mit uns über den Nachrichtendienst WhatsApp der WhatsApp Ireland Limited, 4 Grand Canal Square, Grand Canal Harbour, Dublin 2, Irland, in Kontakt zu treten. Hierfür verwenden wir die sog. „Business-Version" von WhatsApp.</p>
+            <p>Sofern Sie uns anlässlich eines konkreten Geschäfts per WhatsApp kontaktieren, speichern und verwenden wir die von Ihnen bei WhatsApp genutzte Mobilfunknummer sowie – falls bereitgestellt – Ihren Vor- und Nachnamen gemäß Art. 6 Abs. 1 lit. b DSGVO zur Bearbeitung und Beantwortung Ihres Anliegens.</p>
+            <p>Ihre Daten werden stets nur zur Beantwortung Ihres Anliegens per WhatsApp verwendet. Eine Weitergabe an Dritte findet nicht statt.</p>
+            <p>Zweck und Umfang der Datenerhebung durch WhatsApp entnehmen Sie bitte den Datenschutzhinweisen von WhatsApp: <a href="https://www.whatsapp.com/legal/?eea=1#privacy-policy" target="_blank" rel="noopener">whatsapp.com/legal/?eea=1#privacy-policy</a></p>
+            <p>Für Datenübermittlungen in die USA hat sich der Anbieter dem EU-US-Datenschutzrahmen (EU-US Data Privacy Framework) angeschlossen.</p>
+
+            <p><b>4.2</b> Im Rahmen der Kontaktaufnahme mit uns (z.B. per Kontaktformular oder E-Mail) werden personenbezogene Daten erhoben. Diese Daten werden ausschließlich zum Zweck der Beantwortung Ihres Anliegens gespeichert und verwendet. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO.</p>
+
+            <p><b>4.3 Formspree</b></p>
+            <p>Für die Übermittlung unserer Kontaktformulare nutzen wir den Dienst Formspree des Anbieters Formspree, Inc., 2261 Market Street #4008, San Francisco, CA 94114, USA. Die von Ihnen in das Formular eingegebenen Daten (z.B. Name, E-Mail-Adresse, Telefonnummer sowie der Inhalt Ihrer Nachricht) werden zum Zweck der Zustellung und Beantwortung Ihrer Anfrage an Server von Formspree übertragen, dort verarbeitet und an uns per E-Mail weitergeleitet. Eine Verwendung zu anderen Zwecken oder eine Weitergabe an sonstige Dritte findet durch uns nicht statt.</p>
+            <p>Rechtsgrundlage der Verarbeitung ist Art. 6 Abs. 1 lit. b DSGVO, soweit Ihre Anfrage auf den Abschluss oder die Durchführung eines Vertrags gerichtet ist, im Übrigen Art. 6 Abs. 1 lit. f DSGVO auf Basis unseres berechtigten Interesses an einer effektiven Bearbeitung eingehender Anfragen.</p>
+            <p>Die Verarbeitung kann dabei auch auf Servern in den USA erfolgen. Die Übermittlung in dieses Drittland erfolgt auf Grundlage geeigneter Garantien gemäß Art. 46 DSGVO (EU-Standardvertragsklauseln). Weitere Informationen finden Sie in der Datenschutzerklärung von Formspree: <a href="https://formspree.io/legal/privacy-policy/" target="_blank" rel="noopener">formspree.io/legal/privacy-policy</a></p>
+
+            <h2 id="abschnitt-5">5) Seitenfunktionalitäten – Google Maps</h2>
+            <p>Diese Webseite nutzt Google Maps (API) von Google Ireland Limited, Gordon House, 4 Barrow St, Dublin, D04 E5W5, Irland. Bereits beim Aufrufen der Seite mit eingebetteter Karte werden Informationen (wie z.B. Ihre IP-Adresse) an Server von Google übertragen und dort gespeichert.</p>
+            <p>Die Erhebung, Speicherung und Auswertung erfolgen gemäß Art. 6 Abs. 1 lit. f DSGVO. Wenn Sie mit der künftigen Übermittlung Ihrer Daten an Google nicht einverstanden sind, können Sie JavaScript in Ihrem Browser ausschalten.</p>
+            <p>Für Datenübermittlungen in die USA hat sich der Anbieter dem EU-US-Datenschutzrahmen angeschlossen. Weitere Hinweise: <a href="https://business.safety.google/intl/de/privacy/" target="_blank" rel="noopener">business.safety.google/intl/de/privacy/</a></p>
+
+            <h2 id="abschnitt-6">6) Rechte des Betroffenen</h2>
+            <p><b>6.1</b> Das geltende Datenschutzrecht gewährt Ihnen gegenüber dem Verantwortlichen folgende Betroffenenrechte:</p>
+            <ul>
+            <li>Auskunftsrecht gemäß Art. 15 DSGVO</li>
+            <li>Recht auf Berichtigung gemäß Art. 16 DSGVO</li>
+            <li>Recht auf Löschung gemäß Art. 17 DSGVO</li>
+            <li>Recht auf Einschränkung der Verarbeitung gemäß Art. 18 DSGVO</li>
+            <li>Recht auf Unterrichtung gemäß Art. 19 DSGVO</li>
+            <li>Recht auf Datenübertragbarkeit gemäß Art. 20 DSGVO</li>
+            <li>Recht auf Widerruf erteilter Einwilligungen gemäß Art. 7 Abs. 3 DSGVO</li>
+            <li>Recht auf Beschwerde gemäß Art. 77 DSGVO</li>
+            </ul>
+            <p><b>6.2</b> Widerspruchsrecht</p>
+            <p class="widerspruch">WENN WIR IM RAHMEN EINER INTERESSENABWÄGUNG IHRE PERSONENBEZOGENEN DATEN AUFGRUND UNSERES ÜBERWIEGENDEN BERECHTIGTEN INTERESSES VERARBEITEN, HABEN SIE DAS JEDERZEITIGE RECHT, AUS GRÜNDEN, DIE SICH AUS IHRER BESONDEREN SITUATION ERGEBEN, GEGEN DIESE VERARBEITUNG WIDERSPRUCH MIT WIRKUNG FÜR DIE ZUKUNFT EINZULEGEN. MACHEN SIE VON IHREM WIDERSPRUCHSRECHT GEBRAUCH, BEENDEN WIR DIE VERARBEITUNG DER BETROFFENEN DATEN.</p>
+
+            <h2 id="abschnitt-7">7) Dauer der Speicherung personenbezogener Daten</h2>
+            <p>Die Dauer der Speicherung von personenbezogenen Daten bemisst sich anhand der jeweiligen Rechtsgrundlage und dem Verarbeitungszweck. Gespeicherte personenbezogene Daten werden gelöscht, wenn sie für die Zwecke, für die sie erhoben wurden, nicht mehr notwendig sind.</p>
+
+            <p class="stand">Stand: 24.05.2026</p>
+        </div>
+    </div>
+</section>
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+    <div class="wrap f-top">
+        <div class="f-brand">
+            <img src="bilder/logo.png" alt="Renorep Montagedienstleistungen">
+            <address>
+                <b>Renorep Montagedienstleistung</b><br>
+                Auf der Grub 7a<br>
+                35767 Breitscheid<br>
+                <a href="tel:+4915234796615">01523 4796615</a><br>
+                <a href="mailto:renorepjensschmidt@gmail.com">renorepjensschmidt@gmail.com</a>
+            </address>
+        </div>
+        <div class="f-hours">
+            <h4>Erreichbarkeit</h4>
+            <table>
+                <tr><td>Montag – Freitag</td><td>8 – 20 Uhr</td></tr>
+            </table>
+            <p>Zertifizierte Montage von Türen, Fenstern, Toren und Sonnenschutz im Lahn-Dill-Kreis und Dreiländereck.</p>
+        </div>
+        <div class="f-col">
+            <h4>Seiten</h4>
+            <ul>
+                <li><a href="index.html#leistungen">Leistungen</a></li>
+                <li><a href="index.html#ablauf">Ablauf</a></li>
+                <li><a href="galerie.html">Galerie</a></li>
+                <li><a href="konfigurator.html">Konfigurator</a></li>
+                <li><a href="https://wa.me/4915234796615" target="_blank" rel="noopener">WhatsApp</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="wrap f-mid">
+        <nav aria-label="Rechtliches"><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a></nav>
+        <span>© <span id="year">2026</span> Renorep Montagedienstleistung · Montage · Beratung · Verkauf</span>
+    </div>
+    <div class="f-bottom">
+        Hat dir die Website von Renorep gefallen? Hol dir jetzt kostenlos deine eigene Vorlage –
+        <a href="mailto:info@leadflowconsulting.de?subject=Kostenlose%20Website-Vorlage&body=Hallo%2C%0A%0Adie%20Website%20von%20Renorep%20hat%20mir%20sehr%20gut%20gefallen.%20Ich%20w%C3%BCrde%20mich%20gerne%20%C3%BCber%20eine%20kostenlose%20Vorlage%20f%C3%BCr%20mein%20Unternehmen%20informieren.%0A%0AUnternehmen%3A%20%0ATelefonnummer%3A%20%0A%0AMit%20freundlichen%20Gr%C3%BC%C3%9Fen">info@leadflowconsulting.de</a>
+    </div>
+</footer>
+
+<a href="https://wa.me/4915234796615" target="_blank" rel="noopener" class="wa" aria-label="Per WhatsApp schreiben">
+    <svg width="27" height="27" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+    // Nav border on scroll
+    const nav = document.getElementById('nav');
+    const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 10);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    // Mobile menu
+    const burger = document.getElementById('burger');
+    const menu = document.getElementById('menu');
+    const setMenu = open => {
+        burger.classList.toggle('open', open);
+        menu.classList.toggle('open', open);
+        burger.setAttribute('aria-expanded', open);
+        document.body.style.overflow = open ? 'hidden' : '';
+    };
+    burger.addEventListener('click', () => setMenu(!menu.classList.contains('open')));
+    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+
+    // Reveal on scroll
+    if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+    } else {
+        document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+    }
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
