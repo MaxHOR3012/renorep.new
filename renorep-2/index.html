@@ -1,0 +1,1408 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Renorep – Montage von Türen, Fenstern &amp; Toren | Lahn-Dill-Kreis</title>
+<meta name="description" content="Renorep Montagedienstleistung: zertifizierte Montage von Haustüren, Fenstern, Garagentoren und Rollläden im Lahn-Dill-Kreis und Dreiländereck. Kostenlos anfragen.">
+<link rel="icon" type="image/png" href="bilder/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&family=Figtree:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=Chivo+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+    --white: #FFFFFF;
+    --paper: #F7F5F0;
+    --ink: #2C2C2A;
+    --text-2: #444441;
+    --teal: #1D9E75;
+    --teal-dark: #0F6E56;
+    --teal-light: #E1F5EE;
+    --line: rgba(44, 44, 42, 0.14);
+    --line-light: rgba(255, 255, 255, 0.16);
+
+    --f-head: 'Familjen Grotesk', system-ui, sans-serif;
+    --f-body: 'Figtree', system-ui, sans-serif;
+    --f-serif: 'Instrument Serif', Georgia, serif;
+    --f-mono: 'Chivo Mono', ui-monospace, monospace;
+
+    --gutter: clamp(1.25rem, 4.5vw, 4rem);
+    --max: 1360px;
+    --nav-h: 76px;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: var(--nav-h); -webkit-text-size-adjust: 100%; }
+body {
+    font-family: var(--f-body);
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    color: var(--ink);
+    background: var(--white);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+}
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button, input, select, textarea { font: inherit; color: inherit; }
+
+.wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
+
+/* ── Type ── */
+.label {
+    font-family: var(--f-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-2);
+    display: flex; align-items: center; gap: 0.75rem;
+}
+.label .no { color: var(--teal); }
+.label::after { content: ""; flex: 0 0 48px; height: 1px; background: currentColor; opacity: 0.35; }
+.label.no-rule::after { display: none; }
+
+h1, h2, h3 { font-family: var(--f-head); font-weight: 600; letter-spacing: -0.03em; line-height: 1; }
+h2 { font-size: clamp(2.3rem, 5.2vw, 4.6rem); }
+h3 { font-size: 1.5rem; letter-spacing: -0.02em; line-height: 1.15; }
+em.serif {
+    font-family: var(--f-serif);
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    color: inherit;
+}
+.lead { font-size: clamp(1.08rem, 1.4vw, 1.25rem); line-height: 1.6; color: var(--text-2); max-width: 36em; }
+
+/* ── Buttons ── */
+.btn {
+    display: inline-flex; align-items: center; gap: 0.7rem;
+    padding: 1rem 1.6rem;
+    font-family: var(--f-head); font-weight: 600; font-size: 1rem; letter-spacing: -0.01em;
+    border: 1px solid transparent; border-radius: 2px;
+    cursor: pointer; transition: background .25s, color .25s, border-color .25s;
+}
+.btn svg { transition: transform .25s; }
+.btn:hover svg { transform: translateX(4px); }
+.btn-ink, .btn-teal { background: var(--ink); color: var(--white); }
+.btn-ink:hover, .btn-teal:hover { background: #111110; }
+.btn-white { background: var(--white); color: var(--ink); }
+.btn-white:hover { background: var(--paper); }
+.btn-line { border-color: var(--ink); color: var(--ink); }
+.btn-line:hover { background: var(--ink); color: var(--white); }
+.btn-line-light { border-color: rgba(255,255,255,0.5); color: var(--white); }
+.btn-line-light:hover { background: var(--white); color: var(--ink); border-color: var(--white); }
+
+.link {
+    font-family: var(--f-head); font-weight: 600;
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: linear-gradient(currentColor, currentColor) 0 100% / 100% 1px no-repeat;
+    padding-bottom: 3px;
+    transition: background-size .3s, color .2s;
+}
+.link:hover { background-size: 0 1px; }
+
+/* ── Nav ── */
+.nav {
+    position: fixed; inset: 0 0 auto 0; z-index: 50;
+    height: var(--nav-h);
+    background: var(--paper);
+    border-bottom: 1px solid transparent;
+    transition: border-color .3s, background .3s;
+}
+.nav.scrolled { border-color: var(--line); background: var(--white); }
+.nav .wrap { height: 100%; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 2rem; }
+.nav-logo { grid-column: 2; grid-row: 1; display: flex; flex-direction: column; align-items: center; gap: 0.3rem; }
+.nav-tag { font-family: var(--f-mono); font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-2); white-space: nowrap; line-height: 1; transition: color .3s; }
+.nav-left { grid-column: 1; grid-row: 1; justify-self: start; }
+.nav-right { grid-column: 3; grid-row: 1; justify-self: end; }
+.nav-call { grid-column: 1; grid-row: 1; justify-self: start; display: none; width: 44px; height: 44px; border-radius: 50%; place-items: center; color: var(--ink); }
+.nav-logo img { height: 42px; width: auto; transition: filter .3s; }
+.nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+.nav-links a:not(.btn) { font-size: 0.95rem; font-weight: 500; color: var(--text-2); transition: color .2s; }
+.nav-links a:not(.btn):hover { color: var(--ink); }
+.nav-links a[aria-current="page"]:not(.btn) { color: var(--ink); text-decoration: underline; text-underline-offset: 6px; }
+.nav .btn { padding: 0.7rem 1.15rem; font-size: 0.92rem; }
+.nav .btn-phone { white-space: nowrap; font-family: var(--f-mono); font-weight: 500; font-size: 0.82rem; letter-spacing: 0.02em; background: var(--ink); color: var(--white); }
+.nav .btn-phone:hover { background: #111110; }
+.burger { grid-column: 3; grid-row: 1; justify-self: end; display: none; width: 44px; height: 44px; background: none; border: 0; cursor: pointer; position: relative; }
+.burger span { position: absolute; left: 10px; right: 10px; height: 1.5px; background: var(--ink); transition: transform .3s, opacity .3s, background .3s; }
+.burger span:nth-child(1) { top: 16px; }
+.burger span:nth-child(2) { top: 27px; }
+.burger.open span:nth-child(1) { transform: translateY(5.5px) rotate(45deg); }
+.burger.open span:nth-child(2) { transform: translateY(-5.5px) rotate(-45deg); }
+
+/* Transparent nav over a photo hero (mobile only – desktop hero sits on paper) */
+@media (max-width: 900px) {
+    .nav.over:not(.scrolled) { background: transparent; }
+    .nav.over:not(.scrolled) .nav-logo img { filter: invert(1) brightness(2); }
+    .nav.over:not(.scrolled) .nav-links a:not(.btn) { color: rgba(255,255,255,0.85); }
+    .nav.over:not(.scrolled) .nav-links a:not(.btn):hover { color: var(--white); }
+    .nav.over:not(.scrolled) .btn-phone { background: var(--white); color: var(--ink); }
+    .nav.over:not(.scrolled) .burger span { background: var(--white); }
+    .nav.over:not(.scrolled) .nav-call { color: var(--white); }
+    .nav.over:not(.scrolled) .nav-tag { color: rgba(255,255,255,0.88); }
+}
+
+.menu {
+    position: fixed; inset: var(--nav-h) 0 0 0; z-index: 49;
+    background: var(--paper);
+    padding: 2rem var(--gutter) 3rem;
+    display: flex; flex-direction: column;
+    overflow-y: auto;
+    opacity: 0; visibility: hidden; transform: translateY(-8px);
+    transition: opacity .3s, transform .3s, visibility .3s;
+}
+.menu.open { opacity: 1; visibility: visible; transform: none; }
+.menu a.m-link {
+    font-family: var(--f-head); font-weight: 600; font-size: 2rem; letter-spacing: -0.03em;
+    padding: 0.7rem 0; border-bottom: 1px solid var(--line);
+    display: flex; justify-content: space-between; align-items: baseline;
+}
+.menu a.m-link small { font-family: var(--f-mono); font-size: 0.7rem; color: var(--teal); letter-spacing: 0.1em; }
+.menu .m-actions { margin-top: auto; padding-top: 2rem; display: grid; gap: 0.75rem; }
+.menu .m-actions .btn { justify-content: center; }
+
+@media (max-width: 1100px) {
+    .nav-links li.hide-md { display: none; }
+}
+@media (max-width: 900px) {
+    :root { --nav-h: 68px; }
+    .nav-links { display: none; }
+    .burger { display: block; }
+    .nav-call { display: grid; }
+    .nav-logo img { height: 34px; }
+    .nav .wrap { gap: 0.5rem; }
+    .nav-tag { font-size: 0.5rem; letter-spacing: 0.1em; }
+    .nav-tag span { display: none; }
+}
+@media (max-width: 640px) {
+    body { font-size: 1rem; }
+}
+
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+/* ── Hero: one photo ── */
+.hero {
+    position: relative; overflow: hidden;
+    height: 100vh; height: 100svh; min-height: 560px;
+    background: var(--ink); color: var(--white);
+    display: flex; align-items: center; justify-content: center; text-align: center;
+}
+.hero > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 36%; animation: hero-zoom 2.4s cubic-bezier(.2,.7,.2,1) both; }
+.hero::after {
+    content: ""; position: absolute; inset: 0;
+    background:
+        linear-gradient(180deg, rgba(28,28,26,0.6) 0%, rgba(28,28,26,0) 28%, rgba(28,28,26,0) 70%, rgba(28,28,26,0.45) 100%);
+}
+.hero-inner { position: relative; z-index: 1; padding: var(--nav-h) var(--gutter) 0; }
+.hero-logo { margin: 0; }
+.hero-logo img {
+    display: block; margin: 0 auto;
+    width: clamp(260px, 34vw, 520px); height: auto;
+    filter: invert(1) brightness(2) drop-shadow(0 6px 28px rgba(0, 0, 0, 0.35));
+    animation: hero-in 1.2s cubic-bezier(.2,.7,.2,1) .2s both;
+}
+.hero-sub { margin-top: clamp(1.5rem, 3vh, 2.25rem); font-family: var(--f-mono); font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.88); animation: hero-in 1.2s cubic-bezier(.2,.7,.2,1) .5s both; }
+.scroll-cue {
+    position: absolute; z-index: 1; left: 50%; bottom: clamp(1.5rem, 5vh, 3rem); margin-left: -24px;
+    display: grid; place-items: center;
+    width: 48px; height: 48px; border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.55); color: var(--white);
+    animation: cue 2.4s ease-in-out infinite;
+    transition: background .25s, color .25s;
+}
+.scroll-cue:hover { background: var(--white); color: var(--ink); }
+@keyframes cue { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
+@keyframes hero-in { from { opacity: 0; transform: translateY(18px) scale(0.97); } to { opacity: 1; transform: none; } }
+@keyframes hero-zoom { from { transform: scale(1.08); } to { transform: none; } }
+
+
+/* ── Desktop hero: text + arched photo + live cards ── */
+.hd, .ticker, .mark svg, .spin-badge, .ba-note, .voices-side .stars { display: none; }
+@media (min-width: 901px) {
+    .hero {
+        height: auto; min-height: min(100svh, 980px);
+        display: block; text-align: left;
+        background: var(--paper); color: var(--ink);
+        padding: calc(var(--nav-h) + clamp(1.5rem, 4vh, 3rem)) 0 clamp(2.5rem, 6vh, 4.5rem);
+    }
+    .hero > img, .hero::after, .scroll-cue { display: none; }
+    .claim, .opener { display: none; }
+    /* Soft blueprint grid behind the hero */
+    .hero::before {
+        content: ""; position: absolute; inset: 0; pointer-events: none;
+        background-image:
+            linear-gradient(rgba(15,110,86,0.09) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(15,110,86,0.09) 1px, transparent 1px);
+        background-size: 56px 56px; background-position: center top;
+        -webkit-mask-image: radial-gradient(ellipse 70% 80% at 70% 45%, #000 20%, transparent 75%);
+                mask-image: radial-gradient(ellipse 70% 80% at 70% 45%, #000 20%, transparent 75%);
+    }
+
+    .hd { display: grid; grid-template-columns: repeat(12, 1fr); gap: 0 clamp(1.5rem, 3vw, 3rem); align-items: center; position: relative; }
+    .hd-text { grid-column: 1 / span 6; position: relative; z-index: 2; }
+    .hd-title {
+        font-family: var(--f-head); font-weight: 600;
+        font-size: clamp(3rem, 5.6vw, 5.6rem); line-height: 0.96; letter-spacing: -0.045em;
+        margin: 1.6rem 0 1.6rem;
+    }
+    .hd-title em { display: block; color: var(--teal-dark); }
+    .mark { position: relative; white-space: nowrap; }
+    .mark svg { display: block; position: absolute; left: -2%; bottom: -0.12em; width: 104%; height: 0.32em; color: var(--teal); overflow: visible; }
+    .mark path { stroke-dasharray: 420; }
+    .hd-title .mark path { animation: draw 1.1s cubic-bezier(.6,.1,.2,1) 1s backwards; }
+    .reveal:not(.in) .mark path { stroke-dashoffset: 420; }
+    .reveal.in .mark path { animation: draw 1.1s cubic-bezier(.6,.1,.2,1) .5s backwards; }
+    .hd-text .lead { max-width: 30em; }
+    .hd-cta { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2.25rem; }
+
+    .hd-facts { list-style: none; display: flex; gap: 0; margin-top: clamp(2.5rem, 6vh, 3.75rem); border-top: 1px solid var(--line); max-width: 36rem; }
+    .hd-facts li { flex: 1; padding: 1.1rem 1.25rem 0 0; }
+    .hd-facts li + li { padding-left: 1.25rem; border-left: 1px solid var(--line); }
+    .hd-facts b { display: block; font-family: var(--f-head); font-weight: 600; font-size: clamp(1.6rem, 2.2vw, 2.1rem); letter-spacing: -0.04em; line-height: 1; }
+    .hd-facts b small { font-size: 0.55em; letter-spacing: -0.01em; color: var(--teal); }
+    .hd-facts span { display: block; margin-top: 0.4rem; font-family: var(--f-mono); font-size: 0.64rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-2); }
+
+    /* Visual: door-shaped photo, tilted snapshot, spinning badge, floating cards */
+    .hd-visual { grid-column: 7 / -1; position: relative; isolation: isolate; height: clamp(520px, calc(100svh - var(--nav-h) - 9rem), 760px); }
+    .hd-arch {
+        position: absolute; top: 0; bottom: 0; right: 3%; width: 68%;
+        margin: 0; overflow: hidden; background: var(--ink);
+        border-radius: 999px 999px 6px 6px;
+        animation: tri-in 1.1s cubic-bezier(.2,.7,.2,1) .1s both;
+    }
+    .hd-visual::before {
+        content: ""; position: absolute; top: -18px; bottom: 18px; right: calc(3% + 22px); width: 68%;
+        border: 1.5px solid var(--teal); border-radius: 999px 999px 6px 6px; opacity: 0.55;
+        animation: tri-in 1.1s cubic-bezier(.2,.7,.2,1) .35s backwards;
+    }
+    .hd-visual::after {
+        content: ""; position: absolute; right: -3%; bottom: 14%; width: 46%; aspect-ratio: 1; border-radius: 50%;
+        background: var(--teal-light); z-index: -1;
+    }
+    .hd-arch img { width: 100%; height: 100%; object-fit: cover; object-position: 82% 50%; }
+    .hd-arch figcaption {
+        position: absolute; left: 0; right: 0; bottom: 0; padding: 3rem 1.5rem 1.25rem;
+        background: linear-gradient(rgba(28,28,26,0), rgba(28,28,26,0.6));
+        font-family: var(--f-mono); font-size: 0.66rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.92);
+    }
+
+    .hd-snap {
+        position: absolute; left: 0; bottom: 3%; width: 27%; margin: 0; z-index: 2;
+        background: var(--white); padding: 0.55rem 0.55rem 0;
+        box-shadow: 0 18px 40px -18px rgba(28,28,26,0.45);
+        transform: rotate(-6deg);
+        animation: snap-in 1.1s cubic-bezier(.2,.7,.2,1) .6s backwards;
+    }
+    .hd-snap img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 30%; }
+    .hd-snap figcaption { font-family: var(--f-serif); font-style: italic; font-size: 1.05rem; color: var(--text-2); padding: 0.45rem 0.2rem 0.6rem; }
+
+    .hd-badge {
+        position: absolute; top: 5%; left: 10%; z-index: 3;
+        width: clamp(118px, 9.5vw, 148px); aspect-ratio: 1;
+        border-radius: 50%; background: var(--teal); color: var(--white);
+        display: grid; place-items: center;
+        animation: pop-in .9s cubic-bezier(.3,1.5,.5,1) .9s backwards;
+    }
+    .hd-badge svg:not(.door) { position: absolute; inset: 0; width: 100%; height: 100%; animation: spin 30s linear infinite; }
+    .hd-badge text { font-family: var(--f-mono); font-size: 8.4px; letter-spacing: 0.12em; text-transform: uppercase; fill: currentColor; }
+    .hd-badge b { font-family: var(--f-head); font-weight: 700; font-size: clamp(1.05rem, 1.4vw, 1.3rem); letter-spacing: -0.03em; line-height: 0.95; text-align: center; }
+    .hd-badge b small { display: block; font-family: var(--f-mono); font-weight: 400; font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; margin-top: 0.3rem; }
+
+    .hd-card {
+        position: absolute; z-index: 3;
+        background: var(--white); border: 1px solid var(--line); border-radius: 4px;
+        box-shadow: 0 20px 44px -22px rgba(28,28,26,0.4);
+        padding: 1rem 1.15rem;
+    }
+    .hd-live { top: 29%; left: 4%; width: 15.5rem; animation: card-in-l .9s cubic-bezier(.2,.7,.2,1) 1.1s backwards; }
+    .hd-live .now { font-size: 0.72rem; }
+    .hd-live a { display: flex; justify-content: space-between; align-items: center; margin-top: 0.8rem; padding-top: 0.8rem; border-top: 1px solid var(--line); font-family: var(--f-head); font-weight: 600; }
+    .hd-live a small { display: block; font-family: var(--f-mono); font-weight: 400; font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-2); }
+    .hd-live a i { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: var(--ink); color: var(--white); transition: background .25s, transform .25s; }
+    .hd-live a:hover i { background: var(--teal); transform: rotate(-12deg); }
+
+    .hd-konfig {
+        bottom: -1.75rem; right: -2rem; width: 16.5rem; display: block;
+        background: var(--teal-light); border-color: rgba(15,110,86,0.18);
+        animation: card-in .9s cubic-bezier(.2,.7,.2,1) 1.3s backwards;
+        transition: transform .3s cubic-bezier(.2,.7,.2,1), box-shadow .3s;
+    }
+    .hd-konfig:hover { transform: translateY(-4px); box-shadow: 0 26px 50px -22px rgba(15,110,86,0.5); }
+    .hd-konfig .chip { display: inline-block; font-family: var(--f-mono); font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; background: var(--teal-dark); color: var(--white); padding: 0.25rem 0.5rem; border-radius: 2px; }
+    .hd-konfig strong { display: block; margin-top: 0.6rem; font-family: var(--f-head); font-weight: 600; font-size: 1.15rem; letter-spacing: -0.02em; line-height: 1.15; }
+    .hd-konfig span.go { display: flex; align-items: center; gap: 0.5rem; margin-top: 0.7rem; font-family: var(--f-head); font-weight: 600; font-size: 0.92rem; color: var(--teal-dark); }
+    .hd-konfig span.go svg { transition: transform .25s; }
+    .hd-konfig:hover span.go svg { transform: translate(3px, -3px); }
+
+    .hd-rating {
+        top: -1%; right: 0; display: flex; align-items: center; gap: 0.7rem;
+        padding: 0.65rem 0.9rem; border-radius: 999px;
+        animation: card-in .9s cubic-bezier(.2,.7,.2,1) 1.5s backwards;
+    }
+    .hd-rating b { font-family: var(--f-head); font-size: 1.35rem; letter-spacing: -0.03em; line-height: 1; }
+    .hd-rating .stars { color: var(--teal); letter-spacing: 0.08em; font-size: 0.85rem; line-height: 1; }
+    .hd-rating small { display: block; font-family: var(--f-mono); font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-2); margin-top: 0.2rem; }
+
+    /* Laser line – a nod to the job-site photos */
+    .hd-laser { position: absolute; left: -6%; right: -2%; top: 54%; height: 2px; z-index: 1; pointer-events: none;
+        background: linear-gradient(90deg, rgba(29,158,117,0), var(--teal) 12%, var(--teal) 88%, rgba(29,158,117,0));
+        box-shadow: 0 0 10px 1px rgba(29,158,117,0.55);
+        transform-origin: left; animation: laser 1.4s cubic-bezier(.6,.1,.2,1) .8s both;
+    }
+
+    /* Ticker band */
+    .ticker { display: block; overflow: hidden; background: var(--teal); color: var(--white); padding: 0.95rem 0; border-bottom: 1px solid rgba(255,255,255,0.15); }
+    .ticker-track { display: flex; width: max-content; animation: ticker 38s linear infinite; }
+    .ticker:hover .ticker-track { animation-play-state: paused; }
+    .ticker span { display: inline-block; padding-right: 2.25rem; font-family: var(--f-head); font-weight: 600; font-size: 1.35rem; letter-spacing: -0.02em; white-space: nowrap; }
+    .ticker span em { font-family: var(--f-serif); font-style: italic; font-weight: 400; }
+    .ticker span::after { content: ""; display: inline-block; vertical-align: middle; margin-left: 2.25rem; width: 9px; height: 9px; border-radius: 50%; background: var(--white); opacity: 0.6; }
+}
+@media (min-width: 901px) and (max-width: 1180px) {
+    .hd-visual { height: clamp(500px, calc(100svh - var(--nav-h) - 8rem), 640px); }
+    .hd-arch { width: 74%; right: 0; }
+    .hd-arch figcaption, .hd-snap { display: none; }
+    .hd-visual::before { width: 74%; right: 22px; }
+    .hd-badge { left: 2%; }
+    .hd-konfig { width: 13.5rem; right: -2.5rem; bottom: -1.5rem; }
+    .hd-live { width: 13rem; left: -0.5rem; }
+}
+@keyframes tri-in { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: none; } }
+@keyframes snap-in { from { opacity: 0; transform: rotate(-14deg) translateY(40px); } to { opacity: 1; transform: rotate(-6deg); } }
+@keyframes pop-in { from { opacity: 0; transform: scale(0.4) rotate(-40deg); } to { opacity: 1; transform: none; } }
+@keyframes card-in { from { opacity: 0; transform: translateX(24px); } to { opacity: 1; transform: none; } }
+@keyframes card-in-l { from { opacity: 0; transform: translateX(-24px); } to { opacity: 1; transform: none; } }
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes draw { from { stroke-dashoffset: 420; } }
+@keyframes laser { from { transform: scaleX(0); opacity: 0; } to { transform: scaleX(1); opacity: 1; } }
+@keyframes ticker { to { transform: translateX(-50%); } }
+
+/* ── Claim (slogan + two buttons) ── */
+.claim { padding: clamp(3.5rem, 8vw, 6.5rem) 0; text-align: center; background: var(--white); }
+.claim-line {
+    font-family: var(--f-head); font-weight: 600;
+    font-size: clamp(2rem, 4.6vw, 4.2rem); line-height: 1.02; letter-spacing: -0.04em;
+    max-width: 16em; margin: 0 auto;
+}
+.claim-cta { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; margin-top: clamp(1.75rem, 3.5vw, 2.5rem); }
+
+/* ── Opener (text below the photo) ── */
+.opener { padding: clamp(4rem, 9vw, 7.5rem) 0; }
+.opener .wrap { display: grid; grid-template-columns: repeat(12, 1fr); gap: 2.5rem clamp(1.5rem, 3vw, 3rem); align-items: end; }
+.opener-text { grid-column: 1 / span 7; }
+.opener-text h2 { margin: 1.5rem 0 1.5rem; }
+.opener-side { grid-column: 9 / -1; display: grid; gap: 0.75rem; }
+.opener-side .btn { justify-content: space-between; }
+.opener-side .now { margin: 0.75rem 0 0; }
+
+/* ── Live status dot ── */
+.status, .now { display: flex; align-items: center; gap: 0.7rem; font-family: var(--f-mono); font-size: 0.76rem; letter-spacing: 0.04em; }
+.status { color: rgba(255,255,255,0.9); }
+.status i, .now i {
+    --dot: 247, 245, 240;
+    width: 9px; height: 9px; border-radius: 50%; flex: none;
+    background: rgb(var(--dot));
+    animation: blink 1.8s ease-in-out infinite;
+}
+.now i { --dot: 68, 68, 65; }
+.status.is-open i, .now.is-open i { --dot: 29, 158, 117; }
+@keyframes blink-soft { 0%, 100% { opacity: 1; } 50% { opacity: 0.25; } }
+@keyframes blink {
+    0% { opacity: 1; box-shadow: 0 0 0 0 rgba(var(--dot), 0.55); }
+    60% { opacity: 0.45; box-shadow: 0 0 0 7px rgba(var(--dot), 0); }
+    100% { opacity: 1; box-shadow: 0 0 0 0 rgba(var(--dot), 0); }
+}
+
+/* ── Info bar ── */
+.info { background: var(--ink); color: rgba(255,255,255,0.72); }
+.info .wrap { display: grid; grid-template-columns: repeat(3, 1fr); }
+.info-item { padding: 1.4rem 1.5rem 1.5rem 0; font-size: 0.92rem; }
+.info-item + .info-item { padding-left: 1.5rem; border-left: 1px solid var(--line-light); }
+.info-item small { display: block; font-family: var(--f-mono); font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 0.35rem; }
+.info-item b { color: var(--white); font-family: var(--f-head); font-weight: 600; font-size: 1.02rem; letter-spacing: -0.01em; }
+.info-item a { color: var(--white); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(255,255,255,0.4); }
+.info-item a:hover { text-decoration-color: var(--white); }
+
+/* ── Sections ── */
+.sec { padding: clamp(5rem, 11vw, 9.5rem) 0; }
+.sec-paper { background: var(--paper); }
+.sec-head { display: grid; grid-template-columns: repeat(12, 1fr); gap: 1.5rem clamp(1.5rem, 3vw, 3rem); margin-bottom: clamp(3rem, 6vw, 5rem); align-items: end; }
+.sec-head .label { grid-column: 1 / -1; }
+.sec-head h2 { grid-column: 1 / span 7; }
+.sec-head .lead { grid-column: 9 / -1; }
+
+/* ── Why ── */
+.why .wrap { display: grid; grid-template-columns: repeat(12, 1fr); gap: 2rem clamp(1.5rem, 3vw, 3rem); }
+.why .label { grid-column: 1 / span 3; align-self: start; padding-top: 0.9rem; }
+.why-statement { grid-column: 4 / -1; }
+.why-statement p.big {
+    font-family: var(--f-head); font-weight: 500;
+    font-size: clamp(2rem, 4.4vw, 3.9rem);
+    line-height: 1.05; letter-spacing: -0.035em;
+}
+.circle { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: clamp(3rem, 6vw, 5rem); border-top: 1px solid var(--ink); }
+.circle div { padding: 1.5rem 1.5rem 0 0; }
+.circle div + div { padding-left: 1.5rem; border-left: 1px solid var(--line); }
+.circle h3 { font-size: 1.15rem; margin-bottom: 0.6rem; display: flex; gap: 0.6rem; align-items: baseline; }
+.circle h3 small { font-family: var(--f-mono); font-size: 0.7rem; color: var(--teal); letter-spacing: 0.08em; font-weight: 400; }
+.circle p { color: var(--text-2); font-size: 0.98rem; }
+
+/* ── Services: index with hover preview ── */
+.svc-wrap { display: grid; grid-template-columns: repeat(12, 1fr); gap: 2rem clamp(1.5rem, 3vw, 3rem); align-items: start; }
+.svc { grid-column: 1 / span 7; list-style: none; border-top: 1px solid var(--ink); }
+.svc li { border-bottom: 1px solid var(--line); }
+.svc-row { display: grid; grid-template-columns: 3rem minmax(0, 1fr) 1.5rem; gap: 0.35rem 1rem; padding: 1.35rem 0; align-items: baseline; }
+.svc-row .n { font-family: var(--f-mono); font-size: 0.78rem; color: var(--text-2); }
+.svc-row h3 { font-size: clamp(1.45rem, 2.4vw, 2rem); letter-spacing: -0.03em; transition: transform .35s cubic-bezier(.2,.7,.2,1); }
+.svc-row p { grid-column: 2; color: var(--text-2); font-size: 0.97rem; max-width: 34em; }
+.svc-row .arr { grid-row: 1; grid-column: 3; align-self: center; opacity: 0.35; transition: opacity .25s, transform .25s; }
+.svc-row:hover h3, .svc-row.on h3 { transform: translateX(6px); }
+.svc-row:hover .arr, .svc-row.on .arr { opacity: 1; transform: translateX(3px); }
+.svc-row.on .n { color: var(--teal); }
+.svc-preview { grid-column: 9 / -1; position: sticky; top: calc(var(--nav-h) + 2rem); }
+.svc-preview .frame { position: relative; aspect-ratio: 4 / 5; background: var(--paper); overflow: hidden; }
+.svc-preview img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .5s; }
+.svc-preview img.on { opacity: 1; }
+.svc-preview p { margin-top: 0.8rem; font-family: var(--f-mono); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-2); }
+.svc-note { grid-column: 1 / span 7; display: flex; flex-wrap: wrap; gap: 1rem 2rem; justify-content: space-between; align-items: center; color: var(--text-2); font-size: 0.95rem; }
+
+/* ── Before / after slider ── */
+.ba .wrap { display: grid; grid-template-columns: repeat(12, 1fr); gap: 2.5rem clamp(1.5rem, 3vw, 3rem); align-items: center; }
+.ba-text { grid-column: 1 / span 5; }
+.ba-text h2 { margin: 1.5rem 0 1.5rem; }
+.ba-text ul { list-style: none; margin-top: 2rem; border-top: 1px solid var(--line); }
+.ba-text li { padding: 0.8rem 0; border-bottom: 1px solid var(--line); font-size: 0.95rem; display: flex; gap: 0.9rem; }
+.ba-text li::before { content: "—"; color: var(--text-2); }
+.compare { grid-column: 7 / -1; position: relative; aspect-ratio: 4 / 4.6; overflow: hidden; background: var(--paper); user-select: none; --pos: 50%; }
+.compare img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 55%; pointer-events: none; }
+.compare .before { clip-path: inset(0 calc(100% - var(--pos)) 0 0); }
+.compare .handle { position: absolute; top: 0; bottom: 0; left: var(--pos); width: 2px; margin-left: -1px; background: var(--white); pointer-events: none; }
+.compare .handle::after {
+    content: ""; position: absolute; top: 50%; left: 50%; width: 46px; height: 46px; margin: -23px 0 0 -23px;
+    border-radius: 50%; background: var(--white);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='22' viewBox='0 0 24 24' fill='none' stroke='%232C2C2A' stroke-width='2'%3E%3Cpath d='M9 6l-6 6 6 6M15 6l6 6-6 6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: center;
+}
+.compare input { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: ew-resize; margin: 0; }
+.compare .tag { position: absolute; top: 1rem; font-family: var(--f-mono); font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; padding: 0.4rem 0.65rem; pointer-events: none; }
+.compare .tag.l { left: 1rem; background: var(--white); color: var(--ink); }
+.compare .tag.r { right: 1rem; background: var(--ink); color: var(--white); }
+
+/* ── Process: horizontal timeline ── */
+.timeline { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: 0 clamp(1.25rem, 2.5vw, 2.5rem); position: relative; }
+.timeline::before { content: ""; position: absolute; left: 0; right: 0; top: 7px; height: 1px; background: var(--ink); }
+.timeline li { position: relative; padding-top: 2.5rem; }
+.timeline li::before { content: ""; position: absolute; top: 0; left: 0; width: 15px; height: 15px; border-radius: 50%; background: var(--paper); border: 1px solid var(--ink); }
+.timeline li:last-child::before { background: var(--ink); }
+.timeline .n { font-family: var(--f-mono); font-size: 0.75rem; letter-spacing: 0.12em; color: var(--text-2); }
+.timeline h3 { font-size: clamp(1.3rem, 2vw, 1.6rem); margin: 0.6rem 0 0.6rem; }
+.timeline p { color: var(--text-2); font-size: 0.97rem; }
+.process-foot { margin-top: clamp(3rem, 6vw, 4.5rem); padding-top: 1.75rem; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: 1rem 2rem; align-items: center; justify-content: space-between; }
+.process-foot p { font-family: var(--f-head); font-weight: 500; font-size: clamp(1.2rem, 2vw, 1.6rem); letter-spacing: -0.02em; }
+
+/* ── Projects: tilted photo stack ── */
+.proj .wrap { display: grid; grid-template-columns: repeat(12, 1fr); gap: 3rem clamp(1.5rem, 3vw, 3rem); align-items: center; }
+.proj-text { grid-column: 1 / span 5; }
+.proj-text h2 { margin: 1.5rem 0 1.25rem; }
+.deck-ctrl { display: flex; align-items: center; gap: 0.75rem; margin: 2.5rem 0 2rem; }
+.deck-prev { width: 52px; height: 52px; border-radius: 50%; border: 1px solid var(--ink); background: none; cursor: pointer; display: grid; place-items: center; transition: background .2s, color .2s; }
+.deck-prev:hover { background: var(--ink); color: var(--white); }
+.deck-next {
+    display: inline-flex; align-items: center; gap: 1rem;
+    padding: 0.4rem 0.4rem 0.4rem 1.4rem; border: 0; border-radius: 999px;
+    background: var(--ink); color: var(--white); cursor: pointer;
+    font-family: var(--f-head); font-weight: 600; font-size: 1rem;
+}
+.deck-next i { width: 44px; height: 44px; border-radius: 50%; background: var(--white); color: var(--ink); display: grid; place-items: center; transition: transform .3s cubic-bezier(.2,.7,.2,1); }
+.deck-next:hover i { transform: rotate(-45deg); }
+.deck-count { font-family: var(--f-mono); font-size: 0.78rem; letter-spacing: 0.08em; color: var(--text-2); margin-left: 0.5rem; }
+.deck-count b { color: var(--ink); font-weight: 500; }
+.deck { --h: clamp(400px, 64vh, 600px); grid-column: 7 / -1; position: relative; height: var(--h); touch-action: pan-y; }
+.deck figure {
+    position: absolute; left: 50%; top: 0;
+    background: var(--white); padding: 0.65rem 0.65rem 0;
+    box-shadow: 0 1px 0 var(--line), 0 18px 40px rgba(28, 28, 26, 0.16);
+    transform: translateX(-50%) translate(var(--x, 0), var(--y, 0)) rotate(var(--r, 0deg));
+    transition: transform .6s cubic-bezier(.2,.7,.2,1), opacity .45s ease;
+    cursor: pointer; user-select: none;
+}
+.deck img { height: calc(var(--h) - 4.6rem); width: auto; max-width: none; pointer-events: none; }
+.deck figcaption { padding: 0.8rem 0.2rem 0.9rem; font-family: var(--f-mono); font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; text-align: center; color: var(--text-2); }
+.deck figure[data-pos="0"] { z-index: 5; --r: -3deg; }
+.deck figure[data-pos="1"] { z-index: 4; --r: 7deg; --x: 64px; --y: 14px; }
+.deck figure[data-pos="2"] { z-index: 3; --r: -9deg; --x: -70px; --y: 22px; }
+.deck figure[data-pos="3"] { z-index: 2; --r: 3deg; --x: 10px; --y: 28px; opacity: 0; }
+.deck figure[data-pos="4"] { z-index: 1; opacity: 0; }
+.deck figure.out { --x: -75%; --y: -10px; --r: -18deg; opacity: 0; z-index: 6; }
+.proj-foot { color: var(--text-2); font-size: 0.95rem; }
+.proj-foot .link { color: var(--ink); margin-top: 0.75rem; }
+
+/* ── Configurator ── */
+.konfig { background: var(--ink); color: var(--white); }
+.konfig .wrap { display: grid; grid-template-columns: repeat(12, 1fr); gap: 2.5rem clamp(1.5rem, 3vw, 3rem); align-items: center; padding-top: clamp(4rem, 8vw, 6.5rem); padding-bottom: clamp(4rem, 8vw, 6.5rem); }
+.konfig .label { color: rgba(255,255,255,0.65); }
+.konfig-text { grid-column: 1 / span 7; }
+.konfig-text h2 { margin: 1.5rem 0 1.25rem; }
+.konfig-text p { color: rgba(255,255,255,0.75); max-width: 32em; }
+.konfig-actions { grid-column: 9 / -1; display: grid; gap: 0.75rem; }
+.konfig-actions .btn { justify-content: space-between; }
+.konfig-actions small { font-size: 0.82rem; color: rgba(255,255,255,0.6); line-height: 1.5; margin-top: 0.5rem; }
+
+/* ── About ── */
+.about .wrap { display: grid; grid-template-columns: repeat(12, 1fr); gap: 3rem clamp(1.5rem, 3vw, 3rem); align-items: start; }
+.about-img { grid-column: 1 / span 5; }
+.about-img img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 30%; }
+.about-img figcaption { font-family: var(--f-mono); font-size: 0.72rem; letter-spacing: 0.08em; color: var(--text-2); margin-top: 0.8rem; text-transform: uppercase; }
+.about-body { grid-column: 7 / -1; }
+.about-body h2 { margin: 1.5rem 0 1.75rem; }
+.about-body > p { color: var(--text-2); margin-bottom: 1rem; max-width: 34em; }
+.promises { list-style: none; margin-top: 3rem; border-top: 1px solid var(--ink); }
+.promises li { display: grid; grid-template-columns: 1fr 1.4fr; gap: 1.5rem; padding: 1.4rem 0; border-bottom: 1px solid var(--line); }
+.promises h3 { font-size: 1.15rem; }
+.promises p { color: var(--text-2); font-size: 0.97rem; }
+
+/* ── Reviews: one quote at a time ── */
+.voices .wrap { display: grid; grid-template-columns: repeat(12, 1fr); gap: 2.5rem clamp(1.5rem, 3vw, 3rem); }
+.voices-side { grid-column: 1 / span 3; }
+.voices-side .num { font-family: var(--f-head); font-weight: 600; font-size: clamp(4.5rem, 8vw, 7rem); letter-spacing: -0.06em; line-height: 0.85; margin-top: 1.75rem; }
+.voices-side p { color: var(--text-2); font-size: 0.92rem; margin-top: 0.75rem; }
+.voices-main { grid-column: 5 / -1; }
+.voice-stack { display: grid; }
+.voice { grid-area: 1 / 1; opacity: 0; visibility: hidden; transform: translateY(8px); transition: opacity .45s ease, transform .45s ease, visibility .45s; }
+.voice.on { opacity: 1; visibility: visible; transform: none; }
+.voice p { font-family: var(--f-serif); font-size: clamp(1.9rem, 3.8vw, 3.4rem); line-height: 1.12; letter-spacing: -0.01em; }
+.voice-hint { margin-top: clamp(2.5rem, 5vw, 4rem); font-family: var(--f-mono); font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-2); }
+.voice-tabs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.6rem; margin-top: 0.9rem; }
+.voice-tabs button {
+    display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-start;
+    text-align: left; padding: 0.9rem 1rem; cursor: pointer;
+    background: var(--white); border: 1px solid var(--line); border-top: 3px solid var(--line);
+    font-family: var(--f-mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-2);
+    transition: border-color .2s, background .2s, color .2s;
+}
+.voice-tabs button b { display: block; font-family: var(--f-head); font-weight: 600; font-size: 1rem; letter-spacing: -0.01em; text-transform: none; color: var(--ink); margin-bottom: 0.15rem; }
+.voice-tabs button:hover { border-top-color: var(--teal); }
+.voice-tabs button.on { border-color: var(--teal); border-top-color: var(--teal); background: var(--teal-light); color: var(--teal-dark); }
+.voice-tabs button.on b { color: var(--teal-dark); }
+
+/* ── Contact ── */
+.contact .wrap { display: grid; grid-template-columns: repeat(12, 1fr); gap: 3rem clamp(1.5rem, 3vw, 3rem); }
+.contact-info { grid-column: 1 / span 5; }
+.contact-info h2 { margin: 1.5rem 0 1.5rem; }
+.now { display: flex; align-items: center; gap: 0.6rem; margin-top: 2.25rem; font-family: var(--f-mono); font-size: 0.78rem; letter-spacing: 0.04em; }
+.hours { width: 100%; border-collapse: collapse; margin-top: 1rem; border-top: 1px solid var(--ink); }
+.hours td { padding: 0.7rem 0; border-bottom: 1px solid var(--line); font-size: 0.97rem; }
+.hours td + td { text-align: right; font-family: var(--f-mono); font-size: 0.85rem; color: var(--text-2); }
+.hours tr.today td { font-weight: 600; color: var(--ink); }
+.hours tr.today td:first-child::after { content: " · heute"; font-family: var(--f-mono); font-weight: 400; font-size: 0.72rem; color: var(--teal-dark); }
+.c-list { list-style: none; margin-top: 2.5rem; border-top: 1px solid var(--ink); }
+.c-list li { display: grid; grid-template-columns: 8rem 1fr; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid var(--line); align-items: baseline; }
+.c-list .k { font-family: var(--f-mono); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-2); }
+.c-list .v { font-family: var(--f-head); font-weight: 500; font-size: 1.1rem; letter-spacing: -0.01em; overflow-wrap: anywhere; }
+.c-list a.v:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+.form-box { grid-column: 7 / -1; background: var(--paper); padding: clamp(1.75rem, 4vw, 3.25rem); }
+.form-box h3 { font-size: 1.6rem; margin-bottom: 0.4rem; }
+.form-box > p { color: var(--text-2); font-size: 0.95rem; margin-bottom: 2rem; }
+.f-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem 1.5rem; }
+.f-field { display: flex; flex-direction: column; gap: 0.4rem; }
+.f-field.full { grid-column: 1 / -1; }
+.f-field label { font-family: var(--f-mono); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-2); }
+.f-field input, .f-field select, .f-field textarea {
+    width: 100%; background: transparent;
+    border: 0; border-bottom: 1px solid rgba(44,44,42,0.35); border-radius: 0;
+    padding: 0.55rem 0; font-size: 1.02rem; outline: none;
+    transition: border-color .2s;
+    -webkit-appearance: none; appearance: none;
+}
+.f-field select {
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%232C2C2A' stroke-width='1.5'/%3E%3C/svg%3E") right 2px center no-repeat;
+    padding-right: 1.5rem; cursor: pointer;
+}
+.f-field textarea { resize: vertical; min-height: 110px; }
+.f-field input:focus, .f-field select:focus, .f-field textarea:focus { border-bottom-color: var(--ink); border-bottom-width: 2px; padding-bottom: calc(0.55rem - 1px); }
+.f-field input::placeholder, .f-field textarea::placeholder { color: rgba(68,68,65,0.55); }
+.f-submit { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 1rem 1.5rem; align-items: center; }
+.f-submit small { font-size: 0.8rem; color: var(--text-2); max-width: 22em; line-height: 1.45; }
+.f-submit small a { text-decoration: underline; }
+
+.map { margin-top: clamp(4rem, 8vw, 6rem); }
+.map-box { position: relative; height: 380px; background: var(--paper); display: flex; align-items: center; justify-content: center; text-align: center; padding: 2rem; }
+.map-box > div { max-width: 30em; }
+.map-box b { display: block; font-family: var(--f-head); font-size: 1.15rem; margin-bottom: 0.3rem; }
+.map-box p { font-size: 0.88rem; color: var(--text-2); margin: 0.5rem 0 1.25rem; }
+.map-box p a { text-decoration: underline; }
+.map-box .btns { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem; }
+.map-box iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; filter: grayscale(1) contrast(1.05); }
+
+/* ── Footer ── */
+.site-footer { background: var(--ink); color: rgba(255,255,255,0.72); font-size: 0.95rem; }
+.f-top { display: grid; grid-template-columns: repeat(12, 1fr); gap: 2.5rem clamp(1.5rem, 3vw, 3rem); padding-top: clamp(4rem, 7vw, 5.5rem); padding-bottom: 3.5rem; }
+.f-brand { grid-column: 1 / span 4; }
+.f-brand img { height: 56px; width: auto; filter: invert(1); opacity: 0.95; }
+.f-brand address { font-style: normal; margin-top: 1.5rem; line-height: 1.7; }
+.f-brand address b { color: var(--white); font-weight: 600; }
+.f-brand a { text-decoration: underline; text-underline-offset: 3px; }
+.f-brand a:hover { color: var(--white); }
+.f-hours { grid-column: 6 / span 4; }
+.f-hours table { width: 100%; border-collapse: collapse; }
+.f-hours td { padding: 0.55rem 0; border-bottom: 1px solid var(--line-light); }
+.f-hours td + td { text-align: right; font-family: var(--f-mono); font-size: 0.82rem; }
+.f-hours p { margin-top: 1rem; font-size: 0.88rem; color: rgba(255,255,255,0.55); }
+.f-col { grid-column: span 3; }
+.f-col h4, .f-hours h4 { font-family: var(--f-mono); font-weight: 400; font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 1rem; }
+.f-col ul { list-style: none; display: grid; gap: 0.5rem; }
+.f-col a:hover { color: var(--white); }
+.f-mid { border-top: 1px solid var(--line-light); padding-top: 1.5rem; padding-bottom: 1.5rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; font-size: 0.85rem; color: rgba(255,255,255,0.5); }
+.f-mid nav { display: flex; gap: 1.5rem; }
+.f-mid nav a { color: rgba(255,255,255,0.75); text-decoration: underline; text-underline-offset: 3px; }
+.f-mid nav a:hover { color: var(--white); }
+.f-bottom { background: #1f1f1d; text-align: center; padding: 1rem var(--gutter); font-size: 0.8rem; color: rgba(255,255,255,0.5); }
+.f-bottom a { color: rgba(255,255,255,0.75); text-decoration: underline; text-underline-offset: 3px; }
+.f-bottom a:hover { color: var(--white); }
+
+/* ── WhatsApp ── */
+.wa {
+    position: fixed; right: 1.25rem; bottom: 1.25rem; z-index: 40;
+    width: 58px; height: 58px; border-radius: 50%;
+    background: var(--ink); color: var(--white);
+    display: grid; place-items: center;
+    box-shadow: 0 6px 20px rgba(28, 28, 26, 0.28);
+    transition: transform .25s, background .25s;
+}
+.wa:hover { transform: translateY(-2px); background: #111110; }
+
+/* ── Desktop flourishes for the sections below the hero ── */
+@media (min-width: 901px) {
+    /* Reusable spinning badge */
+    .spin-badge {
+        position: absolute; z-index: 6; display: grid; place-items: center;
+        width: 132px; aspect-ratio: 1; border-radius: 50%; background: var(--teal); color: var(--white); pointer-events: none;
+    }
+    .spin-badge > svg:first-child { position: absolute; inset: 0; width: 100%; height: 100%; animation: spin 30s linear infinite; }
+    .spin-badge text { font-family: var(--f-mono); font-size: 8.4px; letter-spacing: 0.12em; text-transform: uppercase; fill: currentColor; }
+
+    /* Services: door-shaped preview with offset frame */
+    .svc-preview .frame { border-radius: 999px 999px 6px 6px; }
+    .svc-preview::before { content: ""; position: absolute; top: -14px; left: 16px; right: -16px; aspect-ratio: 4 / 5; border: 1.5px solid var(--teal); border-radius: 999px 999px 6px 6px; opacity: 0.5; pointer-events: none; }
+
+    /* Before / after: hand-written hint */
+    .ba-text { position: relative; }
+    .ba-note { display: flex; align-items: flex-start; justify-content: flex-end; gap: 0.4rem; margin-top: 1.75rem; font-family: var(--f-serif); font-style: italic; font-size: 1.35rem; color: var(--teal-dark); }
+    .ba-note svg { margin-top: 0.6rem; }
+    .compare { border-radius: 6px; }
+
+    /* Process: timeline draws like a laser line, dots light up one by one */
+    .timeline::before { background: var(--teal); box-shadow: 0 0 8px rgba(29,158,117,0.5); transform-origin: left; transform: scaleX(0); transition: transform 1.8s cubic-bezier(.6,.1,.2,1) .2s; }
+    .timeline.in::before { transform: none; }
+    .timeline li::before { transition: background .4s, border-color .4s, transform .4s; }
+    .timeline.in li::before { background: var(--teal); border-color: var(--teal); }
+    .timeline.in li:nth-child(1)::before { transition-delay: .4s; }
+    .timeline.in li:nth-child(2)::before { transition-delay: .85s; }
+    .timeline.in li:nth-child(3)::before { transition-delay: 1.3s; }
+    .timeline.in li:nth-child(4)::before { transition-delay: 1.75s; transform: scale(1.35); }
+
+    /* Projects: badge on the photo stack */
+    .deck .spin-badge { top: -2.5rem; right: 4%; }
+    .spin-badge.proj-badge b { font-family: var(--f-serif); font-style: italic; font-weight: 400; font-size: 1.5rem; line-height: 1; }
+
+    /* Configurator: door outlines in the dark band */
+    .konfig { position: relative; overflow: hidden; }
+    .konfig::before, .konfig::after { content: ""; position: absolute; bottom: -2px; border-radius: 999px 999px 0 0; pointer-events: none; }
+    .konfig::before { right: 6%; width: 230px; height: 82%; border: 1.5px solid rgba(255,255,255,0.12); border-bottom: 0; }
+    .konfig::after { right: calc(6% + 26px); width: 230px; height: calc(82% - 26px); border: 1.5px solid rgba(29,158,117,0.55); border-bottom: 0; }
+    .konfig .wrap { position: relative; z-index: 1; }
+
+    /* About: arched photo with offset frame */
+    .about-img { position: relative; }
+    .about-img img { border-radius: 999px 999px 6px 6px; }
+    .about-img::before { content: ""; position: absolute; top: -16px; left: 18px; right: -18px; aspect-ratio: 4 / 5; border: 1.5px solid var(--teal); border-radius: 999px 999px 6px 6px; opacity: 0.5; pointer-events: none; }
+
+    /* Reviews: stars under the score */
+    .voices-side .stars { display: block; margin-top: 0.9rem; color: var(--teal); font-size: 1.2rem; letter-spacing: 0.12em; }
+}
+@media (min-width: 901px) and (max-width: 1100px) {
+    .konfig::before, .konfig::after { display: none; }
+}
+
+/* ── Reveal ── */
+.reveal { opacity: 0; transform: translateY(16px); transition: opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1); }
+.reveal.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .reveal { opacity: 1; transform: none; transition: none; }
+    * { transition-duration: 0s !important; animation: none !important; }
+    .status i, .now i { animation: blink-soft 2s ease-in-out infinite !important; }
+}
+
+@media (max-width: 900px) {
+    .f-top { grid-template-columns: 1fr 1fr; gap: 2.5rem 2rem; }
+    .f-brand, .f-hours { grid-column: 1 / -1; }
+    .f-col { grid-column: span 1; }
+}
+@media (max-width: 640px) {
+    .f-top { grid-template-columns: 1fr; }
+    .f-col { grid-column: 1 / -1; }
+    .wa { width: 54px; height: 54px; right: 1rem; bottom: 1rem; }
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+    .opener .wrap, .proj .wrap, .why .wrap, .svc-wrap, .ba .wrap, .konfig .wrap, .about .wrap, .voices .wrap, .contact .wrap, .sec-head { grid-template-columns: 1fr; }
+    .opener-text, .opener-side, .proj-text, .deck, .why .label, .why-statement, .svc, .svc-note, .ba-text, .compare, .konfig-text, .konfig-actions,
+    .about-img, .about-body, .voices-side, .voices-main, .contact-info, .form-box, .sec-head h2, .sec-head .lead { grid-column: 1 / -1; }
+    .hero > img { object-position: 68% 40%; }
+    .deck { --h: clamp(380px, 110vw, 520px); margin-top: 1rem; }
+    .deck figure[data-pos="1"] { --x: 34px; }
+    .deck figure[data-pos="2"] { --x: -36px; }
+    .why .label { padding-top: 0; }
+    .svc-preview { display: none; }
+    .info .wrap { grid-template-columns: 1fr; }
+    .info-item, .info-item + .info-item { padding: 1.1rem 0; border-left: 0; }
+    .info-item + .info-item { border-top: 1px solid var(--line-light); }
+    .timeline { grid-template-columns: 1fr 1fr; gap: 2.5rem 1.5rem; }
+    .timeline::before { display: none; }
+    .timeline li { border-top: 1px solid var(--ink); padding-top: 1.75rem; }
+    .timeline li::before { top: -8px; }
+    .about-img img { aspect-ratio: 4 / 3.4; }
+    .voices-side .num { margin-top: 1rem; }
+}
+@media (max-width: 640px) {
+    .hero { height: 142vw; min-height: 0; max-height: 100svh; }
+    .hero > img { object-position: 60% 40%; }
+    .hero-sub { font-size: 0.64rem; letter-spacing: 0.12em; }
+    .opener-side .btn { width: 100%; }
+    .claim-cta .btn { width: 100%; justify-content: space-between; }
+    .opener .label { font-size: 0.64rem; letter-spacing: 0.08em; white-space: nowrap; }
+    .opener .label::after { display: none; }
+    .deck-ctrl { margin: 2rem 0 1.5rem; }
+    .circle { grid-template-columns: 1fr; }
+    .circle div, .circle div + div { padding: 1.25rem 0; border-left: 0; border-bottom: 1px solid var(--line); }
+    .svc-row { grid-template-columns: 2.25rem minmax(0, 1fr) 1.25rem; gap: 0.35rem 0.6rem; }
+    .compare { aspect-ratio: 3 / 4; }
+    .timeline { grid-template-columns: 1fr; gap: 2rem; }
+    .promises li { grid-template-columns: 1fr; gap: 0.35rem; }
+    .voice-tabs { gap: 0.4rem; }
+    .voice-tabs button { padding: 0.75rem 0.6rem; font-size: 0.58rem; }
+    .voice-tabs button b { font-size: 0.9rem; }
+    .c-list li { grid-template-columns: 1fr; gap: 0.15rem; }
+    .f-grid { grid-template-columns: 1fr; }
+    .f-submit .btn { width: 100%; justify-content: space-between; }
+    .map-box { height: auto; min-height: 320px; }
+}
+</style>
+</head>
+<body>
+
+
+<!-- NAV -->
+<header class="nav over" id="nav">
+    <div class="wrap">
+        <ul class="nav-links nav-left">
+            <li><a href="#leistungen">Leistungen</a></li>
+            <li><a href="#ablauf">Ablauf</a></li>
+            <li><a href="#projekte">Projekte</a></li>
+        </ul>
+        <a href="#top" class="nav-logo" aria-label="Renorep – zur Startseite"><img src="bilder/logo.png" alt="Renorep Montagedienstleistungen"><span class="nav-tag">Türen · Fenster · Tore · Rollläden<span> — Lahn-Dill-Kreis</span></span></a>
+        <ul class="nav-links nav-right">
+            <li class="hide-md"><a href="konfigurator.html">Konfigurator</a></li>
+            <li><a href="#kontakt">Kontakt</a></li>
+            <li><a href="tel:+4915234796615" class="btn btn-phone">01523 4796615</a></li>
+        </ul>
+        <a href="tel:+4915234796615" class="nav-call" aria-label="Anrufen: 01523 4796615"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1.9.4 1.8.7 2.7a2 2 0 01-.5 2.1L8 9.8a16 16 0 006 6l1.3-1.3a2 2 0 012.1-.4c.9.3 1.8.6 2.7.7a2 2 0 011.7 2z"/></svg></a>
+        <button class="burger" id="burger" aria-label="Menü öffnen" aria-expanded="false" aria-controls="menu"><span></span><span></span></button>
+    </div>
+</header>
+
+<nav class="menu" id="menu" aria-label="Mobiles Menü">
+    <a class="m-link" href="#leistungen">Leistungen <small>01</small></a>
+    <a class="m-link" href="#ablauf">Ablauf <small>02</small></a>
+    <a class="m-link" href="#projekte">Projekte <small>03</small></a>
+    <a class="m-link" href="konfigurator.html">Konfigurator <small>04</small></a>
+    <a class="m-link" href="galerie.html">Galerie <small>05</small></a>
+    <a class="m-link" href="#kontakt">Kontakt <small>06</small></a>
+    <div class="m-actions">
+        <a href="tel:+4915234796615" class="btn btn-line">01523 4796615 anrufen</a>
+        <a href="https://wa.me/4915234796615" target="_blank" rel="noopener" class="btn btn-ink">WhatsApp schreiben</a>
+    </div>
+</nav>
+
+<main id="top">
+
+<!-- HERO -->
+<section class="hero">
+    <img src="bilder/montage-haustuer.jpg" alt="Renorep-Monteur richtet eine Haustür mit Glasseitenteil per Laser aus" fetchpriority="high">
+    <div class="wrap hd">
+        <div class="hd-text">
+            <div class="label">Montagefachbetrieb · Breitscheid</div>
+            <p class="hd-title" aria-hidden="true">Gute Türen gibt es viele. <em class="serif">Gute <span class="mark">Montage<svg viewBox="0 0 200 20" preserveAspectRatio="none"><path d="M2 14 C 50 4, 120 4, 198 11" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/></svg></span> nicht.</em></p>
+            <p class="lead">Haustüren, Fenster, Tore und Rollläden – millimetergenau eingebaut, zum vereinbarten Termin und mit schriftlichem Preis ohne Überraschungen. Für Privatkunden und Bauvorhaben jeder Größe.</p>
+            <div class="hd-cta">
+                <a href="#kontakt" class="btn btn-ink">Jetzt Termin vereinbaren <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+                <a href="#leistungen" class="btn btn-line">Leistungen ansehen <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            </div>
+            <ul class="hd-facts">
+                <li><b>5 <small>Jahre</small></b><span>Gewährleistung</span></li>
+                <li><b>24 <small>Std.</small></b><span>Rückmeldung</span></li>
+                <li><b>1 <small>Partner</small></b><span>Aufmaß bis Abnahme</span></li>
+            </ul>
+        </div>
+        <div class="hd-visual">
+            <span class="hd-laser" aria-hidden="true"></span>
+            <figure class="hd-arch"><img src="bilder/montage-haustuer.jpg" alt="Renorep-Monteur richtet eine Haustür mit Glasseitenteil per Laser aus"><figcaption>Haustür mit Seitenteil · Breitscheid</figcaption></figure>
+            <figure class="hd-snap"><img src="bilder/aufmass-laser.jpg" alt="Monteur beim Aufmaß mit Laser an einer Betonwand" loading="lazy"><figcaption>Erst messen, dann montieren.</figcaption></figure>
+            <div class="hd-badge" aria-hidden="true">
+                <svg viewBox="0 0 100 100"><defs><path id="hd-circle" d="M50 50 m-38 0 a38 38 0 1 1 76 0 a38 38 0 1 1 -76 0"/></defs><text textLength="236" lengthAdjust="spacing"><textPath href="#hd-circle" textLength="236">Zertifizierte Montage · Lahn-Dill · </textPath></text></svg>
+                <svg class="door" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M5 21V4.5A1.5 1.5 0 016.5 3h11A1.5 1.5 0 0119 4.5V21M3 21h18"/><path d="M9 7h6v5H9z"/><circle cx="15.5" cy="15" r="0.9" fill="currentColor"/></svg>
+            </div>
+            <a href="#referenzen" class="hd-card hd-rating" aria-label="4,7 von 5 Sternen bei Google aus 21 Bewertungen"><b>4,7</b><div><div class="stars">★★★★★</div><small>21 Google-Bewertungen</small></div></a>
+            <div class="hd-card hd-live">
+                <div class="now" data-status><i></i><span>Mo – Fr, 8 – 20 Uhr erreichbar</span></div>
+                <a href="tel:+4915234796615"><span><small>Jetzt anrufen</small>01523 4796615</span><i><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1.9.4 1.8.7 2.7a2 2 0 01-.5 2.1L8 9.8a16 16 0 006 6l1.3-1.3a2 2 0 012.1-.4c.9.3 1.8.6 2.7.7a2 2 0 011.7 2z"/></svg></i></a>
+            </div>
+            <a href="konfigurator.html" class="hd-card hd-konfig">
+                <span class="chip">Online planen</span>
+                <strong>Ihre Wunschtür im Konfigurator zusammenstellen</strong>
+                <span class="go">Zum Konfigurator <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
+            </a>
+        </div>
+    </div>
+    <h1 class="sr-only">Renorep – Montage von Türen, Fenstern, Toren und Rollläden im Lahn-Dill-Kreis</h1>
+    <a href="#start" class="scroll-cue" aria-label="Weiter nach unten"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
+</section>
+
+<!-- TICKER (desktop) -->
+<div class="ticker" aria-hidden="true"><div class="ticker-track"><span>Haustüren &amp; Eingangstüren</span><span>Fenster</span><span>Garagentore</span><span>Rollläden &amp; Sonnenschutz</span><span>Aufmaß per <em>Laser</em></span><span>Objekt&shy;geschäft</span><span>Lahn-Dill-Kreis <em>&amp;</em> Dreiländereck</span><span>Haustüren &amp; Eingangstüren</span><span>Fenster</span><span>Garagentore</span><span>Rollläden &amp; Sonnenschutz</span><span>Aufmaß per <em>Laser</em></span><span>Objekt&shy;geschäft</span><span>Lahn-Dill-Kreis <em>&amp;</em> Dreiländereck</span></div></div>
+
+<!-- CLAIM -->
+<section class="claim" id="start">
+    <div class="wrap">
+        <p class="claim-line reveal">Gute Türen gibt es viele.<br><em class="serif">Gute Montage nicht.</em></p>
+        <div class="claim-cta reveal">
+            <a href="#kontakt" class="btn btn-ink">Jetzt Termin vereinbaren <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <a href="konfigurator.html" class="btn btn-line">Zu den Konfiguratoren <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+        </div>
+    </div>
+</section>
+
+<!-- INFO BAR -->
+<section class="info" aria-label="Auf einen Blick">
+    <div class="wrap">
+        <div class="info-item"><small>Standort</small><b>Auf der Grub 7a, Breitscheid</b><br><a href="https://www.google.com/maps/dir/?api=1&destination=Auf+der+Grub+7a+35767+Breitscheid" target="_blank" rel="noopener">Route planen</a></div>
+        <div class="info-item"><small>Erreichbar</small><b>Mo – Fr, 8 – 20 Uhr</b><br>Rückmeldung innerhalb von 24 Stunden</div>
+        <div class="info-item"><small>Anfrage</small><b><a href="tel:+4915234796615">01523 4796615</a></b><br>oder per <a href="https://wa.me/4915234796615" target="_blank" rel="noopener">WhatsApp</a></div>
+    </div>
+</section>
+
+<!-- OPENER -->
+<section class="opener">
+    <div class="wrap">
+        <div class="opener-text reveal">
+            <div class="label">Montagefachbetrieb · Breitscheid</div>
+            <h2>Türen &amp; Fenster, <em class="serif">sauber eingebaut.</em></h2>
+            <p class="lead">Haustüren, Fenster, Tore und Rollläden – millimetergenau montiert, zum vereinbarten Termin und mit 5 Jahren Gewährleistung.</p>
+        </div>
+        <div class="opener-side reveal">
+            <a href="#kontakt" class="btn btn-ink">Kostenlos anfragen <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <a href="#leistungen" class="btn btn-line">Leistungen ansehen <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <div class="now" data-status><i></i><span>Mo – Fr, 8 – 20 Uhr erreichbar</span></div>
+        </div>
+    </div>
+</section>
+
+<!-- WHY -->
+<section class="sec why">
+    <div class="wrap">
+        <div class="label reveal"><span class="no">01</span> Warum</div>
+        <div class="why-statement reveal">
+            <p class="big">Das beste Fenster nützt nichts, wenn der <em class="serif mark">Einbau<svg viewBox="0 0 200 20" preserveAspectRatio="none" aria-hidden="true"><path d="M2 14 C 50 4, 120 4, 198 11" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/></svg></em> nicht stimmt. Deshalb ist Montage für uns kein Nebenjob – sondern der Kern unserer Arbeit.</p>
+            <div class="circle">
+                <div>
+                    <h3><small>Warum</small> Ihr Zuhause</h3>
+                    <p>Eine Tür soll schließen, ein Fenster dicht sein – jahrzehntelang. Das entscheidet sich beim Einbau.</p>
+                </div>
+                <div>
+                    <h3><small>Wie</small> Mit Sorgfalt</h3>
+                    <p>Exaktes Aufmaß, saubere Anschlüsse, feste Termine und ein schriftlicher Preis ohne Überraschungen.</p>
+                </div>
+                <div>
+                    <h3><small>Was</small> Montage &amp; mehr</h3>
+                    <p>Türen, Fenster, Tore und Sonnenschutz – auf Wunsch liefern wir die passenden Produkte gleich mit.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SERVICES -->
+<section class="sec sec-paper" id="leistungen">
+    <div class="wrap">
+        <div class="sec-head reveal">
+            <div class="label"><span class="no">02</span> Leistungen</div>
+            <h2>Was wir <em class="serif mark">montieren.<svg viewBox="0 0 200 20" preserveAspectRatio="none" aria-hidden="true"><path d="M2 14 C 50 4, 120 4, 198 11" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/></svg></em></h2>
+            <p class="lead">Von der Beratung bis zur fertigen Montage aus einer Hand – für Privatkunden und Bauvorhaben jeder Größe.</p>
+        </div>
+        <div class="svc-wrap">
+            <ul class="svc">
+                <li class="reveal"><a href="#kontakt" class="svc-row on" data-leistung="Haustüren &amp; Eingangstüren" data-img="0">
+                    <span class="n">01</span><h3>Haustüren &amp; Eingangstüren</h3>
+                    <svg class="arr" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                    <p>Moderne Haustüren mit hoher Sicherheit und Wärmedämmung – eingepasst, abgedichtet, fertig.</p>
+                </a></li>
+                <li class="reveal"><a href="#kontakt" class="svc-row" data-leistung="Fenstermontage" data-img="1">
+                    <span class="n">02</span><h3>Fenstermontage</h3>
+                    <svg class="arr" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                    <p>Einbau von Kunststoff-, Holz- und Aluminiumfenstern – energieeffizient und fachgerecht angeschlossen.</p>
+                </a></li>
+                <li class="reveal"><a href="#kontakt" class="svc-row" data-leistung="Türmontage" data-img="2">
+                    <span class="n">03</span><h3>Innentüren</h3>
+                    <svg class="arr" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                    <p>Montage von Innen- und Glastüren aller Art – präzise eingepasst und dauerhaft leichtgängig.</p>
+                </a></li>
+                <li class="reveal"><a href="#kontakt" class="svc-row" data-leistung="Garagentore &amp; Rolltore" data-img="3">
+                    <span class="n">04</span><h3>Garagentore &amp; Rolltore</h3>
+                    <svg class="arr" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                    <p>Sectional-, Roll- und Schwingtore – manuell oder mit Antrieb, inklusive Einweisung.</p>
+                </a></li>
+                <li class="reveal"><a href="#kontakt" class="svc-row" data-leistung="Rollläden &amp; Sonnenschutz" data-img="4">
+                    <span class="n">05</span><h3>Rollläden &amp; Sonnenschutz</h3>
+                    <svg class="arr" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                    <p>Aufsatz- und Vorbaurollläden, Jalousien und Markisen – für Komfort, Sicherheit und weniger Energieverlust.</p>
+                </a></li>
+                <li class="reveal"><a href="#kontakt" class="svc-row" data-leistung="Beratung &amp; Verkauf" data-img="5">
+                    <span class="n">06</span><h3>Beratung &amp; Verkauf</h3>
+                    <svg class="arr" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                    <p>Persönliche Beratung, kostenloser Kostenvoranschlag und Bauelemente namhafter Hersteller.</p>
+                </a></li>
+            </ul>
+            <figure class="svc-preview" aria-hidden="true">
+                <div class="frame">
+                    <img class="on" src="bilder/nachher.jpg" alt="" loading="lazy">
+                    <img src="bilder/raum-fenster.jpg" alt="" loading="lazy">
+                    <img src="bilder/innentuer.jpg" alt="" loading="lazy">
+                    <img src="bilder/garagentor.jpg" alt="" loading="lazy" style="object-position:40% 50%">
+                    <img src="bilder/rolllaeden.jpg" alt="" loading="lazy" style="object-position:45% 50%">
+                    <img src="bilder/detail-kubus.jpg" alt="" loading="lazy">
+                </div>
+                <p id="svc-cap">Haustüren &amp; Eingangstüren</p>
+            </figure>
+            <div class="svc-note">
+                <span>Nicht dabei, was Sie suchen? Fragen Sie uns trotzdem.</span>
+                <a href="#kontakt" class="link">Projekt beschreiben</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- BEFORE / AFTER -->
+<section class="sec ba">
+    <div class="wrap">
+        <div class="ba-text reveal">
+            <div class="label">Vorher / Nachher</div>
+            <h2>Gleicher Eingang. <em class="serif">Neue Tür.</em></h2>
+            <p class="lead">Die alte Holztür raus, eine moderne Haustür rein – mit sauberem Anschluss an Laibung und Schwelle.</p>
+            <ul>
+                <li>Altbestand demontiert und entsorgt</li>
+                <li>Neue Tür lot- und waagerecht gesetzt</li>
+                <li>Fugen gedämmt und abgedichtet</li>
+            </ul>
+            <p class="ba-note" aria-hidden="true">Regler ziehen – selbst vergleichen <svg width="54" height="28" viewBox="0 0 54 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M2 6c14-6 32-4 46 12"/><path d="M40 18l9 1 1-9"/></svg></p>
+        </div>
+        <div class="compare reveal" id="compare">
+            <img src="bilder/nachher-vergleich.jpg" alt="Gleicher Eingang nachher mit neuer weißer Haustür" loading="lazy">
+            <img class="before" src="bilder/vorher-vergleich.jpg" alt="Eingang vorher mit alter Holzhaustür" loading="lazy">
+            <span class="handle"></span>
+            <span class="tag l">Vorher</span><span class="tag r">Nachher</span>
+            <input type="range" min="0" max="100" value="50" aria-label="Vorher-Nachher-Vergleich verschieben">
+        </div>
+    </div>
+</section>
+
+<!-- PROCESS -->
+<section class="sec sec-paper" id="ablauf">
+    <div class="wrap">
+        <div class="sec-head reveal">
+            <div class="label"><span class="no">03</span> Ablauf</div>
+            <h2>Vier Schritte bis zur <em class="serif">fertigen Montage.</em></h2>
+        </div>
+        <ol class="timeline reveal">
+            <li class="reveal"><span class="n">01</span><h3>Anfrage</h3><p>Per Formular, Telefon oder WhatsApp. Wir melden uns innerhalb von 24 Stunden.</p></li>
+            <li class="reveal"><span class="n">02</span><h3>Aufmaß vor Ort</h3><p>Wir messen exakt aus und beraten Sie direkt am Objekt – unverbindlich.</p></li>
+            <li class="reveal"><span class="n">03</span><h3>Schriftliches Angebot</h3><p>Ein klarer Preis ohne versteckte Kosten. Unser Angebot ist Ihr Preis.</p></li>
+            <li class="reveal"><span class="n">04</span><h3>Montage &amp; Abnahme</h3><p>Pünktlich, sauber, besenrein übergeben – mit 5 Jahren Gewährleistung.</p></li>
+        </ol>
+        <div class="process-foot reveal">
+            <p>Wir halten Termine ein und halten Sie jederzeit auf dem Laufenden.</p>
+            <a href="#kontakt" class="btn btn-ink">
+                Kostenlos anfragen
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="sec proj" id="projekte">
+    <div class="wrap">
+        <div class="proj-text reveal">
+            <div class="label"><span class="no">04</span> Projekte</div>
+            <h2>Aus unserer <em class="serif">Montage.</em></h2>
+            <p class="lead">Echte Fotos von echten Baustellen – Türen, Fenster und Glaselemente, eingebaut von unserem Team.</p>
+            <div class="deck-ctrl">
+                <button type="button" class="deck-prev" id="deck-prev" aria-label="Vorheriges Foto"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></button>
+                <button type="button" class="deck-next" id="deck-next">Nächstes Foto <i><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></button>
+                <span class="deck-count" aria-live="polite"><b id="deck-no">01</b> / 07</span>
+            </div>
+            <div class="proj-foot">
+                Mehr Eindrücke aus abgeschlossenen Projekten<br>
+                <a href="galerie.html" class="link">Alle Projektfotos ansehen</a>
+            </div>
+        </div>
+        <div class="deck reveal" id="deck" aria-label="Projektfotos">
+            <div class="spin-badge proj-badge" aria-hidden="true"><svg viewBox="0 0 100 100"><defs><path id="pb-circle" d="M50 50 m-38 0 a38 38 0 1 1 76 0 a38 38 0 1 1 -76 0"/></defs><text textLength="236" lengthAdjust="spacing"><textPath href="#pb-circle" textLength="236">Echte Fotos · Echte Baustellen · </textPath></text></svg><b>klick!</b></div>
+            <figure data-pos="0"><img src="bilder/montage-eingang.jpg" alt="Monteur setzt eine Eingangstür in einem Mehrfamilienhaus" loading="lazy" draggable="false"><figcaption>Eingangstür · Mehrfamilienhaus</figcaption></figure>
+            <figure data-pos="1"><img src="bilder/faltanlage.jpg" alt="Schwarze Aluminium-Faltanlage in einem renovierten Raum" loading="lazy" draggable="false"><figcaption>Aluminium-Faltanlage</figcaption></figure>
+            <figure data-pos="2"><img src="bilder/nachher.jpg" alt="Neue weiße Haustür mit Glasstreifen nach der Montage" loading="lazy" draggable="false"><figcaption>Haustür · nach der Montage</figcaption></figure>
+            <figure data-pos="3"><img src="bilder/detail-kubus.jpg" alt="Detail einer Mehrfachverriegelung an einer Haustür" loading="lazy" draggable="false"><figcaption>Detail · Verriegelung</figcaption></figure>
+            <figure data-pos="4"><img src="bilder/montage-haustuer.jpg" alt="Monteur richtet eine Haustür mit Seitenteil per Laser aus" loading="lazy" draggable="false"><figcaption>Haustür mit Seitenteil</figcaption></figure>
+            <figure data-pos="4"><img src="bilder/nebeneingang.jpg" alt="Weiße Nebeneingangstür mit satiniertem Glas" loading="lazy" draggable="false"><figcaption>Nebeneingang</figcaption></figure>
+            <figure data-pos="4"><img src="bilder/fenster-detail.jpg" alt="Fenster mit satiniertem Glas im Innenausbau" loading="lazy" draggable="false"><figcaption>Fenster · Satinatoglas</figcaption></figure>
+        </div>
+    </div>
+</section>
+
+<!-- CONFIGURATOR -->
+<section class="konfig" id="konfigurator">
+    <div class="wrap">
+        <div class="konfig-text reveal">
+            <div class="label"><span class="no">05</span> Online planen</div>
+            <h2>Ihre Wunschtür – <em class="serif">selbst gestalten.</em></h2>
+            <p>Modell, Farbe, Verglasung und Griff im 3D-Konfigurator zusammenstellen. Ganz unverbindlich und in wenigen Minuten – die Montage übernehmen wir.</p>
+        </div>
+        <div class="konfig-actions reveal">
+            <a href="https://delutech-renorep.tueren-designer.com/" target="_blank" rel="noopener" class="btn btn-white">
+                Türen-Designer starten
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M8 7h9v9"/></svg>
+            </a>
+            <a href="konfigurator.html" class="btn btn-line-light">
+                Alle Konfiguratoren
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <small>Renorep × Delutech. Ihre Konfiguration senden Sie uns einfach – wir erstellen Ihnen ein persönliches Angebot.</small>
+        </div>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section class="sec about" id="ueber-uns">
+    <div class="wrap">
+        <figure class="about-img reveal">
+            <img src="bilder/aufmass-laser.jpg" alt="Renorep-Monteur beim Aufmaß mit Wasserwaage und Laserlinie" loading="lazy">
+            <figcaption>Aufmaß vor Ort · exakt per Laser</figcaption>
+        </figure>
+        <div class="about-body">
+            <div class="label reveal"><span class="no">06</span> Über uns</div>
+            <h2 class="reveal">Handwerk mit <em class="serif">Herzblut.</em></h2>
+            <p class="reveal">Renorep Montagedienstleistung ist ein zertifiziertes Unternehmen für die professionelle Montage und den Verkauf hochwertiger Bauelemente – im Lahn-Dill-Kreis und im Dreiländereck.</p>
+            <p class="reveal">Mit Fachkenntnis, Sorgfalt und echter Leidenschaft für unser Handwerk sorgen wir dafür, dass Türen, Fenster und Tore perfekt sitzen. Heute und in zwanzig Jahren.</p>
+            <ul class="promises">
+                <li class="reveal"><h3>Pünktlich &amp; verlässlich</h3><p>Wir halten Termine ein und halten Sie jederzeit auf dem Laufenden.</p></li>
+                <li class="reveal"><h3>Transparente Preise</h3><p>Keine versteckten Kosten. Unser Angebot ist Ihr Preis – schriftlich festgehalten.</p></li>
+                <li class="reveal"><h3>5 Jahre Gewährleistung</h3><p>Wir stehen hinter unserer Arbeit. Bei Problemen kommen wir kostenlos zurück.</p></li>
+                <li class="reveal"><h3>Ausgebildete Fachkräfte</h3><p>Wir arbeiten ausschließlich mit ausgebildeten Fachpartnern – für Montage ohne Überraschungen.</p></li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="sec sec-paper voices" id="referenzen">
+    <div class="wrap">
+        <div class="voices-side reveal">
+            <div class="label"><span class="no">07</span> Kundenstimmen</div>
+            <div class="num">4,7</div>
+            <div class="stars" aria-hidden="true">★★★★★</div>
+            <p>von 5 Sternen bei Google<br>aus 21 Bewertungen</p>
+        </div>
+        <div class="voices-main reveal">
+            <div class="voice-stack">
+            <blockquote class="voice on" id="v1" role="tabpanel"><p>„Fensteraustausch im ganzen Haus – alles reibungslos. Termin wurde eingehalten, Arbeit sauber durchgeführt, Preis stimmte. Genau so muss das sein.“</p></blockquote>
+            <blockquote class="voice" id="v2" role="tabpanel"><p>„Die neue Haustür wurde schnell und sauber montiert. Perfekte Passform, kein Zug mehr – und das Preis-Leistungs-Verhältnis ist top.“</p></blockquote>
+            <blockquote class="voice" id="v3" role="tabpanel"><p>„Garagentor-Montage perfekt erledigt. Schnelle Reaktion auf Anfrage, freundliche Beratung und professionelle Umsetzung.“</p></blockquote>
+            </div>
+            <p class="voice-hint">Weitere Stimmen – Namen antippen</p>
+            <div class="voice-tabs" role="tablist" aria-label="Kundenstimmen">
+                <button type="button" class="on" role="tab" aria-selected="true" aria-controls="v1"><b>Thomas S.</b>Herborn</button>
+                <button type="button" role="tab" aria-selected="false" aria-controls="v2"><b>Maria K.</b>Lahn-Dill-Kreis</button>
+                <button type="button" role="tab" aria-selected="false" aria-controls="v3"><b>Andrea B.</b>Dillenburg</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section class="sec contact" id="kontakt">
+    <div class="wrap">
+        <div class="contact-info reveal">
+            <div class="label"><span class="no">08</span> Kontakt</div>
+            <h2>Erzählen Sie uns von Ihrem <em class="serif">Vorhaben.</em></h2>
+            <p class="lead">Kurz beschreiben, wir melden uns innerhalb von 24 Stunden – unverbindlich und kostenlos.</p>
+            <div class="now" data-status><i></i><span>Mo – Fr, 8 – 20 Uhr erreichbar</span></div>
+            <table class="hours">
+                <tr data-day="1"><td>Montag</td><td>8 – 20 Uhr</td></tr>
+                <tr data-day="2"><td>Dienstag</td><td>8 – 20 Uhr</td></tr>
+                <tr data-day="3"><td>Mittwoch</td><td>8 – 20 Uhr</td></tr>
+                <tr data-day="4"><td>Donnerstag</td><td>8 – 20 Uhr</td></tr>
+                <tr data-day="5"><td>Freitag</td><td>8 – 20 Uhr</td></tr>
+            </table>
+            <ul class="c-list">
+                <li><span class="k">Telefon</span><a class="v" href="tel:+4915234796615">01523 4796615</a></li>
+                <li><span class="k">WhatsApp</span><a class="v" href="https://wa.me/4915234796615" target="_blank" rel="noopener">Nachricht schreiben</a></li>
+                <li><span class="k">E-Mail</span><a class="v" href="mailto:renorepjensschmidt@gmail.com">renorepjensschmidt@gmail.com</a></li>
+                <li><span class="k">Adresse</span><span class="v">Auf der Grub 7a<br>35767 Breitscheid</span></li>
+            </ul>
+        </div>
+        <div class="form-box reveal">
+            <h3>Kostenlos anfragen</h3>
+            <p>Felder mit * sind Pflichtfelder.</p>
+            <form action="https://formspree.io/f/mgoqzkpj" method="POST">
+                <div class="f-grid">
+                    <div class="f-field">
+                        <label for="f-name">Name *</label>
+                        <input id="f-name" type="text" name="name" placeholder="Max Mustermann" autocomplete="name" required>
+                    </div>
+                    <div class="f-field">
+                        <label for="f-mail">E-Mail *</label>
+                        <input id="f-mail" type="email" name="email" placeholder="max@beispiel.de" autocomplete="email" required>
+                    </div>
+                    <div class="f-field">
+                        <label for="f-tel">Telefon</label>
+                        <input id="f-tel" type="tel" name="telefon" placeholder="+49 …" autocomplete="tel">
+                    </div>
+                    <div class="f-field">
+                        <label for="f-leistung">Leistung</label>
+                        <select id="f-leistung" name="leistung">
+                            <option value="">Bitte wählen</option>
+                            <option>Haustüren &amp; Eingangstüren</option>
+                            <option>Fenstermontage</option>
+                            <option>Türmontage</option>
+                            <option>Garagentore &amp; Rolltore</option>
+                            <option>Rollläden &amp; Sonnenschutz</option>
+                            <option>Beratung &amp; Verkauf</option>
+                            <option>Sonstiges</option>
+                        </select>
+                    </div>
+                    <div class="f-field full">
+                        <label for="f-msg">Ihr Anliegen *</label>
+                        <textarea id="f-msg" name="nachricht" placeholder="Was soll montiert werden, wo, und bis wann?" required></textarea>
+                    </div>
+                </div>
+                <div class="f-submit">
+                    <button type="submit" class="btn btn-ink">
+                        Anfrage absenden
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                    </button>
+                    <small>Ihre Angaben nutzen wir nur zur Bearbeitung Ihrer Anfrage. Mehr in der <a href="datenschutz.html">Datenschutzerklärung</a>.</small>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="wrap map reveal">
+        <div class="map-box" id="map-box">
+            <div>
+                <b>Auf der Grub 7a, 35767 Breitscheid</b>
+                <p>Beim Laden der Karte werden Daten an Google übertragen. Mehr dazu in der <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
+                <div class="btns">
+                    <button type="button" class="btn btn-ink" id="map-load">Karte laden</button>
+                    <a href="https://www.google.com/maps/dir/?api=1&destination=Auf+der+Grub+7a+35767+Breitscheid" target="_blank" rel="noopener" class="btn btn-line">Route planen</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+    <div class="wrap f-top">
+        <div class="f-brand">
+            <img src="bilder/logo.png" alt="Renorep Montagedienstleistungen">
+            <address>
+                <b>Renorep Montagedienstleistung</b><br>
+                Auf der Grub 7a<br>
+                35767 Breitscheid<br>
+                <a href="tel:+4915234796615">01523 4796615</a><br>
+                <a href="mailto:renorepjensschmidt@gmail.com">renorepjensschmidt@gmail.com</a>
+            </address>
+        </div>
+        <div class="f-hours">
+            <h4>Erreichbarkeit</h4>
+            <table>
+                <tr><td>Montag – Freitag</td><td>8 – 20 Uhr</td></tr>
+            </table>
+            <p>Zertifizierte Montage von Türen, Fenstern, Toren und Sonnenschutz im Lahn-Dill-Kreis und Dreiländereck.</p>
+        </div>
+        <div class="f-col">
+            <h4>Seiten</h4>
+            <ul>
+                <li><a href="#leistungen">Leistungen</a></li>
+                <li><a href="#ablauf">Ablauf</a></li>
+                <li><a href="galerie.html">Galerie</a></li>
+                <li><a href="konfigurator.html">Konfigurator</a></li>
+                <li><a href="https://wa.me/4915234796615" target="_blank" rel="noopener">WhatsApp</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="wrap f-mid">
+        <nav aria-label="Rechtliches"><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a></nav>
+        <span>© <span id="year">2026</span> Renorep Montagedienstleistung · Montage · Beratung · Verkauf</span>
+    </div>
+    <div class="f-bottom">
+        Hat dir die Website von Renorep gefallen? Hol dir jetzt kostenlos deine eigene Vorlage –
+        <a href="mailto:info@leadflowconsulting.de?subject=Kostenlose%20Website-Vorlage&body=Hallo%2C%0A%0Adie%20Website%20von%20Renorep%20hat%20mir%20sehr%20gut%20gefallen.%20Ich%20w%C3%BCrde%20mich%20gerne%20%C3%BCber%20eine%20kostenlose%20Vorlage%20f%C3%BCr%20mein%20Unternehmen%20informieren.%0A%0AUnternehmen%3A%20%0ATelefonnummer%3A%20%0A%0AMit%20freundlichen%20Gr%C3%BC%C3%9Fen">info@leadflowconsulting.de</a>
+    </div>
+</footer>
+
+<a href="https://wa.me/4915234796615" target="_blank" rel="noopener" class="wa" aria-label="Per WhatsApp schreiben">
+    <svg width="27" height="27" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+    // Nav: solid on scroll
+    const nav = document.getElementById('nav');
+    const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 10 || document.body.classList.contains('menu-open'));
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    // Mobile menu
+    const burger = document.getElementById('burger');
+    const menu = document.getElementById('menu');
+    const setMenu = open => {
+        burger.classList.toggle('open', open);
+        menu.classList.toggle('open', open);
+        burger.setAttribute('aria-expanded', open);
+        document.body.classList.toggle('menu-open', open);
+        document.body.style.overflow = open ? 'hidden' : '';
+        onScroll();
+    };
+    burger.addEventListener('click', () => setMenu(!menu.classList.contains('open')));
+    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+
+    // Reveal on scroll
+    if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+    } else {
+        document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+    }
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+<script>
+    // Live availability (Mo–Fr, 8–20 Uhr, Europe/Berlin)
+    (() => {
+        const parts = new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Berlin', weekday: 'short', hour: 'numeric', minute: 'numeric', hour12: false }).formatToParts(new Date());
+        const get = t => parts.find(p => p.type === t).value;
+        const day = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].indexOf(get('weekday'));
+        const h = Number(get('hour')) % 24 + Number(get('minute')) / 60;
+        const weekday = day >= 1 && day <= 5;
+        const open = weekday && h >= 8 && h < 20;
+        let text;
+        if (open) text = 'Jetzt erreichbar · bis 20 Uhr';
+        else if (weekday && h < 8) text = 'Heute ab 8 Uhr erreichbar';
+        else if (day === 0 || (day >= 1 && day <= 4)) text = 'Morgen ab 8 Uhr erreichbar';
+        else text = 'Am Montag ab 8 Uhr erreichbar';
+        document.querySelectorAll('[data-status]').forEach(el => {
+            el.classList.toggle('is-open', open);
+            el.querySelector('span').textContent = text;
+        });
+        const row = document.querySelector(`.hours tr[data-day="${day}"]`);
+        if (row) row.classList.add('today');
+    })();
+
+    // Services: preview image follows hover/focus, rows preselect the form field
+    (() => {
+        const rows = [...document.querySelectorAll('.svc-row')];
+        const imgs = [...document.querySelectorAll('.svc-preview img')];
+        const cap = document.getElementById('svc-cap');
+        const show = row => {
+            rows.forEach(r => r.classList.toggle('on', r === row));
+            imgs.forEach((im, i) => im.classList.toggle('on', i === Number(row.dataset.img)));
+            cap.textContent = row.querySelector('h3').textContent;
+        };
+        rows.forEach(row => {
+            row.addEventListener('mouseenter', () => show(row));
+            row.addEventListener('focus', () => show(row));
+            row.addEventListener('click', () => {
+                const sel = document.getElementById('f-leistung');
+                const val = row.dataset.leistung;
+                [...sel.options].forEach(o => { if (o.text === val) sel.value = o.value || o.text; });
+            });
+        });
+    })();
+
+    // Before / after slider
+    (() => {
+        const box = document.getElementById('compare');
+        const input = box.querySelector('input');
+        input.addEventListener('input', () => box.style.setProperty('--pos', input.value + '%'));
+    })();
+
+    // Project deck: tilted photo stack
+    (() => {
+        const deck = document.getElementById('deck');
+        const figs = [...deck.querySelectorAll('figure')];
+        const no = document.getElementById('deck-no');
+        let cur = 0, busy = false;
+        const render = () => {
+            figs.forEach((f, i) => f.dataset.pos = Math.min((i - cur + figs.length) % figs.length, 4));
+            no.textContent = String(cur + 1).padStart(2, '0');
+        };
+        const next = () => {
+            if (busy) return; busy = true;
+            const top = figs[cur];
+            top.classList.add('out');
+            setTimeout(() => { cur = (cur + 1) % figs.length; render(); top.classList.remove('out'); busy = false; }, 420);
+        };
+        const prev = () => { if (busy) return; cur = (cur - 1 + figs.length) % figs.length; render(); };
+        document.getElementById('deck-next').addEventListener('click', next);
+        document.getElementById('deck-prev').addEventListener('click', prev);
+        deck.addEventListener('click', next);
+        let x0 = null;
+        deck.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; }, { passive: true });
+        deck.addEventListener('touchend', e => {
+            if (x0 === null) return;
+            const dx = e.changedTouches[0].clientX - x0; x0 = null;
+            if (Math.abs(dx) > 40) { dx < 0 ? next() : prev(); }
+        });
+        render();
+    })();
+
+    // Reviews
+    (() => {
+        const tabs = [...document.querySelectorAll('.voice-tabs button')];
+        tabs.forEach(tab => tab.addEventListener('click', () => {
+            tabs.forEach(t => {
+                const on = t === tab;
+                t.classList.toggle('on', on);
+                t.setAttribute('aria-selected', on);
+                document.getElementById(t.getAttribute('aria-controls')).classList.toggle('on', on);
+            });
+        }));
+    })();
+
+    // Two-click map
+    document.getElementById('map-load').addEventListener('click', () => {
+        const f = document.createElement('iframe');
+        f.src = 'https://maps.google.com/maps?q=Auf+der+Grub+7a+35767+Breitscheid&output=embed&hl=de&z=15';
+        f.title = 'Standort Renorep in Breitscheid';
+        f.referrerPolicy = 'no-referrer-when-downgrade';
+        document.getElementById('map-box').appendChild(f);
+    });
+</script>
+</body>
+</html>
